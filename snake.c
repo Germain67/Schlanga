@@ -1,23 +1,41 @@
-//
-// Created by lise on 17/02/16.
-//
-
 #include "snake.h"
 #include <stdio.h>
 #include <stdlib.h>
 
+/* Position */
 
 typedef struct {
     int x;
     int y;
-} coord;
+} position;
 
+/*Snake */
 
-typedef struct maillon {
-    coord donnee;
-    struct maillon *suivant;
+typedef struct snake {
+  position coordonnees;
+  struct snake *suivant;
 } *snake;
 
-typedef enum case {snake, item, vide, mur };
+/* Items */
+
+typedef struct item {
+  typeItem t;
+} *item;
+
+enum typeItem
+{
+  boost, invicibilite
+};
+
+/* Cases et plateau */
+
+typedef struct case{
+  typeCase type;
+}
+
+enum typeCase
+{
+  snake, item, mur, vide 
+};
 
 typedef case **plateau;
