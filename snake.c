@@ -2,40 +2,61 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Position */
+/*ajout element a la tete du snake*/
 
-typedef struct {
-    int x;
-    int y;
-} position;
-
-/*Snake */
-
-typedef struct snake {
-  position coordonnees;
-  struct snake *suivant;
-} *snake;
-
-/* Items */
-
-typedef struct item {
-  typeItem t;
-} *item;
-
-enum typeItem
-{
-  boost, invicibilite
-};
-
-/* Cases et plateau */
-
-typedef struct case{
-  typeCase type;
+snake cons(snake s, position p){
+snake S;
+S = malloc(sizeof(struct maillon));
+S->coordonnees = p;
+S->suivant= s;
+return(p);
 }
 
-enum typeCase
-{
-  snake, item, mur, vide 
-};
+/*eliminer le dernier element du snake*/
 
-typedef case **plateau;
+snake eliminer(snake s){
+    snake I = NULL;
+    snake S = NULL;
+    while (s->suivant != NULL){
+        I = cons(I,s->coordonnees);
+    }
+    while (I != NULL){
+        S = cons(S,I->coordonnees);
+    }
+return S;
+}
+
+/*deplacement*/
+
+snake deplacement(int d, snake s){ /*2,4,6 et 8 a remplacer pas las fleches*/
+s = eliminer(s);
+position p;
+c = s->coordonnees;
+    if (d=2){
+        p.x = c.x;
+        p.y = c.y - 1;
+        s = cons(s,p);
+    }
+    if (d=8){
+        p.x = c.x;
+        p.y = c.y + 1;
+        s = cons(s,p);
+    }
+    if (d=6){
+        p.x = c.x + 1;
+        p.y = c.y;
+        s = cons(s,p);
+    }
+    if (d=4){
+        p.x = c.x - 1;
+        p.y = c.y;
+        s = cons(s,p);
+    }
+return s;
+}
+    
+    
+    
+    
+    
+        
