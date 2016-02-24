@@ -1,9 +1,17 @@
 #include "snake.h"
 
 plateau initPlateau(int hauteur, int largeur){
-	plateau->data = malloc(hauteur*largeur*sizeof(element));
-	plateau->hauteur = hauteur;
-	plateau->largeur = largeur;
+	plateau p = (plateau) malloc(hauteur * largeur * sizeof(element) + 2 * sizeof(int));
+	p->data = (element**) malloc(hauteur * largeur * sizeof(element));
+	p->hauteur = hauteur;
+	p->largeur = largeur;
+	return p;
+}
+
+element initElement(typeCase t){
+	element e = (element) malloc(sizeof(element));
+	e->type = t;
+	return e;
 }
 
 char caseSymbol(element elem){
@@ -37,6 +45,15 @@ void showPlateau(plateau p){
 }
 
 int main(){
-	plateau p =
+	printf("initPlateau \n");
+	plateau p = initPlateau(2, 2);
+	printf("initElement \n");
+	p->data[0][0] = initElement(vide);
+	p->data[1][0] = initElement(snake);
+	p->data[1][1] = initElement(mur);
+	p->data[0][1] = initElement(snake);
+	printf("showPlateau \n");
+	showPlateau(p);
+	getchar();
 	return 0;
 }
