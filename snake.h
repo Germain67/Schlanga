@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "snake.c"
 
 /* Position */
 
@@ -42,3 +43,16 @@ typedef struct plateau{
 	int hauteur;
 	int largeur;
 } *plateau;
+
+/*ajout element a la tete du snake*/
+
+serpent cons(serpent s, position p);
+
+/*eliminer le dernier element du snake*/
+
+serpent eliminer(serpent s);
+
+/*deplacement*/
+
+serpent deplacement(int d, serpent s);
+
