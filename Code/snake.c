@@ -30,10 +30,10 @@ return S;
 /*deplacement*/
 
 serpent deplacement(int d, serpent s){ /*2,4,6 et 8 a remplacer pas las fleches*/
-s = eliminer(s);
-position p;
-position c;
-c = s->coordonnees;
+    s = eliminer(s);
+    position p;
+    position c;
+    c = s->coordonnees;
     if (d==2){
         p->x = c->x;
         p->y = c->y - 1;
@@ -54,6 +54,6 @@ c = s->coordonnees;
         p->y = c->y;
         s = cons(s,p);
     }
-return s;
+    return s;
 }
 
