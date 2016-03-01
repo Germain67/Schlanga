@@ -4,7 +4,7 @@
 
 serpent init_serpent(serpent suivant, position pos) {
 	serpent s = (serpent) malloc(sizeof(struct serpent));
-    s->coordonnees = p;
+    s->coordonnees = pos;
     s->suivant = suivant;
 	return s;
 }
@@ -35,7 +35,7 @@ void suppression_queue(serpent s){
     precedent->suivant = NULL;
 }
 
-serpent Free_serpent(serpent s) {
+serpent free_serpent(serpent s) {
     serpent tmp = s;
     serpent next;
     while (tmp != NULL) {
@@ -50,10 +50,12 @@ serpent Free_serpent(serpent s) {
 /*deplacement*/
 
 void deplacement(direction d, serpent s){
+    //On supprime la queue
     suppression_queue(s);
     position p;
     position c;
     c = s->coordonnees;
+    //On met à jour les coordonnées
     if (d==BAS){
         p->x = c->x;
         p->y = c->y - 1;

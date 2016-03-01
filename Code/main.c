@@ -17,10 +17,9 @@ void initMurs(plateau p){
 int main(){
 	plateau p = initPlateau(20, 20);
 	initMurs(p);
-	serpent s = init_serpent();
 	position p1 = cree_position(5, 5);
+	serpent s = init_serpent(NULL, p1);
 	position p2 = cree_position(5, 6);
-	s = ajout_entete(s, p1);
 	s = ajout_entete(s, p2);
 	while(1){
 		deplacement(BAS, s);
