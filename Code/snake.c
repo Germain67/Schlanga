@@ -2,57 +2,66 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+serpent init_serpent() {
+	serpent s = NULL;
+	s = malloc(sizeof(struct serpent));
+	return s;
+}
+
+/*void free_serpent(serpent s) {
+
+}*/
 
 /*ajout element a la tete du snake*/
 
 void ajout_entete(serpent s, position p){
-	serpent S;
-	S = malloc(sizeof(struct serpent));
-	S->coordonnees = p;
-	S->suivant= s;
+	s->suivant = s;
+	s->coordonnees = p;
 }
 
 /*eliminer le dernier element du snake*/
 
 void suppression_queue(serpent s){
-    serpent I = NULL;
-    serpent S = NULL;
+    serpent I = init_serpent();
+    serpent S = init_serpent();
     while (s->suivant != NULL){
-        I = ajout_entete(I,s->coordonnees);
+        ajout_entete(I,s->coordonnees);
 	s=s->suivant;
     }
     while (I != NULL){
-        S = ajout_entete(S,I->coordonnees);
+        ajout_entete(S,I->coordonnees);
 	I=I->suivant;
     }
+    s->suivant=S->suivant;
+    s->coordonnees=S->coordonnees;
 }
 
 /*deplacement*/
 
 void deplacement(direction d, serpent s){
-    s = eliminer(s);
+    suppression_queue(s);
     position p;
     position c;
     c = s->coordonnees;
     if (d==BAS){
         p->x = c->x;
         p->y = c->y - 1;
-        s = ajout_entete(s,p);
+        ajout_entete(s,p);
     }
     if (d==HAUT){
         p->x = c->x;
         p->y = c->y + 1;
-        s = ajout_entete(s,p);
+        ajout_entete(s,p);
     }
     if (d==DROITE){
         p->x = c->x + 1;
         p->y = c->y;
-        s = ajout_entete(s,p);
+        ajout_entete(s,p);
     }
     if (d==GAUCHE){
         p->x = c->x - 1;
         p->y = c->y;
-        s = ajout_entete(s,p);
+        ajout_entete(s,p);
     }
 }
 
