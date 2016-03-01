@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-serpent init_serpent() {
-	serpent s = NULL;
-	s = (serpent) malloc(sizeof(struct serpent));
+serpent init_serpent(serpent suivant, position pos) {
+	serpent s = (serpent) malloc(sizeof(struct serpent));
+    s->coordonnees = p;
+    s->suivant = suivant;
 	return s;
 }
 
@@ -19,10 +20,7 @@ position cree_position(int x, int y) {
 /*ajout element a la tete du snake*/
 
 serpent ajout_entete(serpent s, position p){
-    serpent tete = init_serpent();
-	tete->suivant = s;
-	tete->coordonnees = p;
-    return tete;
+    return init_serpent(s, p);
 }
 
 /*eliminer le dernier element du snake*/
