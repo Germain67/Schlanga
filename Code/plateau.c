@@ -1,5 +1,12 @@
-#include "element.h"
 #include "plateau.h"
+
+void addSerpentPlateau(serpent s, plateau p){
+	serpent temp = s;
+	while(temp != NULL){
+		p->data[s->coordonnees->x][s->coordonnees->y] = initElement(snake);
+		temp = temp->suivant;
+	}
+}
 
 plateau initPlateau(int hauteur, int largeur){
 	plateau p = (plateau) malloc(hauteur * largeur * sizeof(element) + 2 * sizeof(int));

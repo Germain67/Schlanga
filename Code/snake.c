@@ -4,37 +4,50 @@
 
 serpent init_serpent() {
 	serpent s = NULL;
-	s = malloc(sizeof(struct serpent));
+	s = (serpent) malloc(sizeof(struct serpent));
 	return s;
 }
 
-/*void free_serpent(serpent s) {
-
-}*/
+position cree_position(int x, int y) {
+    position p = NULL;
+    p = (position) malloc(sizeof(position));
+    p->x = x;
+    p->y = y;
+    return p;
+}
 
 /*ajout element a la tete du snake*/
 
-void ajout_entete(serpent s, position p){
-	s->suivant = s;
-	s->coordonnees = p;
+serpent ajout_entete(serpent s, position p){
+    serpent tete = init_serpent();
+	tete->suivant = s;
+	tete->coordonnees = p;
+    return tete;
 }
 
 /*eliminer le dernier element du snake*/
 
 void suppression_queue(serpent s){
-    serpent I = init_serpent();
-    serpent S = init_serpent();
-    while (s->suivant != NULL){
-        ajout_entete(I,s->coordonnees);
-	s=s->suivant;
+    serpent courant = s;
+    serpent precedent = NULL;
+    while (courant->suivant !=NULL) {
+       precedent = courant;
+       courant = courant->suivant;
     }
-    while (I != NULL){
-        ajout_entete(S,I->coordonnees);
-	I=I->suivant;
-    }
-    s->suivant=S->suivant;
-    s->coordonnees=S->coordonnees;
+    precedent->suivant = NULL;
 }
+
+serpent Free_serpent(serpent s) {
+    serpent tmp = s;
+    serpent next;
+    while (tmp != NULL) {
+        next=tmp->suivant;
+        free(tmp);
+        tmp=next;
+    }
+    return NULL;
+}
+
 
 /*deplacement*/
 
@@ -46,22 +59,22 @@ void deplacement(direction d, serpent s){
     if (d==BAS){
         p->x = c->x;
         p->y = c->y - 1;
-        ajout_entete(s,p);
+        s = ajout_entete(s,p);
     }
     if (d==HAUT){
         p->x = c->x;
         p->y = c->y + 1;
-        ajout_entete(s,p);
+        s = ajout_entete(s,p);
     }
     if (d==DROITE){
         p->x = c->x + 1;
         p->y = c->y;
-        ajout_entete(s,p);
+        s = ajout_entete(s,p);
     }
     if (d==GAUCHE){
         p->x = c->x - 1;
         p->y = c->y;
-        ajout_entete(s,p);
+        s = ajout_entete(s,p);
     }
 }
 

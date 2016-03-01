@@ -1,3 +1,6 @@
+#ifndef ELEMENT_H
+#define ELEMENT_H
+
 typedef enum
 {
   snake, objet, mur, vide 
@@ -9,3 +12,5 @@ typedef struct element{
 
 element initElement(typeCase t);
 char caseSymbol(element elem);
+
+#endif
