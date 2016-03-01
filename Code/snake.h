@@ -9,15 +9,14 @@ typedef struct position{
 
 typedef struct serpent {
   position coordonnees;
-  struct maillon *suivant;
+  struct serpent *suivant;
 } *serpent;
 
 
-typedef enum
-{
+typedef enum {
   HAUT, BAS, GAUCHE, DROITE
 } direction;
 
-serpent cons(serpent s, position p);
-serpent eliminer(serpent s);
+void ajout_entete(serpent s, position p);
+void suppression_queue(serpent s);
 void deplacement(direction d, serpent s);
