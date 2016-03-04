@@ -3,7 +3,7 @@
 void addSerpentPlateau(serpent s, plateau p){
 	serpent temp = s;
 	while(temp != NULL){
-		p->data[s->coordonnees->x][s->coordonnees->y] = initElement(snake);
+		p->data[temp->coordonnees->x][temp->coordonnees->y] = initElement(snake);
 		temp = temp->suivant;
 	}
 }

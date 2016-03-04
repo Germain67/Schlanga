@@ -33,6 +33,7 @@ void suppression_queue(serpent s){
        courant = courant->suivant;
     }
     precedent->suivant = NULL;
+    free_serpent(courant);
 }
 
 serpent free_serpent(serpent s) {
@@ -50,31 +51,23 @@ serpent free_serpent(serpent s) {
 /*deplacement*/
 
 void deplacement(direction d, serpent s){
-    //On supprime la queue
-    suppression_queue(s);
     position p;
-    position c;
-    c = s->coordonnees;
     //On met à jour les coordonnées
-    if (d==BAS){
-        p->x = c->x;
-        p->y = c->y - 1;
-        s = ajout_entete(s,p);
-    }
     if (d==HAUT){
-        p->x = c->x;
-        p->y = c->y + 1;
-        s = ajout_entete(s,p);
+	p=cree_position(s->coordonnees->x,s->coordonnees->y - 1);
+    }
+    if (d==BAS){
+	p=cree_position(s->coordonnees->x,s->coordonnees->y + 1);
     }
     if (d==DROITE){
-        p->x = c->x + 1;
-        p->y = c->y;
-        s = ajout_entete(s,p);
+	p=cree_position(s->coordonnees->x + 1,s->coordonnees->y);
     }
     if (d==GAUCHE){
-        p->x = c->x - 1;
-        p->y = c->y;
-        s = ajout_entete(s,p);
+	p=cree_position(s->coordonnees->x - 1,s->coordonnees->y);
     }
+    s = ajout_entete(s,p);    
+    
+    //On supprime la queue
+    suppression_queue(s);
 }
 
