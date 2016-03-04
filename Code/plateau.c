@@ -8,6 +8,11 @@ void addSerpentPlateau(serpent s, plateau p){
 	}
 }
 
+void updateSerpentPlateau(serpent tete, plateau p, position queue){
+	p->data[tete->coordonnees->x][tete->coordonnees->y] = initElement(snake);
+	p->data[queue->x][queue->y] = initElement(vide);
+}
+
 plateau initPlateau(int hauteur, int largeur){
 	plateau p = (plateau) malloc(hauteur * largeur * sizeof(element) + 2 * sizeof(int));
 	p->data = (element**) malloc(hauteur * sizeof(element*));
@@ -32,7 +37,7 @@ void showPlateau(plateau p){
 	for(x = 0; x<p->hauteur; x++){
 		char ligne[p->largeur + 1];
 		for(y = 0; y<p->largeur; y++){
-			element currentCase = p->data[x][y];
+			element currentCase = p->data[y][x];
 			char symbol = caseSymbol(currentCase);
 			ligne[y] = symbol;
 		}

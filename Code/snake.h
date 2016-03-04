@@ -20,11 +20,12 @@ typedef enum {
   HAUT, BAS, GAUCHE, DROITE
 } direction;
 
-serpent init_serpent(serpent suivant, position pos);
+serpent init_serpent(int taille, position pos, direction dir);
 position cree_position(int x, int y);
 serpent ajout_entete(serpent s, position p);
+position get_position_queue(serpent s);
 void suppression_queue(serpent s);
 serpent free_serpent(serpent s);
-void deplacement(direction d, serpent s);
+serpent deplacement(direction d, serpent s);
 
 #endif

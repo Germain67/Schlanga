@@ -16,11 +16,19 @@ position cree_position(int x, int y) {
 
 /*ajout element a la tete du snake*/
 
-serpent ajout_entete(serpent s, position p){
+serpent ajout_entete(serpent suivant, position pos){
     serpent s = (serpent) malloc(sizeof(struct serpent));
     s->coordonnees = pos;
     s->suivant = suivant;
     return s;
+}
+
+position get_position_queue(serpent s){
+    serpent courant = s;
+    while (courant->suivant !=NULL) {
+       courant = courant->suivant;
+    }
+    return courant->coordonnees;
 }
 
 /*eliminer le dernier element du snake*/
@@ -51,7 +59,6 @@ serpent free_serpent(serpent s) {
 serpent init_serpent(int taille, position pos, direction dir)  {
     int i;
     serpent s = (serpent) malloc(sizeof(struct serpent));
-    position pos=cree_position(25,25);
     ajout_entete(s, pos);
     position tmp=pos;
     for (i=0; i<taille; i++) {
@@ -81,7 +88,7 @@ serpent init_serpent(int taille, position pos, direction dir)  {
 
 /*deplacement*/
 
-void deplacement(direction d, serpent s){
+serpent deplacement(direction d, serpent s){
     position p;
     //On met à jour les coordonnées
     if (d==HAUT){
@@ -96,9 +103,8 @@ void deplacement(direction d, serpent s){
     if (d==GAUCHE){
 	p=cree_position(s->coordonnees->x - 1,s->coordonnees->y);
     }
-    s = ajout_entete(s,p);    
-    
     //On supprime la queue
     suppression_queue(s);
+    return ajout_entete(s,p);    
 }
 

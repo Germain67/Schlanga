@@ -18,16 +18,18 @@ int main(){
 	plateau p = initPlateau(20, 20);
 	initMurs(p);
 	position p1 = cree_position(1, 1);
-	serpent s = init_serpent(NULL, p1);
+	serpent s = ajout_entete(NULL, p1);
 	position p2 = cree_position(1, 2);
 	s = ajout_entete(s, p2);
 
-	printf("Vers le bas\n");	
-	deplacement(BAS,s);
-	deplacement(BAS,s);
-
 	addSerpentPlateau(s, p);
 	showPlateau(p);
+
+	position queue = get_position_queue(s);
+	s = deplacement(BAS,s);
+	updateSerpentPlateau(s,p,queue);
+	showPlateau(p);
+
 	getchar();
 	return 0;
 }
