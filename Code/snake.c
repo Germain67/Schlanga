@@ -2,12 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-serpent init_serpent(serpent suivant, position pos) {
-	serpent s = (serpent) malloc(sizeof(struct serpent));
-    s->coordonnees = pos;
-    s->suivant = suivant;
-	return s;
-}
+
 
 position cree_position(int x, int y) {
     position p = NULL;
@@ -17,10 +12,15 @@ position cree_position(int x, int y) {
     return p;
 }
 
+
+
 /*ajout element a la tete du snake*/
 
 serpent ajout_entete(serpent s, position p){
-    return init_serpent(s, p);
+    serpent s = (serpent) malloc(sizeof(struct serpent));
+    s->coordonnees = pos;
+    s->suivant = suivant;
+    return s;
 }
 
 /*eliminer le dernier element du snake*/
@@ -45,6 +45,37 @@ serpent free_serpent(serpent s) {
         tmp=next;
     }
     return NULL;
+}
+
+//Creation du serpent pos= position de la queue
+serpent init_serpent(int taille, position pos, direction dir)  {
+    int i;
+    serpent s = (serpent) malloc(sizeof(struct serpent));
+    position pos=cree_position(25,25);
+    ajout_entete(s, pos);
+    position tmp=pos;
+    for (i=0; i<taille; i++) {
+        if (dir==BAS) {
+            tmp->y-=1;
+            ajout_entete(s, tmp);
+        }
+        if (dir==HAUT) {
+            tmp->y+=1;
+            ajout_entete(s, tmp);
+        }
+
+        if (dir==DROITE) {
+            tmp->x+=1;
+            ajout_entete(s, tmp);
+        }
+
+        if (dir==GAUCHE) {
+            tmp->x-=1;
+            ajout_entete(s, tmp);
+        }
+
+    }
+    return s;
 }
 
 
