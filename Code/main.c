@@ -15,7 +15,7 @@ void initMurs(plateau p){
 }
 
 int main(){
-	plateau p = initPlateau(20, 20);
+	/*plateau p = initPlateau(20, 20);
 	initMurs(p);
 
 	/*position p1 = cree_position(1, 1);
@@ -29,14 +29,14 @@ int main(){
     position p5 = cree_position(1, 5);
     s = ajout_entete(s, p5);*/
 
-    position pos1=cree_position(10,10);
+    /*position pos1=cree_position(10,10);
 	serpent s;
 	/*s = ajout_entete(s,pos1);
 	s = ajout_entete(s,pos2);
 	s = ajout_entete(s,pos3);
 	s = ajout_entete(s,pos4);
 	s = ajout_entete(s,pos5);*/
-	s = init_serpent(5,pos1,HAUT);
+	/*s = init_serpent(5,pos1,HAUT);
 
 	addSerpentPlateau(s, p);
 	showPlateau(p);
@@ -45,7 +45,7 @@ int main(){
 	s = deplacement(BAS,s);
 	updateSerpentPlateau(s,p,queue);
 	showPlateau(p);*/
-
+	jeux();
 	getchar();
 	return 0;
 }

@@ -22,8 +22,8 @@ char caseSymbol(element elem){
 	return symbol;
 }
 
-typeCase etat_case(plateau p, position pos) {
+/*typeCase etat_case(plateau p, position pos) {
 	typeCase res= ((p->data)[pos->x][pos->y])->type;
 	return res;
 
-}
+}*/
