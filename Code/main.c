@@ -17,18 +17,27 @@ void initMurs(plateau p){
 int main(){
 	plateau p = initPlateau(20, 20);
 	initMurs(p);
-	position p1 = cree_position(1, 1);
+
+	/*position p1 = cree_position(1, 1);
 	serpent s = ajout_entete(NULL, p1);
 	position p2 = cree_position(1, 2);
 	s = ajout_entete(s, p2);
+    position p3 = cree_position(1, 3);
+    s = ajout_entete(s, p3);
+    position p4 = cree_position(1, 4);
+    s = ajout_entete(s, p4);
+    position p5 = cree_position(1, 5);
+    s = ajout_entete(s, p5);*/
 
+    position pos=cree_position(10,10);
+	serpent s=init_serpent(5,pos,DROITE);
 	addSerpentPlateau(s, p);
 	showPlateau(p);
 
-	position queue = get_position_queue(s);
+	/*position queue = get_position_queue(s);
 	s = deplacement(BAS,s);
 	updateSerpentPlateau(s,p,queue);
-	showPlateau(p);
+	showPlateau(p);*/
 
 	getchar();
 	return 0;

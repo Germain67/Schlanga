@@ -58,29 +58,27 @@ serpent free_serpent(serpent s) {
 //Creation du serpent pos= position de la queue
 serpent init_serpent(int taille, position pos, direction dir)  {
     int i;
-    serpent s = (serpent) malloc(sizeof(struct serpent));
-    ajout_entete(s, pos);
-    position tmp=pos;
-    for (i=0; i<taille; i++) {
+    serpent s = NULL;
+    s=ajout_entete(s, pos);
+    position tmp=cree_position(pos->x, pos->y);
+    for (i=0; i<taille-1; i++) {
         if (dir==BAS) {
-            tmp->y-=1;
-            ajout_entete(s, tmp);
+            tmp->y=(tmp->y)-1;
         }
+
         if (dir==HAUT) {
-            tmp->y+=1;
-            ajout_entete(s, tmp);
+            tmp->y=(tmp->y)+1;
         }
 
         if (dir==DROITE) {
-            tmp->x+=1;
-            ajout_entete(s, tmp);
+            tmp->x=(tmp->x)+1;
         }
 
         if (dir==GAUCHE) {
-            tmp->x-=1;
-            ajout_entete(s, tmp);
+            tmp->x=(tmp->x)-1;
         }
 
+        s=ajout_entete(s, pos);
     }
     return s;
 }
@@ -107,4 +105,6 @@ serpent deplacement(direction d, serpent s){
     suppression_queue(s);
     return ajout_entete(s,p);    
 }
+
+
 
