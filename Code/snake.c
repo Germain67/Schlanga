@@ -57,30 +57,36 @@ serpent free_serpent(serpent s) {
 
 //Creation du serpent pos= position de la queue
 serpent init_serpent(int taille, position pos, direction dir)  {
-    int i;
     serpent s = NULL;
-    s=ajout_entete(s, pos);
-    position tmp=cree_position(pos->x, pos->y);
-    for (i=0; i<taille-1; i++) {
-        if (dir==BAS) {
-            tmp->y=(tmp->y)-1;
+    int i;
+    position p = pos;
+    position p1;
+    s = ajout_entete(s,pos);
+    if (dir == HAUT){
+        for (i=0;i<taille;i++){
+            p1 = cree_position(pos->x,pos->y + i);
+            s = ajout_entete(s,p1);
         }
-
-        if (dir==HAUT) {
-            tmp->y=(tmp->y)+1;
+   }
+   if (dir == BAS){
+        for (i=0;i<taille;i++){
+            p1 = cree_position(pos->x,pos->y - i);
+            s = ajout_entete(s,p1);
         }
-
-        if (dir==DROITE) {
-            tmp->x=(tmp->x)+1;
+   }
+   if (dir == DROITE){
+        for (i=0;i<taille;i++){
+            p1 = cree_position(pos->x + i,pos->y);
+            s = ajout_entete(s,p1);
         }
-
-        if (dir==GAUCHE) {
-            tmp->x=(tmp->x)-1;
+   }
+   if (dir == GAUCHE){
+        for (i=0;i<taille;i++){
+            p1 = cree_position(pos->x - i,pos->y);
+            s = ajout_entete(s,p1);
         }
-
-        s=ajout_entete(s, pos);
-    }
-    return s;
+   }
+   return s;
 }
 
 
