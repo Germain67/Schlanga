@@ -1,4 +1,6 @@
 #include "element.h"
+#include "snake.h"
+#include "plateau.h"
 
 element initElement(typeCase t){
 	element e = (element) malloc(sizeof(element));
@@ -18,4 +20,10 @@ char caseSymbol(element elem){
 		symbol = '0';
 	}
 	return symbol;
+}
+
+typeCase etat_case(plateau p, position pos) {
+	typeCase res= ((p->data)[pos->x][pos->y])->type;
+	return res;
+
 }
