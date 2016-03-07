@@ -1,4 +1,5 @@
 #include "plateau.h"
+#include "snake.h"
 
 void addSerpentPlateau(serpent s, plateau p){
 	serpent temp = s;
@@ -44,4 +45,33 @@ void showPlateau(plateau p){
 		ligne[p->largeur] = '\0';
 		printf("%s\n", ligne);
 	}
+}
+
+/* Collision */
+/* b=1 : Collision -- b=0 : Pas de collision */
+int collision(plateau p, direction d, serpent s){
+	int x = s->coordonnees->x;
+	int y = s->coordonnees->y;
+	int b=0;	
+	if (d==HAUT){
+		y=y-1;
+	}
+
+	if (d==BAS){
+		y=y+1;
+	}
+	
+	if (d==DROITE){
+		x=x+1;
+    	}
+    
+	if (d==GAUCHE){
+		x=x-1;
+	}
+
+	if (p->data[x][y]->type != vide ) {
+		printf("Fin de partie \n");
+		b=1;
+	}
+	return b;
 }

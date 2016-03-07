@@ -16,4 +16,6 @@ void updateSerpentPlateau(serpent tete, plateau p, position queue);
 plateau initPlateau(int hauteur, int largeur);
 void showPlateau(plateau p);
 
+int collision(plateau p, direction d, serpent s);
+
 #endif
