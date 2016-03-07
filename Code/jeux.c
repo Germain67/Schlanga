@@ -12,19 +12,25 @@ void jeux(){
 	serpent s = init_serpent(10, pos, HAUT);
 	addSerpentPlateau(s, p);
 	showPlateau(p);
-	While (collision(plateau,dir,s) == 0){
+	int dir = 8;
+	position dir1 = HAUT;
+	While (collision(p,dir1,s) == 0){
 		scanf("%i", &dir);
 		if (dir == 2){
 			s = deplacement(BAS, s);
+			dir1 = BAS;
 		}
 		if (dir == 8){
 			s = deplacement(HAUT, s);
+			dir1 = HAUT;
 		}
 		if (dir == 6){
 			s = deplacement(DROITE, s);
+			dir1 = DROITE;
 		}
 		if (dir == 4){
 			s = deplacement(GAUCHE, s);
+			dir1 = GAUCHE;
 		}
 		addSerpentPlateau(s, p);
 		sshowPlateau(p);
