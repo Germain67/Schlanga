@@ -15,18 +15,15 @@
 
 
 
-void aleatoire(serpent schlanga, plateau p) {
+direction aleatoire(serpent schlanga, plateau p) {
     int dir=rand()%4; //0=BAS, 1=HAUT, 2=GAUCHE, 3=DROITE
     position head=cree_position(schlanga->coordonnees->x, schlanga->coordonnees->y);
-    while(1){
         if (dir==0) {
             head->x+=1;
             if (etat_case(p,head)!=vide) {
                 dir=rand()%4;
             }
-            else {
-                deplacement(BAS, schlanga);
-            }
+            else return BAS;
         }
 
         if (dir==1) {
@@ -35,7 +32,7 @@ void aleatoire(serpent schlanga, plateau p) {
                 dir=rand()%4;
             }
             else {
-                deplacement(HAUT, schlanga);
+                return HAUT;
             }
         }
 
@@ -45,7 +42,7 @@ void aleatoire(serpent schlanga, plateau p) {
                 dir=rand()%4;
             }
             else {
-                deplacement(GAUCHE, schlanga);
+                return GAUCHE;
             }
         }
 
@@ -55,9 +52,18 @@ void aleatoire(serpent schlanga, plateau p) {
                 dir=rand()%4;
             }
             else {
-                deplacement(DROITE, schlanga);
+                return DROITE;
             }
         }
     }
-}
 
+
+void defensif(serpent schlanga, plateau p) {
+    int casesVides=0, i,j;
+    position head=cree_position(schlanga->coordonnees->x, schlanga->coordonnees->y);
+    if(schlanga->suivant->coordonnees->x==head->x+1) {
+
+    }
+
+
+}

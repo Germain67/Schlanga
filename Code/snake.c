@@ -55,6 +55,10 @@ serpent free_serpent(serpent s) {
     return NULL;
 }
 
+void free_position(position pos) {
+    free(pos);
+}
+
 //Creation du serpent pos= position de la queue
 serpent init_serpent(int taille, position pos, direction dir)  {
     serpent s = NULL;
