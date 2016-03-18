@@ -1,10 +1,11 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include <SDL/SDL.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include "element.h"
 #include "plateau.h"
 #include "snake.h"
+#include "jeux_test.h"
 #define FPS 30
 
 direction dir = BAS;
@@ -43,7 +44,7 @@ int main(int argc, char *argv[])
   SDL_Event event;
   SDL_Init(SDL_INIT_VIDEO);
   ecran = SDL_SetVideoMode(700, 700, 32, SDL_HWSURFACE);
-  plateau p = initJeu();
+  plateau p = initJeu(20, 20, 5);
 
   while (continuer)
   {
@@ -90,9 +91,6 @@ int main(int argc, char *argv[])
       SDL_Flip(ecran);
     }
   }
-
-  // Désactivation de la répétition des touches (remise à 0)
-  SDL_EnableKeyRepeat(0, 0);
 
   return 0;
 }
