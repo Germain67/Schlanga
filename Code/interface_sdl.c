@@ -4,26 +4,11 @@
 #include <unistd.h>
 #include "element.h"
 #include "plateau.h"
+#include "snake.h"
 #define FPS 30
 
-int dir = 0;
+direction dir = BAS;
 Uint32 elapsedTime;
-
-void displayPlateau(plateau p){
-  // Effacement de l'écran
-  SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
-  //Affiche le plateau
-  int x, y;
-  for(x = 0; x<p->hauteur; x++){
-    for(y = 0; y<p->largeur; y++){
-      element currentCase = p->data[y][x];
-      //char symbol = caseSymbol(currentCase);
-      if(currentCase != vide){
-        showRectangle(ecran,x*20,y*20,15,15);
-      }
-    }
-  }
-}
 
 void showRectangle(SDL_Surface* ecran, int x, int y, int size, int height){
   SDL_Surface *rectangle = NULL;
@@ -35,13 +20,30 @@ void showRectangle(SDL_Surface* ecran, int x, int y, int size, int height){
   SDL_BlitSurface(rectangle, NULL, ecran, &position); // Collage de la surface sur l'écran
 }
 
+void displayPlateau(SDL_Surface* ecran, plateau p){
+  // Effacement de l'écran
+  SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
+  //Affiche le plateau
+  int x, y;
+  for(x = 0; x<p->hauteur; x++){
+    for(y = 0; y<p->largeur; y++){
+      element currentCase = p->data[y][x];
+      //char symbol = caseSymbol(currentCase);
+      if(currentCase->type != vide){
+        showRectangle(ecran,x*20,y*20,15,15);
+      }
+    }
+  }
+}
+
 int main(int argc, char *argv[])
 {
   int continuer = 1;
   SDL_Surface *ecran = NULL;
   SDL_Event event;
   SDL_Init(SDL_INIT_VIDEO);
-  ecran = SDL_SetVideoMode(640, 480, 32, SDL_HWSURFACE);
+  ecran = SDL_SetVideoMode(700, 700, 32, SDL_HWSURFACE);
+  plateau p = initJeu();
 
   while (continuer)
   {
@@ -59,30 +61,34 @@ int main(int argc, char *argv[])
                     continuer = 0;
                     break;
                 case SDLK_UP:
-                    dir = 0;
+                    dir = HAUT;
                     break;
                 case SDLK_DOWN:
-                    dir = 1;
+                    dir = BAS;
                     break;
                 case SDLK_RIGHT:
-                    dir = 2;
+                    dir = DROITE;
                     break;
                 case SDLK_LEFT:
-                    dir = 3;
+                    dir = GAUCHE;
                     break;
             }
             break;
     }
+    //1 seconde
+    if (elapsedTime%1000 == 0) /* Si 30 ms se sont écoulées */
+    {
+      plateau p = updateJeu(dir);
+
+    }
+    //30 FPS
     if (elapsedTime%(1000/FPS) == 0) /* Si 30 ms se sont écoulées */
     {
       printf("Dir : %d\n", dir);
-      displayPlateau(p);
+      displayPlateau(ecran, p);
+      //On met à jour sans clignotement
+      SDL_Flip(ecran);
     }
-    
-    //On recrée la surface
-    showRectangle(ecran,70,70,20,20);
-    //On met à jour sans clignotement
-    SDL_Flip(ecran);
   }
 
   // Désactivation de la répétition des touches (remise à 0)
