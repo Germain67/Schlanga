@@ -32,7 +32,7 @@ plateau initPlateau(int hauteur, int largeur){
 
 void showPlateau(plateau p){
 	//Clear console
-	system("clear");
+	//system("clear");
 	//Affiche le plateau
 	int x, y;
 	for(x = 0; x<p->hauteur; x++){
@@ -69,9 +69,18 @@ int collision(plateau p, direction d, serpent s){
 		x=x-1;
 	}
 
-	if (p->data[x][y]->type != vide ) {
-		printf("Fin de partie \n");
+	if (p->data[x][y]->type == snake ) {
+		printf("mort par snake \n");
+		b=1;
+	}
+	if (p->data[x][y]->type == mur ) {
+		printf("mur \n");
+		b=1;
+	}
+	if (p->data[x][y]->type == objet ) {
+		printf("objet \n");
 		b=1;
 	}
 	return b;
 }
+

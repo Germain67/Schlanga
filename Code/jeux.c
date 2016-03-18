@@ -39,14 +39,16 @@ void jeux(){
 		}
 		if (collision(p,dir1,snake) == 1){
 			b = 1;
+			printf("snake");
 		}
+		snake = deplacement(dir1, snake);
+		updateSerpentPlateau(snake,p,queue);
+		dir2 = aleatoire(schlanga, p);
 		if (collision(p,dir2,schlanga) == 1){
 			a = 1;
+			printf("schlanga");
 		}
-		dir2 = aleatoire(schlanga, p);
-		snake = deplacement(dir1, snake);
 		schlanga = deplacement(dir2, schlanga);
-		updateSerpentPlateau(snake,p,queue);
 		updateSerpentPlateau(schlanga,p,queue1);
 		showPlateau(p);
 	}
