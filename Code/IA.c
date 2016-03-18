@@ -19,9 +19,9 @@ direction aleatoire(serpent schlanga, plateau p) {
     int a = 1;
     int b = 0;
     direction dir1;
+    srand(time(NULL));
     while(a == 1){
         int dir=rand()%4; //0=BAS, 1=HAUT, 2=GAUCHE, 3=DROITE
-        position head=cree_position(schlanga->coordonnees->x, schlanga->coordonnees->y);
         if (dir==0) {
             dir1 = BAS;
         }
@@ -40,6 +40,7 @@ direction aleatoire(serpent schlanga, plateau p) {
         else {
             b = b + 1;
             if (b > 100){
+                printf("erreur plud de 100 repet");
                 a = 0;
             }
         }

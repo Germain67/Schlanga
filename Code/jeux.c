@@ -40,7 +40,7 @@ void jeux(){
 		if (collision(p,dir1,snake) == 1){
 			b = 1;
 		}
-		if (collision(p,dir1,schlanga) == 1){
+		if (collision(p,dir2,schlanga) == 1){
 			a = 1;
 		}
 		dir2 = aleatoire(schlanga, p);
@@ -50,10 +50,10 @@ void jeux(){
 		updateSerpentPlateau(schlanga,p,queue1);
 		showPlateau(p);
 	}
-	if (a = 1){
+	if (a == 1){
 		printf("\n vous avez gagné");
 	}
-	if (b = 1){
+	if (b == 1){
 		printf("\n vous avez perdu");
 	}
 
