@@ -19,8 +19,7 @@ void initMurs(plateau p){
 
 
 plateau initJeu(int lon, int lar, int t) {
-	int i;
-// Le plateau est de taille longeur +2 et largeur+2 vu qu'il contient les murs
+	// Le plateau est de taille longeur +2 et largeur+2 vu qu'il contient les murs
 	p = initPlateau(lon+2, lar+2);
 	initMurs(p);
 
@@ -31,6 +30,7 @@ plateau initJeu(int lon, int lar, int t) {
 
 	addSerpentPlateau(snake_joueur, p);
 	addSerpentPlateau(schlanga, p);
+	return p;
 }
 
 

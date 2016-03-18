@@ -1,34 +1,43 @@
-all: main_sdl
+# project name (generate executable with this name)
+TARGET   = main
 
-#main: main.o plateau.o element.o snake.o jeux.o IA.o
-#	gcc -o main main.o plateau.o element.o snake.o jeux.o IA.o
+CC       = gcc
+# compiling flags here
+CFLAGS   = -Wall -I. `sdl-config --libs` 
+#-lSDL_image
 
-main_sdl: main_sdl.o plateau.o element.o snake.o jeux_test.o IA.o
-	gcc `sdl-config --cflags --libs` main_sdl.o plateau.o element.o snake.o jeux_test.o IA.o -o main_sdl
+LINKER   = gcc -o
+# linking flags here
+LFLAGS   = -I. -lm `sdl-config --libs` 
+#-lSDL_image
 
-plateau.o: plateau.c
-	gcc -o plateau.o -c plateau.c
+# change these to set the proper directories where each files shoould be
+SRCDIR   = src
+OBJDIR   = build
+BINDIR   = bin
 
-element.o: element.c
-	gcc -o element.o -c element.c
+SOURCES  := $(wildcard $(SRCDIR)/*.c)
+INCLUDES := $(wildcard $(SRCDIR)/*.h)
+OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+rm       = rm -f
 
-snake.o: snake.c
-	gcc -o snake.o -c snake.c
 
-#jeux.o: jeux.c
-#	gcc -o jeux.o -c jeux.c
+$(BINDIR)/$(TARGET): $(OBJECTS)
+	@test -d $(BINDIR) || mkdir -p $(BINDIR)
+	@$(LINKER) $@ $(OBJECTS) $(LFLAGS)
+	@echo "Linking complete!"
 
-jeux_test.o: jeux_test.c
-	gcc -o jeux_test.o -c jeux_test.c
+$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
+	@test -d $(OBJDIR) || mkdir -p $(OBJDIR)
+	@$(CC) -c $< -o $@ $(CFLAGS)
+	@echo "Compiled "$<" successfully!"
 
-IA.o: IA.c
-	gcc -o IA.o -c IA.c
-	
-#main.o: main.c plateau.h element.h snake.h jeux.h IA.h
-#	gcc -o main.o -c main.c
-
-main_sdl.o: interface_sdl.c plateau.h element.h snake.h jeux.h IA.h
-	gcc -c `sdl-config --cflags --libs` interface_sdl.c -o main_sdl.o 
-
+.PHONEY: clean
 clean:
-	rm -rf *.o main main_sdl
+	@$(rm) $(OBJECTS)
+	@echo "Cleanup complete!"
+
+.PHONEY: remove
+remove: clean
+	@$(rm) $(BINDIR)/$(TARGET)
+	@echo "Executable removed!"

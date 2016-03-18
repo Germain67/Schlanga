@@ -73,13 +73,17 @@ int main(int argc, char *argv[])
                 case SDLK_LEFT:
                     dir = GAUCHE;
                     break;
+                default:
+                    break;
             }
             break;
+        default:
+          break;
     }
     //1 seconde
     if (elapsedTime%1000 == 0) /* Si 30 ms se sont écoulées */
     {
-      plateau p = updateJeu(dir);
+      p = updateJeu(dir);
 
     }
     //30 FPS
