@@ -4,7 +4,7 @@ all: main
 #	gcc -o main interface.c `sdl-config --cflags --libs`
 
 main: main.o plateau.o element.o snake.o jeux.o IA.o
-	gcc -o main main.o plateau.o element.o snake.o jeux.o
+	gcc -o main main.o plateau.o element.o snake.o jeux.o IA.o
 
 plateau.o: plateau.c
 	gcc -o plateau.o -c plateau.c

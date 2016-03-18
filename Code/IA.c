@@ -16,49 +16,39 @@
 
 
 direction aleatoire(serpent schlanga, plateau p) {
-    int dir=rand()%4; //0=BAS, 1=HAUT, 2=GAUCHE, 3=DROITE
-    position head=cree_position(schlanga->coordonnees->x, schlanga->coordonnees->y);
+    int a = 1;
+    int b = 0;
+    direction dir1;
+    while(a == 1){
+        int dir=rand()%4; //0=BAS, 1=HAUT, 2=GAUCHE, 3=DROITE
+        position head=cree_position(schlanga->coordonnees->x, schlanga->coordonnees->y);
         if (dir==0) {
-            head->x+=1;
-            if (etat_case(p,head)!=vide) {
-                dir=rand()%4;
-            }
-            else return BAS;
+            dir1 = BAS;
         }
-
         if (dir==1) {
-            head->x+=1;
-            if (etat_case(p,head)!=vide) {
-                dir=rand()%4;
-            }
-            else {
-                return HAUT;
-            }
+            dir1 = HAUT;
         }
-
         if (dir==2) {
-            head->y-=1;
-            if (etat_case(p,head)!=vide) {
-                dir=rand()%4;
-            }
-            else {
-                return GAUCHE;
-            }
+            dir1 = GAUCHE;
         }
-
         if (dir==3) {
-            head->y+=1;
-            if (etat_case(p,head)!=vide) {
-                dir=rand()%4;
-            }
-            else {
-                return DROITE;
+            dir1 = DROITE;
+        }
+        if (collision(p,dir1,schlanga) == 0){
+            a = 0;
+        }
+        else {
+            b = b + 1;
+            if (b > 100){
+                a = 0;
             }
         }
     }
+    return dir1;
+}
 
 
-void defensif(serpent schlanga, plateau p) {
+/*void defensif(serpent schlanga, plateau p) {
     int casesVides=0, i,j;
     position head=cree_position(schlanga->coordonnees->x, schlanga->coordonnees->y);
     if(schlanga->suivant->coordonnees->x==head->x+1) {
@@ -66,4 +56,4 @@ void defensif(serpent schlanga, plateau p) {
     }
 
 
-}
+}*/
