@@ -20,7 +20,8 @@ void jeux(){
 	direction dir1 = BAS;
 	direction dir2 = HAUT;
 	int b = 0;
-	while (b == 0){
+	int a = 0;
+	while (b == 0 && a == 0){
 		position queue = get_position_queue(snake);
 		position queue1 = get_position_queue(schlanga);
 		scanf("%d", &dir);
@@ -39,6 +40,9 @@ void jeux(){
 		if (collision(p,dir1,snake) == 1){
 			b = 1;
 		}
+		if (collision(p,dir1,schlanga) == 1){
+			a = 1;
+		}
 		dir2 = aleatoire(schlanga, p);
 		snake = deplacement(dir1, snake);
 		schlanga = deplacement(dir2, schlanga);
@@ -46,5 +50,11 @@ void jeux(){
 		updateSerpentPlateau(schlanga,p,queue1);
 		showPlateau(p);
 	}
-	printf("\n vous avez perdu");
+	if (a = 1){
+		printf("\n vous avez gagné");
+	}
+	if (b = 1){
+		printf("\n vous avez perdu");
+	}
+
 }
