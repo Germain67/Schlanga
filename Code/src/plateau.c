@@ -81,8 +81,10 @@ void showPlateau(plateau p){
 /* Collision */
 /* b=1 : Collision -- b=0 : Pas de collision */
 int collision(plateau p, direction d, serpent s){
+	printf("Coucou \n");
 	int x = s->coordonnees->x;
 	int y = s->coordonnees->y;
+	printf("%d / %d \n", x, y);
 	int b=0;	
 	if (d==HAUT){
 		y=y-1;

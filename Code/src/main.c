@@ -11,6 +11,7 @@
 
 direction dir = DROITE;
 Uint32 elapsedTime;
+plateau p;
 
 void showRectangle(SDL_Surface* ecran, int x, int y, int size, int height, Uint32 R, Uint32 G, Uint32 B){
   SDL_Surface *rectangle = NULL;
@@ -53,7 +54,8 @@ int main(int argc, char *argv[])
   SDL_Event event;
   SDL_Init(SDL_INIT_VIDEO);
   ecran = SDL_SetVideoMode(700, 700, 32, SDL_HWSURFACE);
-  plateau p = initJeu(30, 30, 3);
+  plateau p = NULL;
+  p = initJeu(p, 30, 30, 3);
 
   while (continuer)
   {
@@ -92,7 +94,7 @@ int main(int argc, char *argv[])
     //Temps entre deux mouvements
     if (elapsedTime%MOVE_TIME == 0)
     {
-      p = updateJeu(dir);
+      p = updateJeu(p, dir);
     }
     //30 FPS
     if (elapsedTime%(1000/FPS) == 0) /* Si 33 ms se sont écoulées */

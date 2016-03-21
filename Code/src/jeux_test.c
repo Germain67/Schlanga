@@ -2,12 +2,12 @@
 
 serpent snake_joueur;
 serpent schlanga;
-plateau p;
+
 // Résultat : 0 : Pas de collision / 1 : Collision du schlanga - Victoire du snake / 2 : Collision du snake - Victoire du schlanga
 int resultat;
 
 
-plateau initJeu(int lon, int lar, int t) {
+plateau initJeu(plateau p, int lon, int lar, int t) {
 	// Le plateau est de taille longeur +2 et largeur+2 vu qu'il contient les murs
 	p = initPlateau(lon+2, lar+2);
 	initMurs(p);
@@ -23,7 +23,7 @@ plateau initJeu(int lon, int lar, int t) {
 }
 
 
-plateau updateJeu (direction dir1_snake) {
+plateau updateJeu (plateau p, direction dir1_snake) {
 	position queue = get_position_queue(snake_joueur);
 	position queue1 = get_position_queue(schlanga);
 	direction dir2 = aleatoire(schlanga, p);
@@ -33,7 +33,7 @@ plateau updateJeu (direction dir1_snake) {
 	}
 	schlanga = deplacement(dir2, schlanga);
 	updateSerpentPlateau(schlanga,p,queue1);
-	if (collision(p,dir1_snake,snake) == 1){
+	if (collision(p,dir1_snake,snake_joueur) == 1){
 		resultat = 2;
 		//printf("snake");
 	}

@@ -8,8 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-plateau initJeu(int lon, int lar, int t);
-plateau updateJeu (direction dir1_snake);
+plateau initJeu(plateau p, int lon, int lar, int t);
+plateau updateJeu (plateau p, direction dir1_snake);
 void jeux();
 
 #endif
