@@ -3,7 +3,7 @@
 
 typedef enum
 {
-  snake, schlanga, objet, mur, vide 
+  snake, snake_schlanga, objet, mur, vide 
 } typeCase;
 
 typedef struct element{

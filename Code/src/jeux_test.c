@@ -17,8 +17,8 @@ plateau initJeu(int lon, int lar, int t) {
 	snake_joueur=init_serpent(t, pos_snake, DROITE);
 	schlanga=init_serpent(t, pos_schlanga, GAUCHE);
 
-	addSerpentPlateau(snake_joueur, p);
-	addSerpentPlateau(schlanga, p);
+	addSerpentPlateau(snake_joueur, p, 0);
+	addSerpentPlateau(schlanga, p, 1);
 	return p;
 }
 
@@ -33,11 +33,11 @@ plateau updateJeu (direction dir1_snake) {
 	}
 	schlanga = deplacement(dir2, schlanga);
 	updateSerpentPlateau(schlanga,p,queue1);
-	if (collision(p,dir1,snake) == 1){
+	if (collision(p,dir1_snake,snake) == 1){
 		resultat = 2;
 		//printf("snake");
 	}
-	snake_joueur = deplacement(dir1, snake_joueur);
+	snake_joueur = deplacement(dir1_snake, snake_joueur);
 	updateSerpentPlateau(snake_joueur,p,queue);
 	return p;
 }

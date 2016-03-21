@@ -39,7 +39,7 @@ void displayPlateau(SDL_Surface* ecran, plateau p){
         showRectangle(ecran,x*20,y*20,15,15, 0, 0, 0);
       }
       //Rouge pour le schlanga
-      else if(currentCase->type == schlanga){
+      else if(currentCase->type == snake_schlanga){
         showRectangle(ecran,x*20,y*20,15,15, 100, 0, 0);
       }
     }

@@ -47,7 +47,7 @@ void addSerpentPlateau(serpent s, plateau p, int isSchlanga){
 	serpent temp = s;
 	while(temp != NULL){
 		if (isSchlanga == 1) {
-			p->data[temp->coordonnees->x][temp->coordonnees->y] = initElement(schlanga);
+			p->data[temp->coordonnees->x][temp->coordonnees->y] = initElement(snake_schlanga);
 		}
 		else {
 			p->data[temp->coordonnees->x][temp->coordonnees->y] = initElement(snake);
@@ -121,7 +121,7 @@ void test_showPlateau_initMurs() {
 	printf("Initialisation d'un plateau de taille 10*10 \n");
 	plateau p=initPlateau(10,10);
 	initMurs(p);
-	usleep(200);
+	//usleep(200);
 	showPlateau(p);
 	printf("Affichage du plateau \n");
 	freePlateau(p);
@@ -147,7 +147,7 @@ void test_collision() {
 		// On crée un serpent en haut à gauche d'un plateau et on teste si il observe une collision vers le HAUT 
 		pos=cree_position(1, 1);
 		s=init_serpent(5, pos, DROITE);
-		addSerpentPlateau(s, p);
+		addSerpentPlateau(s, p, 0);
 		showPlateau(p);
 
 		if (collision(p,HAUT,s)==1) {
@@ -168,11 +168,11 @@ void test_collision() {
 		// On crée deux serpents qui se touchent de façon à ce qu'il y ait une collision si le serpent s1 va vers le bas.
 		pos1=cree_position(3, 2); 
 		s1=init_serpent(5, pos1, BAS);
-		addSerpentPlateau(s1, p);
+		addSerpentPlateau(s1, p, 0);
 
 		pos2=cree_position(2, 7);
 		s2=init_serpent(5, pos2, DROITE);
-		addSerpentPlateau(s2, p);
+		addSerpentPlateau(s2, p, 1);
 
 		showPlateau(p);
 		if (collision(p,BAS,s1)==1) {
@@ -195,7 +195,7 @@ void test_collision() {
 		// On crée un serpent de façon à qu'il puisse se déplacer vers le BAS où la case est vide.
 		pos=cree_position(1, 1);
 		s=init_serpent(5, pos, DROITE);
-		addSerpentPlateau(s, p);
+		addSerpentPlateau(s, p, 0);
 
 		showPlateau(p);
 		if (collision(p,BAS,s)==0) {
@@ -229,7 +229,7 @@ void test_addSerpentPlateau(){
 	position pos=cree_position(1, 1);
 	serpent s=init_serpent(5, pos, DROITE);
 
-	addSerpentPlateau(s, p);
+	addSerpentPlateau(s, p, 0);
 	showPlateau(p);
 	printf("Plateau après l'ajout du serpent \n");
 }
@@ -242,7 +242,7 @@ void test_updateSerpentPlateau(){
 	position pos=cree_position(1, 1);
 	serpent s=init_serpent(5, pos, DROITE);
 
-	addSerpentPlateau(s, p);
+	addSerpentPlateau(s, p, 0);
 	showPlateau(p);
 	printf("Plateau avant la mise à jour du serpent \n");
 

@@ -12,8 +12,8 @@ void jeux(){
 	position pos1 = cree_position(5,5);
 	serpent snake = init_serpent(5, pos, BAS);
 	serpent schlanga = init_serpent(5, pos1, HAUT);
-	addSerpentPlateau(snake, p);
-	addSerpentPlateau(schlanga, p);
+	addSerpentPlateau(snake, p, 0);
+	addSerpentPlateau(schlanga, p, 1);
 	showPlateau(p);
 	int dir = 8;
 	direction dir1 = BAS;
