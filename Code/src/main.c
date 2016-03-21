@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
   ecran = SDL_SetVideoMode(700, 700, 32, SDL_HWSURFACE);
 
   if( c == '2') {
+    initEcran(ecran);
     test_showPlateau_initMurs();
     test_collision();
     test_addSerpentPlateau();
