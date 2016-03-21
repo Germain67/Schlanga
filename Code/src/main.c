@@ -7,15 +7,16 @@
 #include "snake.h"
 #include "jeux_test.h"
 #define FPS 30
+#define MOVE_TIME 1000
 
 direction dir = BAS;
 Uint32 elapsedTime;
 
-void showRectangle(SDL_Surface* ecran, int x, int y, int size, int height){
+void showRectangle(SDL_Surface* ecran, int x, int y, int size, int height, int R, int G, int B){
   SDL_Surface *rectangle = NULL;
   SDL_Rect position;
   // Allocation de la surface
-  rectangle = SDL_CreateRGBSurface(SDL_HWSURFACE, size, height, 32, 0, 0, 0, 0);
+  rectangle = SDL_CreateRGBSurface(SDL_HWSURFACE, size, height, 32, R, G, B, 0);
   position.x = x;
   position.y = y;
   SDL_BlitSurface(rectangle, NULL, ecran, &position); // Collage de la surface sur l'écran
@@ -29,9 +30,17 @@ void displayPlateau(SDL_Surface* ecran, plateau p){
   for(x = 0; x<p->hauteur; x++){
     for(y = 0; y<p->largeur; y++){
       element currentCase = p->data[y][x];
-      //char symbol = caseSymbol(currentCase);
-      if(currentCase->type != vide){
-        showRectangle(ecran,x*20,y*20,15,15);
+      //Vert pour le snake
+      if(currentCase->type == snake){
+        showRectangle(ecran,x*20,y*20,15,15, 0, 100, 0);
+      }
+      //Noir pour un mur
+      else if(currentCase->type == mur){
+        showRectangle(ecran,x*20,y*20,15,15, 0, 0, 0);
+      }
+      //Rouge pour le schlanga
+      else if(currentCase->type == schlanga){
+        showRectangle(ecran,x*20,y*20,15,15, 100, 0, 0);
       }
     }
   }
@@ -80,14 +89,13 @@ int main(int argc, char *argv[])
         default:
           break;
     }
-    //1 seconde
-    if (elapsedTime%1000 == 0) /* Si 30 ms se sont écoulées */
+    //Temps entre deux mouvements
+    if (elapsedTime%MOVE_TIME == 0)
     {
       p = updateJeu(dir);
-
     }
     //30 FPS
-    if (elapsedTime%(1000/FPS) == 0) /* Si 30 ms se sont écoulées */
+    if (elapsedTime%(1000/FPS) == 0) /* Si 33 ms se sont écoulées */
     {
       printf("Dir : %d\n", dir);
       displayPlateau(ecran, p);
