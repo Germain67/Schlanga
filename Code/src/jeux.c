@@ -6,7 +6,6 @@
 #include <stdlib.h>
 
 void jeux(){
-	int i;
 	plateau p = initPlateau(20, 20);
 	initMurs(p);
 	position pos = cree_position(10,10);

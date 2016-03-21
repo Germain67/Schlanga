@@ -20,7 +20,7 @@ plateau initPlateau(int hauteur, int largeur){
 
 void freePlateau(plateau p){
 	element** tmp=p->data;
-	int i, j;
+	int i;
 	for (i=0; i < p->largeur; i++) {
 		free(tmp[i]);
 		tmp[i]=NULL;

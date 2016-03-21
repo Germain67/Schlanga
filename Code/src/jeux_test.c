@@ -6,17 +6,6 @@ plateau p;
 // Résultat : 0 : Pas de collision / 1 : Collision du schlanga - Victoire du snake / 2 : Collision du snake - Victoire du schlanga
 int resultat;
 
-void initMurs(plateau p){
-	int x, y;
-	for(x = 0; x < p->hauteur; x++){
-		for(y = 0; y <p->largeur; y++){
-			if(x == 0 || x == p->largeur - 1 || y == 0 || y == p->hauteur - 1){
-				p->data[x][y] = initElement(mur);
-			}
-		}
-	}
-}
-
 
 plateau initJeu(int lon, int lar, int t) {
 	// Le plateau est de taille longeur +2 et largeur+2 vu qu'il contient les murs
