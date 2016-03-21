@@ -9,8 +9,9 @@
 #define FPS 30
 #define MOVE_TIME 1000
 
-direction dir = DROITE;
-Uint32 elapsedTime;
+direction dir = BAS;
+Uint32 lastMove = 0;
+Uint32 lastRefresh = 0;
 plateau p;
 
 void showRectangle(SDL_Surface* ecran, int x, int y, int size, int height, Uint32 R, Uint32 G, Uint32 B){
@@ -59,7 +60,6 @@ int main(int argc, char *argv[])
 
   while (continuer)
   {
-    elapsedTime = SDL_GetTicks();
     SDL_PollEvent(&event);
     switch(event.type)
     {
@@ -91,13 +91,15 @@ int main(int argc, char *argv[])
         default:
           break;
     }
-    //Temps entre deux mouvements
-    if (elapsedTime%MOVE_TIME == 0)
+
+    Uint32 tempsActuel = SDL_GetTicks();
+    if (tempsActuel - lastMove > 1000) /* Si 30 ms se sont écoulées */
     {
+      printf("UPDATE\n");
       p = updateJeu(p, dir);
+      lastMove = tempsActuel; /* Le temps "actuel" devient le temps "precedent" pour nos futurs calculs */
     }
-    //30 FPS
-    if (elapsedTime%(1000/FPS) == 0) /* Si 33 ms se sont écoulées */
+    if (tempsActuel - lastRefresh > (1000/FPS)) /* Si 30 ms se sont écoulées */
     {
       displayPlateau(ecran, p);
       //On met à jour sans clignotement

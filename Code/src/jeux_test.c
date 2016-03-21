@@ -27,12 +27,14 @@ plateau updateJeu (plateau p, direction dir1_snake) {
 	position queue = get_position_queue(snake_joueur);
 	position queue1 = get_position_queue(schlanga);
 	direction dir2 = aleatoire(schlanga, p);
+	printf("Check schlanga");
 	if (collision(p,dir2,schlanga) == 1){
 		resultat = 1;
 		//printf("schlanga");
 	}
 	schlanga = deplacement(dir2, schlanga);
 	updateSerpentPlateau(schlanga,p,queue1);
+	printf("Check snake");
 	if (collision(p,dir1_snake,snake_joueur) == 1){
 		resultat = 2;
 		//printf("snake");

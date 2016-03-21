@@ -84,7 +84,7 @@ int collision(plateau p, direction d, serpent s){
 	printf("Coucou \n");
 	int x = s->coordonnees->x;
 	int y = s->coordonnees->y;
-	printf("%d / %d \n", x, y);
+	printf("%d / %d / %d \n", x, y, d);
 	int b=0;	
 	if (d==HAUT){
 		y=y-1;
