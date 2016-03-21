@@ -17,10 +17,10 @@ void affiche_position(position p){
     printf("%d )", p->y);
 }
 
-void affiche_serpent(s){
-    while(serpent->suivant != NULL){
-        affiche_position(serpent->coordonnees);
-        serpent = serpent->suivant;
+void affiche_serpent(serpent s){
+    while(s->suivant != NULL){
+        affiche_position(s->coordonnees);
+        s = s->suivant;
         printf("  ");
     }
 }
@@ -96,7 +96,7 @@ void free_position(position pos) {
 serpent init_serpent(int taille, position pos, direction dir)  {
     serpent s = NULL;
     int i;
-    position p = pos;
+
     position p1;
     s = ajout_entete(s,pos);
     if (dir == HAUT){
