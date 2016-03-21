@@ -42,11 +42,16 @@ void initMurs(plateau p){
 	}
 }
 
-
-void addSerpentPlateau(serpent s, plateau p){
+// isSchlanga = 1 si c'est un Schlanga / 0 sinon
+void addSerpentPlateau(serpent s, plateau p, int isSchlanga){
 	serpent temp = s;
 	while(temp != NULL){
-		p->data[temp->coordonnees->x][temp->coordonnees->y] = initElement(snake);
+		if (isSchlanga == 1) {
+			p->data[temp->coordonnees->x][temp->coordonnees->y] = initElement(schlanga);
+		}
+		else {
+			p->data[temp->coordonnees->x][temp->coordonnees->y] = initElement(snake);
+		}
 		temp = temp->suivant;
 	}
 }

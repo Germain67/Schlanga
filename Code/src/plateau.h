@@ -14,7 +14,7 @@ typedef struct plateau{
 plateau initPlateau(int hauteur, int largeur);
 void freePlateau(plateau p);
 void initMurs(plateau p);
-void addSerpentPlateau(serpent s, plateau p);
+void addSerpentPlateau(serpent s, plateau p, int isSchlanga);
 void updateSerpentPlateau(serpent tete, plateau p, position queue);
 void showPlateau(plateau p);
 int collision(plateau p, direction d, serpent s);

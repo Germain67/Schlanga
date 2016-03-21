@@ -14,8 +14,8 @@ plateau initJeu(int lon, int lar, int t) {
 
 	position pos_snake = cree_position(1,1);
 	position pos_schlanga = cree_position(lon,lar);
-	snake_joueur=init_serpent(t, pos_snake, BAS);
-	schlanga=init_serpent(t, pos_schlanga, HAUT);
+	snake_joueur=init_serpent(t, pos_snake, DROITE);
+	schlanga=init_serpent(t, pos_schlanga, GAUCHE);
 
 	addSerpentPlateau(snake_joueur, p);
 	addSerpentPlateau(schlanga, p);
@@ -24,21 +24,20 @@ plateau initJeu(int lon, int lar, int t) {
 
 
 plateau updateJeu (direction dir1_snake) {
-	position queue_snake = get_position_queue(snake_joueur);
-	position queue_schlanga = get_position_queue(schlanga);  
-	direction dir1_schlanga=aleatoire(schlanga,p);
-	
-	if (collision(p,dir1_schlanga,schlanga) == 1){ 	// Si on a une collision, on ne fait pas de déplacement et on doit sortir de la boucle while	
-		resultat=1;
+	position queue = get_position_queue(snake_joueur);
+	position queue1 = get_position_queue(schlanga);
+	direction dir2 = aleatoire(schlanga, p);
+	if (collision(p,dir2,schlanga) == 1){
+		resultat = 1;
+		//printf("schlanga");
 	}
-	else if (collision(p,dir1_snake,snake_joueur) == 1){
-		resultat=2;
+	schlanga = deplacement(dir2, schlanga);
+	updateSerpentPlateau(schlanga,p,queue1);
+	if (collision(p,dir1,snake) == 1){
+		resultat = 2;
+		//printf("snake");
 	}
-	else {				// Sinon, on doit effectuer le déplacement, mettre à jour le tableau et l'afficher
-		schlanga = deplacement(dir1_schlanga, schlanga);
-		snake_joueur = deplacement(dir1_snake, snake_joueur);
-		updateSerpentPlateau(schlanga,p,queue_schlanga);
-		updateSerpentPlateau(snake_joueur,p,queue_snake);
-	}
+	snake_joueur = deplacement(dir1, snake_joueur);
+	updateSerpentPlateau(snake_joueur,p,queue);
 	return p;
 }
