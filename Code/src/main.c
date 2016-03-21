@@ -9,10 +9,10 @@
 #define FPS 30
 #define MOVE_TIME 1000
 
-direction dir = BAS;
+direction dir = DROITE;
 Uint32 elapsedTime;
 
-void showRectangle(SDL_Surface* ecran, int x, int y, int size, int height, int R, int G, int B){
+void showRectangle(SDL_Surface* ecran, int x, int y, int size, int height, Uint32 R, Uint32 G, Uint32 B){
   SDL_Surface *rectangle = NULL;
   SDL_Rect position;
   // Allocation de la surface
@@ -29,7 +29,7 @@ void displayPlateau(SDL_Surface* ecran, plateau p){
   int x, y;
   for(x = 0; x<p->hauteur; x++){
     for(y = 0; y<p->largeur; y++){
-      element currentCase = p->data[y][x];
+      element currentCase = p->data[x][y];
       //Vert pour le snake
       if(currentCase->type == snake){
         showRectangle(ecran,x*20,y*20,15,15, 0, 100, 0);
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
   SDL_Event event;
   SDL_Init(SDL_INIT_VIDEO);
   ecran = SDL_SetVideoMode(700, 700, 32, SDL_HWSURFACE);
-  plateau p = initJeu(20, 20, 5);
+  plateau p = initJeu(30, 30, 3);
 
   while (continuer)
   {
@@ -97,7 +97,6 @@ int main(int argc, char *argv[])
     //30 FPS
     if (elapsedTime%(1000/FPS) == 0) /* Si 33 ms se sont écoulées */
     {
-      printf("Dir : %d\n", dir);
       displayPlateau(ecran, p);
       //On met à jour sans clignotement
       SDL_Flip(ecran);

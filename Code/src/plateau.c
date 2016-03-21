@@ -104,6 +104,10 @@ int collision(plateau p, direction d, serpent s){
 		//printf("Rencontre un snake. \n");
 		b=1;
 	}
+	if (p->data[x][y]->type == snake_schlanga ) {
+		//printf("Rencontre un snake. \n");
+		b=1;
+	}
 	if (p->data[x][y]->type == mur ) {
 		//printf("Rencontre un mur \n");
 		b=1;
@@ -224,7 +228,7 @@ void test_addSerpentPlateau(){
 	showPlateau(p);
 	printf("Plateau avant l'ajout du serpent \n");
 
-	sleep(1);
+	//sleep(1);
 
 	position pos=cree_position(1, 1);
 	serpent s=init_serpent(5, pos, DROITE);
@@ -246,7 +250,7 @@ void test_updateSerpentPlateau(){
 	showPlateau(p);
 	printf("Plateau avant la mise à jour du serpent \n");
 
-	sleep(1);
+	//sleep(1);
 	
 	position queue=get_position_queue(s);
 	s=deplacement(DROITE,s);

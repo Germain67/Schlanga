@@ -101,13 +101,13 @@ serpent init_serpent(int taille, position pos, direction dir)  {
     s = ajout_entete(s,pos);
     if (dir == HAUT){
         for (i=0;i<taille;i++){
-            p1 = cree_position(pos->x,pos->y + i);
+            p1 = cree_position(pos->x,pos->y - i);
             s = ajout_entete(s,p1);
         }
    }
    if (dir == BAS){
         for (i=0;i<taille;i++){
-            p1 = cree_position(pos->x,pos->y - i);
+            p1 = cree_position(pos->x,pos->y + i);
             s = ajout_entete(s,p1);
         }
    }

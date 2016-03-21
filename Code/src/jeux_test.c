@@ -12,8 +12,8 @@ plateau initJeu(int lon, int lar, int t) {
 	p = initPlateau(lon+2, lar+2);
 	initMurs(p);
 
-	position pos_snake = cree_position(1,1);
-	position pos_schlanga = cree_position(lon,lar);
+	position pos_snake = cree_position(10,10);
+	position pos_schlanga = cree_position(lon - 10,lar - 10);
 	snake_joueur=init_serpent(t, pos_snake, DROITE);
 	schlanga=init_serpent(t, pos_schlanga, GAUCHE);
 
