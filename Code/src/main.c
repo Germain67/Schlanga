@@ -9,7 +9,7 @@
 #include "test.h"
 #include "sdl_functions.h"
 #define FPS 30
-#define MOVE_TIME 200
+#define MOVE_TIME 150
 
 direction dir = DROITE;
 Uint32 lastMove = 0;
@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
   else
   {
     plateau p = NULL;
-    p = initJeu(p, 30, 30, 3);
+    p = initJeu(p, 30, 30, 10);
 
     while (continuer)
     {
@@ -82,16 +82,24 @@ int main(int argc, char *argv[])
                       continuer = 0;
                       break;
                   case SDLK_UP:
-                      dir = HAUT;
+                      if(dir != BAS){
+                        dir = HAUT;
+                      }
                       break;
                   case SDLK_DOWN:
-                      dir = BAS;
+                      if(dir != HAUT){
+                        dir = BAS;
+                      }
                       break;
                   case SDLK_RIGHT:
-                      dir = DROITE;
+                      if(dir != GAUCHE){
+                        dir = DROITE;
+                      }
                       break;
                   case SDLK_LEFT:
-                      dir = GAUCHE;
+                      if(dir != DROITE){
+                        dir = GAUCHE;
+                      }
                       break;
                   default:
                       break;
