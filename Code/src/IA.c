@@ -47,14 +47,3 @@ direction aleatoire(serpent schlanga, plateau p) {
     }
     return dir1;
 }
-
-
-/*void defensif(serpent schlanga, plateau p) {
-    int casesVides=0, i,j;
-    position head=cree_position(schlanga->coordonnees->x, schlanga->coordonnees->y);
-    if(schlanga->suivant->coordonnees->x==head->x+1) {
-
-    }
-
-
-}*/
