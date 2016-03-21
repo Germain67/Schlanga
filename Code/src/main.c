@@ -20,7 +20,9 @@ int main(int argc, char *argv[])
 {
   printf("1)Jouer\n2)Test unitaires\n");
   char c;
+  printf("Choix du menu : ");
   scanf(" %c",&c);
+  printf("\n");
 
   int continuer = 1;
   SDL_Surface *ecran = NULL;
@@ -30,10 +32,29 @@ int main(int argc, char *argv[])
 
   if( c == '2') {
     initEcran(ecran);
-    test_showPlateau_initMurs();
-    test_collision();
-    test_addSerpentPlateau();
-    test_updateSerpentPlateau();
+    printf("1) Test unitaire de la fonction displayPlateau et initMurs permettant l'affichage d'un plateau avec des murs \n");
+    printf("2) Test unitaire de la fonction collision \n");
+    printf("3) Test unitaire de la fonction addSerpentPlateau \n");
+    printf("4) Test unitaire de la fonction updateSerpentPlateau \n");
+    char d;
+    printf("Choix du menu : ");
+    scanf(" %c",&d);
+    printf("\n");
+    if ( d == '1') {
+    	test_displayPlateau_initMurs();
+    }
+    else if ( d == '2') {
+    	test_collision();
+    }
+    else if ( d == '3') {
+    	test_addSerpentPlateau();
+    }
+    else if ( d == '4') {
+        test_updateSerpentPlateau();
+    }
+    else {
+	printf("Vous n'avez pas sélectionné un menu qui existe. \n");
+    }
   }
   else
   {

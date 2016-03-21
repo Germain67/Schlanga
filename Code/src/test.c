@@ -10,16 +10,16 @@ void initEcran(SDL_Surface* ecr){
 	ecran = ecr;
 }
 
-// Test de la fonction showPlateau et initMurs permettant l'affichage d'un plateau avec des murs autour.
-void test_showPlateau_initMurs() {
-	printf("Test de la fonction showPlateau \n");
+// Test de la fonction displayPlateau et initMurs permettant l'affichage d'un plateau avec des murs autour.
+void test_displayPlateau_initMurs() {
+	printf("Test de la fonction displayPlateau \n");
 	printf("Initialisation d'un plateau de taille 10*10 \n");
 	plateau p=initPlateau(10,10);
 	initMurs(p);
-	//usleep(200);
-	displayPlateau(ecran, p);
 	printf("Affichage du plateau \n");
+	displayPlateau(ecran, p);
 	freePlateau(p);
+	sleep(2);
 }
 
 // Test une collision
@@ -108,6 +108,7 @@ void test_collision() {
 	default: 
 	printf("Vous n'avez pas sélectionné un menu qui existe. \n"); 
 	}
+	sleep(2);
 }
 
 // Test de la fonction addSerpentPlateau permettant l'ajout d'un serpent au plateau
@@ -119,7 +120,7 @@ void test_addSerpentPlateau(){
 	displayPlateau(ecran, p);
 	printf("Plateau avant l'ajout du serpent \n");
 
-	//sleep(1);
+	sleep(1);
 
 	position pos=cree_position(1, 1);
 	serpent s=init_serpent(5, pos, DROITE);
@@ -127,6 +128,7 @@ void test_addSerpentPlateau(){
 	addSerpentPlateau(s, p, 0);
 	displayPlateau(ecran, p);
 	printf("Plateau après l'ajout du serpent \n");
+	sleep(2);
 }
 
 // Test de la fonction updateSerpentPlateau permettant la mise à jour de la position d'un serpent sur le plateau (suppression de la queue de serpent antérieur et ajout de la tête du serpent suivant)
@@ -141,7 +143,7 @@ void test_updateSerpentPlateau(){
 	displayPlateau(ecran, p);
 	printf("Plateau avant la mise à jour du serpent \n");
 
-	//sleep(1);
+	sleep(1);
 	
 	position queue=get_position_queue(s);
 	s=deplacement(DROITE,s);
@@ -149,4 +151,5 @@ void test_updateSerpentPlateau(){
 
 	displayPlateau(ecran, p);
 	printf("Plateau après la mise à jour du serpent \n");
+	sleep(2);
 }
