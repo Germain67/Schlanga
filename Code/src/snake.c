@@ -2,27 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-
 position cree_position(int x, int y) {
     position p = NULL;
     p = (position) malloc(sizeof(position));
     p->x = x;
     p->y = y;
     return p;
-}
-
-void affiche_position(position p){
-    printf("(%d;", p->x);
-    printf("%d )", p->y);
-}
-
-void affiche_serpent(serpent s){
-    while(s->suivant != NULL){
-        affiche_position(s->coordonnees);
-        s = s->suivant;
-        printf("  ");
-    }
 }
 
 /*ajout element a la tete du snake*/
@@ -33,28 +18,6 @@ serpent ajout_entete(serpent suivant, position pos){
     s->suivant = suivant;
     return s;
 }
-
-/* 
-position p = cree_position(0,0);
-affiche_position(p);
-serpent s = NULL;
-s = ajout_entete(p);
-position p1 = cree_position(1,0);
-position p2 = cree_position(2,0);
-s = ajout_entete(p1);
-s = ajout_entete(p2);
-affiche_serpent(s);
-s = deplacement(HAUT,s);
-affiche_serpent(s);
-suppression_queue(s);
-affiche_serpent(s);
-s = free_serpent(s);
-affiche_serpent(s);
-free_position(p);
-affiche_position(p);
-serpent s = init_serpent(8,p1, GAUCHE);
-affiche_serpent(s);
-*/
 
 position get_position_queue(serpent s){/*tests?*/
     serpent courant = s;

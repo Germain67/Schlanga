@@ -11,10 +11,6 @@
 #include "plateau.h"
 
 //Dirige le Schlanga dans une direction aléatoire
-
-
-
-
 direction aleatoire(serpent schlanga, plateau p) {
     int a = 1;
     int b = 0;
@@ -34,7 +30,6 @@ direction aleatoire(serpent schlanga, plateau p) {
         if (dir==3) {
             dir1 = DROITE;
         }
-        printf("Schlanga (aleatoire)\n");
         if (collision(p,dir1,schlanga) == 0){
             a = 0;
         }

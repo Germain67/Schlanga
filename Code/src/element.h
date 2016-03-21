@@ -11,7 +11,5 @@ typedef struct element{
 } *element;
 
 element initElement(typeCase t);
-char caseSymbol(element elem);
-/*typeCase etat_case(plateau p, position pos);*/
 
 #endif
