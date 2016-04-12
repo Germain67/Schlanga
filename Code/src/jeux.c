@@ -31,11 +31,11 @@ plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie) {
 		*etatPartie = 1;
 	}
 	schlanga = deplacement(dir2, schlanga);
-	updateSerpentPlateau(schlanga,p,queue1);
+	updateSerpentPlateau(schlanga,p,queue1, 1);
 	if (collision(p,dir1_snake,snake_joueur) == 1){
 		*etatPartie = 2;
 	}
 	snake_joueur = deplacement(dir1_snake, snake_joueur);
-	updateSerpentPlateau(snake_joueur,p,queue);
+	updateSerpentPlateau(snake_joueur,p,queue, 0);
 	return p;
 }

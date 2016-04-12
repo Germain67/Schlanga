@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
   SDL_Surface *ecran = NULL;
   SDL_Event event;
   SDL_Init(SDL_INIT_VIDEO);
-  ecran = SDL_SetVideoMode(700, 700, 32, SDL_HWSURFACE);
+  ecran = SDL_SetVideoMode(750, 750, 32, SDL_HWSURFACE);
 
   if( c == '2') {
     initEcran(ecran);
@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
   else
   {
     plateau p = NULL;
-    p = initJeu(p, 30, 30, 10);
+    p = initJeu(p, 25, 25, 10);
 
     while (continuer)
     {

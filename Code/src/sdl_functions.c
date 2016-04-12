@@ -1,13 +1,16 @@
 #include "sdl_functions.h"
 
-void showRectangle(SDL_Surface* ecran, int x, int y, int size, int height, Uint32 R, Uint32 G, Uint32 B){
-  SDL_Surface *rectangle = NULL;
+void displayPicture(SDL_Surface* ecran, int x, int y, char* file){
   SDL_Rect position;
-  // Allocation de la surface
-  rectangle = SDL_CreateRGBSurface(SDL_HWSURFACE, size, height, 32, R, G, B, 0);
   position.x = x;
   position.y = y;
-  SDL_BlitSurface(rectangle, NULL, ecran, &position); // Collage de la surface sur l'écran
+  SDL_Surface *image = NULL;
+  /* On charge l'image : */
+  image = SDL_LoadBMP(file);
+  /* Transparence */
+  SDL_SetColorKey(image, SDL_SRCCOLORKEY, SDL_MapRGB(image->format, 0, 0, 0));
+  /* On blitte l'image maintenant transparente sur le fond : */
+  SDL_BlitSurface(image, NULL, ecran, &position);
 }
 
 void displayPlateau(SDL_Surface* ecran, plateau p){
@@ -20,15 +23,15 @@ void displayPlateau(SDL_Surface* ecran, plateau p){
       element currentCase = p->data[x][y];
       //Vert pour le snake
       if(currentCase->type == snake){
-        showRectangle(ecran,x*20,y*20,15,15, 0, 100, 0);
+        displayPicture(ecran, x*25, y*25, "images/snake.bmp");
       }
       //Noir pour un mur
       else if(currentCase->type == mur){
-        showRectangle(ecran,x*20,y*20,15,15, 0, 0, 0);
+        displayPicture(ecran, x*25, y*25, "images/mur.bmp");
       }
       //Rouge pour le schlanga
       else if(currentCase->type == snake_schlanga){
-        showRectangle(ecran,x*20,y*20,15,15, 100, 0, 0);
+        displayPicture(ecran, x*25, y*25, "images/schlanga.bmp");
       }
     }
   }

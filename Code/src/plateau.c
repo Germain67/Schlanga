@@ -55,8 +55,13 @@ void addSerpentPlateau(serpent s, plateau p, int isSchlanga){
 	}
 }
 
-void updateSerpentPlateau(serpent tete, plateau p, position queue){
-	p->data[tete->coordonnees->x][tete->coordonnees->y] = initElement(snake);
+void updateSerpentPlateau(serpent tete, plateau p, position queue, int isSchlanga){
+	if(isSchlanga == 1){
+		p->data[tete->coordonnees->x][tete->coordonnees->y] = initElement(snake_schlanga);
+	}
+	else{
+		p->data[tete->coordonnees->x][tete->coordonnees->y] = initElement(snake);
+	}
 	p->data[queue->x][queue->y] = initElement(vide);
 }
 

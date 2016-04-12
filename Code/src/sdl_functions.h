@@ -9,7 +9,7 @@
 #include "plateau.h"
 #include "snake.h"
 
-void showRectangle(SDL_Surface* ecran, int x, int y, int size, int height, Uint32 R, Uint32 G, Uint32 B);
+void displayPicture(SDL_Surface* ecran, int x, int y, char* file);
 void displayPlateau(SDL_Surface* ecran, plateau p);
 
 #endif

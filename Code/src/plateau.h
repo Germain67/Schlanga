@@ -15,7 +15,7 @@ plateau initPlateau(int hauteur, int largeur);
 void freePlateau(plateau p);
 void initMurs(plateau p);
 void addSerpentPlateau(serpent s, plateau p, int isSchlanga);
-void updateSerpentPlateau(serpent tete, plateau p, position queue);
+void updateSerpentPlateau(serpent tete, plateau p, position queue, int isSchlanga);
 int collision(plateau p, direction d, serpent s);
 
 
