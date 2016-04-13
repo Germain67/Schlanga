@@ -26,7 +26,7 @@ plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie) {
 	*etatPartie = 0;
 	position queue = get_position_queue(snake_joueur);
 	position queue1 = get_position_queue(schlanga);
-	direction dir2 = aleatoire(schlanga, p);
+	direction dir2 = IA_defensif_direction(schlanga, p);
 	if (collision(p,dir2,schlanga) == 1){
 		*etatPartie = 1;
 	}

@@ -14,5 +14,6 @@
 #include "plateau.h"
 
 direction aleatoire(serpent schlanga, plateau p);
+direction IA_defensif_direction(serpent schlanga, plateau p);
 
 #endif //SCHLANGA_IA_H
