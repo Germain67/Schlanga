@@ -132,5 +132,9 @@ int main(int argc, char *argv[])
     }
   }
 
+  // Fin de partie, il faut tout free
+  fin_de_partie_serpent();
+  free(p);
+
   return 0;
 }

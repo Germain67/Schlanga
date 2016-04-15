@@ -17,18 +17,6 @@ plateau initPlateau(int hauteur, int largeur){
 	return p;
 }
 
-void freePlateau(plateau p){
-	element** tmp=p->data;
-	int i;
-	for (i=0; i < p->largeur; i++) {
-		free(tmp[i]);
-		tmp[i]=NULL;
-	}
-	free(tmp);
-	tmp=NULL;
-	p->largeur = 0;
-	p->hauteur = 0;
-}
 
 void initMurs(plateau p){
 	int x, y;
@@ -53,6 +41,7 @@ void addSerpentPlateau(serpent s, plateau p, int isSchlanga){
 		}
 		temp = temp->suivant;
 	}
+	free_serpent(temp);
 }
 
 void updateSerpentPlateau(serpent tete, plateau p, position queue, int isSchlanga){

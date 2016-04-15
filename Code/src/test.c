@@ -18,7 +18,7 @@ void test_displayPlateau_initMurs() {
 	initMurs(p);
 	printf("Affichage du plateau \n");
 	displayPlateau(ecran, p);
-	freePlateau(p);
+	free(p);
 	sleep(2);
 }
 
@@ -51,7 +51,7 @@ void test_collision() {
 		else {
 			printf("Collision ne nous indique pas une collision en allant vers le HAUT où il y a un mur, le test n'est pas réussi. \n");
 		}
-		freePlateau(p);
+		free(p);
 		free_position(pos);
 		free_serpent(s);
 		
@@ -76,7 +76,7 @@ void test_collision() {
 		else {
 			printf("Collision ne nous indique pas une collision vers le bas pour le serpent vertical, le test n'est pas réussi. \n");
 		}
-		freePlateau(p);
+		free(p);
 		free_position(pos1);
 		free_serpent(s1);
 		free_position(pos2);
@@ -99,7 +99,7 @@ void test_collision() {
 		else {
 			printf("Collision ne nous indique pas que l'on peut se déplacer vers la droite, le test n'est pas réussi. \n");
 		}
-		freePlateau(p);
+		free(p);
 		free_position(pos);
 		free_serpent(s);
 
@@ -147,7 +147,7 @@ void test_updateSerpentPlateau(){
 	
 	position queue=get_position_queue(s);
 	s=deplacement(DROITE,s);
-	updateSerpentPlateau(s,p,queue);
+	updateSerpentPlateau(s,p,queue,0);
 
 	displayPlateau(ecran, p);
 	printf("Plateau après la mise à jour du serpent \n");

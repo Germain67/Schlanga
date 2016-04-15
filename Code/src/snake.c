@@ -24,6 +24,7 @@ position get_position_queue(serpent s){/*tests?*/
     while (courant->suivant !=NULL) {
        courant = courant->suivant;
     }
+    free(courant->suivant);
     return courant->coordonnees;
 }
 

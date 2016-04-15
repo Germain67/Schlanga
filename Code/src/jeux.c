@@ -18,6 +18,10 @@ plateau initJeu(plateau p, int lon, int lar, int t) {
 
 	addSerpentPlateau(snake_joueur, p, 0);
 	addSerpentPlateau(schlanga, p, 1);
+
+	//free_position(pos_snake);
+	//free_position(pos_schlanga);
+
 	return p;
 }
 
@@ -38,5 +42,13 @@ plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie) {
 	snake_joueur = deplacement(dir1_snake, snake_joueur);
 	updateSerpentPlateau(snake_joueur,p,queue, 0);
 
+	free_position(queue);
+	free_position(queue1);
+
 	return p;
+}
+
+void fin_de_partie_serpent() {
+	free_serpent(snake_joueur);
+	free_serpent(schlanga);
 }
