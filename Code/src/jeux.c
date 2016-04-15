@@ -1,7 +1,5 @@
 #include "jeux.h"
 
-static int last_deplacement_sch = DROITE; // Récupère le dernier coup du Schlanga afin que dans les algorithmes, il ne puisse pas se suicider en allant dans la direction contraire de celle d'avant
-
 serpent snake_joueur;
 serpent schlanga;
 
@@ -28,7 +26,7 @@ plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie) {
 	*etatPartie = 0;
 	position queue = get_position_queue(snake_joueur);
 	position queue1 = get_position_queue(schlanga);
-	direction dir2 = IA_defensif_direction(last_deplacement_sch, schlanga, p);
+	direction dir2 = IA_defensif_direction(schlanga, p);
 	if (collision(p,dir2,schlanga) == 1){
 		*etatPartie = 1;
 	}
@@ -40,6 +38,5 @@ plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie) {
 	snake_joueur = deplacement(dir1_snake, snake_joueur);
 	updateSerpentPlateau(snake_joueur,p,queue, 0);
 
-	last_deplacement_sch = dir2;
 	return p;
 }
