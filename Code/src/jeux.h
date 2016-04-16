@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-plateau initJeu(plateau p, int lon, int lar, int t);
+plateau initJeu(int lon, int lar, int t);
 plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie);
 void fin_de_partie_serpent();
 

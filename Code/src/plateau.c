@@ -18,6 +18,22 @@ plateau initPlateau(int hauteur, int largeur){
 }
 
 
+// À modifier
+void free_plateau(plateau p) {
+	int l = p->largeur;
+	int h = p->hauteur;
+	int i,j;
+	for ( i = 0 ; i<l ; i++)
+	{
+		for ( j = 0 ; j<h ; j++) { 
+      			free(p->data[i][j]);
+		}
+      		free(p->data[i]);
+	}
+}
+
+
+
 void initMurs(plateau p){
 	int x, y;
 	for(x = 0; x < p->hauteur; x++){

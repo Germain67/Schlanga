@@ -7,5 +7,6 @@ void test_displayPlateau_initMurs();
 void test_collision();
 void test_addSerpentPlateau();
 void test_updateSerpentPlateau();
+void free_ecran ();
 
 #endif

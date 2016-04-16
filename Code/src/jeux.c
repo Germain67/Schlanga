@@ -6,9 +6,9 @@ serpent schlanga;
 // Résultat : 0 : Pas de collision / 1 : Collision du schlanga - Victoire du snake / 2 : Collision du snake - Victoire du schlanga
 int resultat;
 
-plateau initJeu(plateau p, int lon, int lar, int t) {
+plateau initJeu(int lon, int lar, int t) {
 	// Le plateau est de taille longeur +2 et largeur+2 vu qu'il contient les murs
-	p = initPlateau(lon+2, lar+2);
+	plateau p = initPlateau(lon+2, lar+2);
 	initMurs(p);
 
 	position pos_snake = cree_position(10,10);
@@ -18,9 +18,6 @@ plateau initJeu(plateau p, int lon, int lar, int t) {
 
 	addSerpentPlateau(snake_joueur, p, 0);
 	addSerpentPlateau(schlanga, p, 1);
-
-	//free_position(pos_snake);
-	//free_position(pos_schlanga);
 
 	return p;
 }

@@ -18,7 +18,8 @@ void test_displayPlateau_initMurs() {
 	initMurs(p);
 	printf("Affichage du plateau \n");
 	displayPlateau(ecran, p);
-	free(p);
+	free_plateau(p);
+	free(ecran);
 	sleep(2);
 }
 
@@ -106,7 +107,7 @@ void test_collision() {
 	break; 
 
 	default: 
-	printf("Vous n'avez pas sélectionné un menu qui existe. \n"); 
+	printf("Vous n'avez pas sélectionné un menu qui existe. \n");
 	}
 	sleep(2);
 }
@@ -129,6 +130,8 @@ void test_addSerpentPlateau(){
 	displayPlateau(ecran, p);
 	printf("Plateau après l'ajout du serpent \n");
 	sleep(2);
+	free(p);
+	free_serpent(s);
 }
 
 // Test de la fonction updateSerpentPlateau permettant la mise à jour de la position d'un serpent sur le plateau (suppression de la queue de serpent antérieur et ajout de la tête du serpent suivant)
@@ -152,4 +155,11 @@ void test_updateSerpentPlateau(){
 	displayPlateau(ecran, p);
 	printf("Plateau après la mise à jour du serpent \n");
 	sleep(2);
+	free(p);
+	free_serpent(s);
+	free_position(pos);
+}
+
+void free_ecran () {
+	free(ecran);
 }

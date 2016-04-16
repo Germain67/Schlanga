@@ -64,8 +64,7 @@ int main(int argc, char *argv[])
   }
   else
   {
-    plateau p = NULL;
-    p = initJeu(p, 25, 25, 10);
+    plateau p = initJeu(25, 25, 10);
 
     while (continuer)
     {
@@ -133,8 +132,11 @@ int main(int argc, char *argv[])
   }
 
   // Fin de partie, il faut tout free
+  SDL_FreeSurface(ecran);
+  SDL_QuitSubSystem(SDL_INIT_EVERYTHING);
+  SDL_Quit();
   fin_de_partie_serpent();
-  free(p);
+  free_plateau(p);
 
   return 0;
 }

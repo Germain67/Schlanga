@@ -11,6 +11,7 @@ void displayPicture(SDL_Surface* ecran, int x, int y, char* file){
   SDL_SetColorKey(image, SDL_SRCCOLORKEY, SDL_MapRGB(image->format, 0, 0, 0));
   /* On blitte l'image maintenant transparente sur le fond : */
   SDL_BlitSurface(image, NULL, ecran, &position);
+  SDL_FreeSurface(image);
 }
 
 void displayPlateau(SDL_Surface* ecran, plateau p){
