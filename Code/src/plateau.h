@@ -12,6 +12,7 @@ typedef struct plateau{
 } *plateau;
 
 plateau initPlateau(int hauteur, int largeur);
+void free_element(plateau p, int x, int y);
 void free_plateau(plateau p);
 void initMurs(plateau p);
 void addSerpentPlateau(serpent s, plateau p, int isSchlanga);

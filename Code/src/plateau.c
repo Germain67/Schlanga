@@ -19,17 +19,23 @@ plateau initPlateau(int hauteur, int largeur){
 
 
 // À modifier
+
+void free_element(plateau p, int x, int y) {
+	free(p->data[x][y]);
+}
+
 void free_plateau(plateau p) {
-	int l = p->largeur;
-	int h = p->hauteur;
-	int i,j;
-	for ( i = 0 ; i<l ; i++)
-	{
-		for ( j = 0 ; j<h ; j++) { 
-      			free(p->data[i][j]);
+	int h=p->hauteur;
+	int l=p->largeur;
+	int i;
+	int j;
+	for (i=0;i<h;i++) {
+		for (j=0;j<l;j++) {
+			free(p->data[i][j]);
 		}
-      		free(p->data[i]);
+		free(p->data[i]);
 	}
+	free(p);
 }
 
 
