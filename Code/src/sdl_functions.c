@@ -38,3 +38,18 @@ void displayPlateau(SDL_Surface* ecran, plateau p){
   }
   SDL_Flip(ecran);
 }
+
+void displayMenu(SDL_Surface* ecran, int selected){
+  // Effacement de l'écran
+  SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
+  //Elements du menu
+  displayPicture(ecran, 300, 100, "images/jouer.bmp");
+  displayPicture(ecran, 300, 200, "images/aide.bmp");
+  displayPicture(ecran, 300, 300, "images/scores.bmp");
+  displayPicture(ecran, 300, 400, "images/options.bmp");
+  displayPicture(ecran, 300, 500, "images/quitter.bmp");
+  //Flèche
+  displayPicture(ecran, 200, (selected + 1) * 100, "images/fleche.bmp");
+  //Affichage
+  SDL_Flip(ecran);
+}

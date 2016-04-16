@@ -11,5 +11,6 @@
 
 void displayPicture(SDL_Surface* ecran, int x, int y, char* file);
 void displayPlateau(SDL_Surface* ecran, plateau p);
+void displayMenu(SDL_Surface* ecran, int position);
 
 #endif
