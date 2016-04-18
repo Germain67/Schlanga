@@ -24,7 +24,7 @@ void startGame(int l, int h){
   int continuer = 1;
   
   SDL_Init(SDL_INIT_VIDEO);
-  screen = SDL_SetVideoMode(27*l, 27*h, 32, SDL_HWSURFACE);
+  screen = SDL_SetVideoMode(25*(l+2), 25*(h+2), 32, SDL_HWSURFACE);
 
   p = initJeu(l, h, 10);
 
