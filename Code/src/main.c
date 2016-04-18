@@ -20,13 +20,13 @@ plateau p;
 SDL_Surface *screen = NULL;
 SDL_Event event;
 
-void startGame(){
+void startGame(int l, int h){
   int continuer = 1;
   
   SDL_Init(SDL_INIT_VIDEO);
-  screen = SDL_SetVideoMode(750, 750, 32, SDL_HWSURFACE);
+  screen = SDL_SetVideoMode(27*l, 27*h, 32, SDL_HWSURFACE);
 
-  p = initJeu(25, 25, 10);
+  p = initJeu(l, h, 10);
 
   while (continuer)
   {
@@ -99,7 +99,7 @@ void startGame(){
 
 int main(int argc, char *argv[])
 {
-
+  int l=25; int h=25; // Taille du plateau
   int continuer = 1;
   SDL_Init(SDL_INIT_VIDEO);
   screen = SDL_SetVideoMode(750, 750, 32, SDL_HWSURFACE);
@@ -135,7 +135,7 @@ int main(int argc, char *argv[])
                     break;
                 case SDLK_RETURN:
                     if(selected == 0){
-                      startGame();
+                      startGame(l,h);
                       continuer = 0;
                     }
                     else if(selected == 4){

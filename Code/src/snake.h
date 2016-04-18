@@ -20,7 +20,7 @@ typedef enum {
   HAUT, BAS, GAUCHE, DROITE
 } direction;
 
-serpent init_serpent(int taille, position pos, direction dir);
+serpent init_serpent(int taille, position pos_init, direction dir);
 position cree_position(int x, int y);
 void affiche_position(position p);
 void affiche_serpent(serpent s);

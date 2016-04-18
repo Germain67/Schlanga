@@ -31,11 +31,11 @@ void free_plateau(plateau p) {
 	int j;
 	for (i=0;i<h;i++) {
 		for (j=0;j<l;j++) {
-			free(p->data[i][j]);
+			free(p->data[i][j]); // On free les element
 		}
-		free(p->data[i]);
+		free(p->data[i]); // On free les element*
 	}
-	free(p);
+	free(p); // On free les element**
 }
 
 
@@ -44,7 +44,7 @@ void initMurs(plateau p){
 	int x, y;
 	for(x = 0; x < p->hauteur; x++){
 		for(y = 0; y <p->largeur; y++){
-			if(x == 0 || x == p->largeur - 1 || y == 0 || y == p->hauteur - 1){
+			if(x == 0 || x == p->hauteur - 1 || y == 0 || y == p->largeur - 1){
 				p->data[x][y] = initElement(mur);
 			}
 		}
@@ -55,6 +55,7 @@ void initMurs(plateau p){
 void addSerpentPlateau(serpent s, plateau p, int isSchlanga){
 	serpent temp = s;
 	while(temp != NULL){
+		free(p->data[temp->coordonnees->x][temp->coordonnees->y]);
 		if (isSchlanga == 1) {
 			p->data[temp->coordonnees->x][temp->coordonnees->y] = initElement(snake_schlanga);
 		}
@@ -67,6 +68,7 @@ void addSerpentPlateau(serpent s, plateau p, int isSchlanga){
 }
 
 void updateSerpentPlateau(serpent tete, plateau p, position queue, int isSchlanga){
+	free(p->data[tete->coordonnees->x][tete->coordonnees->y]);
 	if(isSchlanga == 1){
 		p->data[tete->coordonnees->x][tete->coordonnees->y] = initElement(snake_schlanga);
 	}

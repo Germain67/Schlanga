@@ -57,36 +57,37 @@ void free_position(position pos) {
 }
 
 //Creation du serpent pos= position de la queue
-serpent init_serpent(int taille, position pos, direction dir)  {
+serpent init_serpent(int taille, position pos_init, direction dir)  {
     serpent s = NULL;
     int i;
 
-    position p1;
-    s = ajout_entete(s,pos);
+    position pos_suiv;
+    s = ajout_entete(s,pos_init);
     if (dir == HAUT){
         for (i=0;i<taille;i++){
-            p1 = cree_position(pos->x,pos->y - i);
-            s = ajout_entete(s,p1);
+            pos_suiv = cree_position(pos_init->x,pos_init->y - i);
+            s = ajout_entete(s,pos_suiv);
         }
    }
    if (dir == BAS){
         for (i=0;i<taille;i++){
-            p1 = cree_position(pos->x,pos->y + i);
-            s = ajout_entete(s,p1);
+            pos_suiv = cree_position(pos_init->x,pos_init->y + i);
+            s = ajout_entete(s,pos_suiv);
         }
    }
    if (dir == DROITE){
         for (i=0;i<taille;i++){
-            p1 = cree_position(pos->x + i,pos->y);
-            s = ajout_entete(s,p1);
+            pos_suiv = cree_position(pos_init->x + i,pos_init->y);
+            s = ajout_entete(s,pos_suiv);
         }
    }
    if (dir == GAUCHE){
         for (i=0;i<taille;i++){
-            p1 = cree_position(pos->x - i,pos->y);
-            s = ajout_entete(s,p1);
+            pos_suiv = cree_position(pos_init->x - i,pos_init->y);
+            s = ajout_entete(s,pos_suiv);
         }
    }
+
    return s;
 }
 
