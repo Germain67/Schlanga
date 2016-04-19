@@ -1,3 +1,11 @@
+/**
+ * \file      main.c
+ * \date      19 avril 2016
+ * \brief     Main chargée de l'affichage du menu et du jeu
+  ainsi que la capture des événements des touches
+ *
+ */
+
 #include <SDL/SDL.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -20,13 +28,39 @@ plateau p;
 SDL_Surface *screen = NULL;
 SDL_Event event;
 
+/**
+* \fn       showOptions
+* \brief    Affiche les options du jeu (à implémenter)
+*/
+
+void showOptions(){
+  //Non disponible pour le moment
+}
+
+/**
+* \fn       showScores
+* \brief    Affiche les scores du jeu (à implémenter)
+*/
+
+void showScores(){
+  //TODO: Implémenter l'affichage des scores
+}
+
+/**
+* \fn       startGame
+* \brief    Démarre la partie, fait l'affichage du plateau à l'écran
+             et la gestion des touches pour la direction du serpent
+* \param    l : Largeur du plateau
+* \param    h : Hauteur du plateau
+*/
+
 void startGame(int l, int h){
   int continuer = 1;
   
   SDL_Init(SDL_INIT_VIDEO);
   screen = SDL_SetVideoMode(25*(l+2), 25*(h+2), 32, SDL_HWSURFACE);
 
-  p = initJeu(l, h, 10);
+  p = initJeu(l, h, 8);
 
   while (continuer)
   {
@@ -97,12 +131,25 @@ void startGame(int l, int h){
   free_plateau(p);
 }
 
+<<<<<<< a14d0b4baeb0090f104fab9a855bae4d75ee17a4
 /*int main(int argc, char *argv[])
+=======
+
+/**
+* \fn       main
+* \brief    Fonction main du programme chargé de l'appel aux fonctions d'affichage du menu
+             et de la gestion des touches dans le menu
+* \return   Renvoie 0 si le programme s'est executé correctement
+*/
+
+int main()
+>>>>>>> de29b1bb6af60c3fe3cad771ab759e6fee1d9963
 {
-  int l=25; int h=25; // Taille du plateau
+  putenv("SDL_VIDEO_CENTERED=1"); 
+  int l=20; int h=20; // Taille du plateau
   int continuer = 1;
   SDL_Init(SDL_INIT_VIDEO);
-  screen = SDL_SetVideoMode(750, 750, 32, SDL_HWSURFACE);
+  screen = SDL_SetVideoMode(400, 500, 32, SDL_HWSURFACE);
 
   while (continuer)
   {
@@ -122,14 +169,14 @@ void startGame(int l, int h){
                 case SDLK_UP:
                     if (tempsActuel - lastKeyPress > 200)
                     {
-                      selected = (selected + 4)%5;
+                      selected = (selected + 3)%4;
                       lastKeyPress = tempsActuel;
                     }
                     break;
                 case SDLK_DOWN:
                     if (tempsActuel - lastKeyPress > 200)
                     {
-                      selected = (selected + 1)%5;
+                      selected = (selected + 1)%4;
                       lastKeyPress = tempsActuel;
                     }
                     break;
@@ -138,7 +185,13 @@ void startGame(int l, int h){
                       startGame(l,h);
                       continuer = 0;
                     }
-                    else if(selected == 4){
+                    else if(selected == 1){
+                      showScores();
+                    }
+                    else if(selected == 2){
+                      showOptions();
+                    }
+                    else if(selected == 3){
                       continuer = 0;
                     }
                     break;

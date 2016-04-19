@@ -1,4 +1,20 @@
+/**
+ * \file      sdl_functions.c
+ * \date      19 avril 2016
+ * \brief     Fonctions utilisant la librairie SDL 
+              servant à afficher le menu, le plateau de jeu et les images
+ *
+ */
 #include "sdl_functions.h"
+
+/**
+* \fn       displayPicture
+* \brief    Fonction chargée de l'affichage d'une image a la position x,y de la fenetre
+* \param    *ecran : Pointeur vers l'écran
+* \param    x : Position de l'image en x
+* \param    y : Position de l'image en y
+* \param    *file : Pointeur vers le fichier contenant l'image
+*/
 
 void displayPicture(SDL_Surface* ecran, int x, int y, char* file){
   SDL_Rect position;
@@ -13,6 +29,13 @@ void displayPicture(SDL_Surface* ecran, int x, int y, char* file){
   SDL_BlitSurface(image, NULL, ecran, &position);
   SDL_FreeSurface(image);
 }
+
+/**
+* \fn       displayPlateau
+* \brief    Fonction chargée de l'affichage du plateau de jeu à l'écran
+* \param    *ecran : Pointeur vers l'écran
+* \param    p : Plateau à afficher
+*/
 
 void displayPlateau(SDL_Surface* ecran, plateau p){
   // Effacement de l'écran
@@ -39,17 +62,24 @@ void displayPlateau(SDL_Surface* ecran, plateau p){
   SDL_Flip(ecran);
 }
 
+/**
+* \fn       displayMenu
+* \brief    Fonction chargée de l'affichage du menu 
+            ainsi que de l'affichage d'une fleche au niveau du choix courant
+* \param    *ecran : Pointeur vers l'écran
+* \param    selected : Index du choix dans le menu
+*/
+
 void displayMenu(SDL_Surface* ecran, int selected){
   // Effacement de l'écran
   SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
   //Elements du menu
-  displayPicture(ecran, 300, 100, "images/jouer.bmp");
-  displayPicture(ecran, 300, 200, "images/aide.bmp");
-  displayPicture(ecran, 300, 300, "images/scores.bmp");
-  displayPicture(ecran, 300, 400, "images/options.bmp");
-  displayPicture(ecran, 300, 500, "images/quitter.bmp");
+  displayPicture(ecran, 100, 50, "images/jouer.bmp");
+  displayPicture(ecran, 100, 150, "images/scores.bmp");
+  displayPicture(ecran, 100, 250, "images/options.bmp");
+  displayPicture(ecran, 100, 350, "images/quitter.bmp");
   //Flèche
-  displayPicture(ecran, 200, (selected + 1) * 100, "images/fleche.bmp");
+  displayPicture(ecran, 50, (selected + 1) * 100 - 65, "images/fleche.bmp");
   //Affichage
   SDL_Flip(ecran);
 }
