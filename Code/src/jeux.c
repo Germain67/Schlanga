@@ -21,7 +21,7 @@ serpent schlanga;
 
 
 plateau initJeu(int lon, int lar, int t) {
-	// Le plateau est de taille longueur +2 et largeur+2 vu qu'il contient les murs
+	// Le plateau est de taille longeur +2 et largeur+2 vu qu'il contient les murs
 	plateau p = initPlateau(lon+2, lar+2);
 	initMurs(p);
 

@@ -97,7 +97,7 @@ void startGame(int l, int h){
   free_plateau(p);
 }
 
-int main(int argc, char *argv[])
+/*int main(int argc, char *argv[])
 {
   int l=25; int h=25; // Taille du plateau
   int continuer = 1;
@@ -149,7 +149,7 @@ int main(int argc, char *argv[])
         default:
           break;
     }
-    if (tempsActuel - lastRefresh > (1000/FPS)) /* Si 30 ms se sont écoulées */
+    if (tempsActuel - lastRefresh > (1000/FPS)) // Si 30 ms se sont écoulées 
     {
       displayMenu(screen, selected);
       lastRefresh = tempsActuel;
@@ -162,7 +162,7 @@ int main(int argc, char *argv[])
   SDL_Quit();
 
   return 0;
-}
+}*/
 
 /*
 int main(int argc, char *argv[])

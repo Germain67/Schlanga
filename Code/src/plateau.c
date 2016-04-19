@@ -61,10 +61,11 @@ void free_plateau(plateau p) {
 	int j;
 	for (i=0;i<h;i++) {
 		for (j=0;j<l;j++) {
-			free(p->data[i][j]); // On free les element
+			free_element(p,i,j); // On free les element
 		}
 		free(p->data[i]); // On free les element*
 	}
+	free(p->data);
 	free(p); // On free les element**
 }
 
