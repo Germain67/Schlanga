@@ -1,6 +1,8 @@
-//
-// Created by lise on 07/03/16.
-//
+/**
+ * \file      IA.c
+ * \date      19 avril 2016
+ * \brief     implémentation des différentes intelligences artificielles qui pilotent le schlanga
+ */
 
 #include "IA.h"
 #include <stdio.h>
@@ -10,7 +12,16 @@
 #include "element.h"
 #include "plateau.h"
 
-//Dirige le Schlanga dans une direction aléatoire
+
+
+/**
+ * \fn       aleatoire
+ * \brief    dirige le schlanga en lui faisant adopter un comportement aléatoire
+ * \param    param1  schlanga (serpent à diriger)
+ * \param    param2  plateau sur lequel on joue
+ * \return   direction dans laquelle doit aller le schlanga
+ */
+
 direction aleatoire(serpent schlanga, plateau p) {
     direction dir1;
     // On définit les positions possibles que l'on va stocké dans un tableau
@@ -56,6 +67,13 @@ direction aleatoire(serpent schlanga, plateau p) {
     return dir1;
 }
 
+/**
+ * \fn       int_to_dir
+ * \brief    transforme un entier en une direction selon une convention prédéfinie
+ * \param    param1  entier à transformer
+ * \return   direction correspondant à l'entier donné en paramètre
+ */
+
 direction int_to_dir(int i){
 	if(i == 0){
 		return HAUT;
@@ -71,7 +89,15 @@ direction int_to_dir(int i){
 	}
 }
 
-// IA défensif
+/**
+ * \fn       IA_défensif_direction
+ * \brief    dirige le schlanga en lui faisant adopter un comportement défensif
+ * \details  le schlanga se dirige vers les zones où il n'y a pas de serpent ni d'obstacle
+ * \param    param1  schlanga (serpent à diriger)
+ * \param    param2  plateau sur lequel on joue
+ * \return   direction dans laquelle doit aller le schlanga
+ */
+
 direction IA_defensif_direction(serpent schlanga, plateau p) {
 	int scan=4;	
 	int nb_case=0;

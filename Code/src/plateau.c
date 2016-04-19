@@ -1,5 +1,21 @@
+/**
+ * \file      plateau.c
+ * \date      19 avril 2016
+ * \brief     Implémentation des fonctions relatives à la manipulation du plateau de jeu
+ */
+
+
 #include "plateau.h"
 #include "snake.h"
+
+/**
+ * \fn       initPlateau
+ * \brief    génère et alloue la mémoire d'un plateau de cases vides
+ * \param    hauteur du plateau
+ * \param    largeur du plateau
+ * \return   plateau initialisé
+ */
+
 
 plateau initPlateau(int hauteur, int largeur){
 	plateau p = (plateau) malloc(hauteur * largeur * sizeof(element) + 2 * sizeof(int));
@@ -17,12 +33,26 @@ plateau initPlateau(int hauteur, int largeur){
 	return p;
 }
 
+/**
+ * \fn       free_element
+ * \brief    libère la mémoire de l'élément désigné en paramètre
+ * \param    p  plateau où est placé l'élément
+ * \param    x colonne de l'événement
+ * \param    y  ligne de l'événement
+ * \return   rien
+ */
 
-// À modifier
 
 void free_element(plateau p, int x, int y) {
 	free(p->data[x][y]);
 }
+
+/**
+ * \fn       free_plateau
+ * \brief    libère la mémoire allouée au plateau
+ * \param    p  plateau à libérer
+ * \return   rien
+ */
 
 void free_plateau(plateau p) {
 	int h=p->hauteur;
@@ -38,6 +68,12 @@ void free_plateau(plateau p) {
 	free(p); // On free les element**
 }
 
+/**
+* \fn       initMurs
+* \brief    fonction qui place les murs sur les bords du plateau
+* \param    p  plateau où il faut mettre les murs
+* \return   rien
+*/
 
 
 void initMurs(plateau p){
@@ -50,6 +86,15 @@ void initMurs(plateau p){
 		}
 	}
 }
+
+/**
+* \fn       addSerpentPlateau
+* \brief    Ajoute le serpent au plateau en début de partie
+* \param    s  serpent à placer
+* \param    p  plateau où il faut placer le serpent
+* \param   isSchlanga  entier qui indique si c'est un serpent ou un schlanga
+* \return   rien
+*/
 
 // isSchlanga = 1 si c'est un Schlanga / 0 sinon
 void addSerpentPlateau(serpent s, plateau p, int isSchlanga){
@@ -67,6 +112,16 @@ void addSerpentPlateau(serpent s, plateau p, int isSchlanga){
 	free_serpent(temp);
 }
 
+/**
+* \fn       updateSerpentPlateau
+* \brief    met à jour le plateau après le déplacement du serpent
+* \param    tete  tete du serpent
+* \param    p  plateau où il faut placer le serpent
+* \param    queue  position de la queue
+* \param    isSchlanga entier qui indique si c'est un serpent ou un schlanga
+* \return   rien
+*/
+
 void updateSerpentPlateau(serpent tete, plateau p, position queue, int isSchlanga){
 	free(p->data[tete->coordonnees->x][tete->coordonnees->y]);
 	if(isSchlanga == 1){
@@ -78,8 +133,16 @@ void updateSerpentPlateau(serpent tete, plateau p, position queue, int isSchlang
 	p->data[queue->x][queue->y] = initElement(vide);
 }
 
-/* Collision */
-/* b=1 : Collision -- b=0 : Pas de collision */
+/**
+* \fn       collision
+* \brief    gère les collisions du serpent avec les obstacles et les murs
+* \param    p  plateau de jeu
+* \param    d  direction de la case avec laquelle on veut tester la collision
+* \param    s  serpent concerné par le test
+* \return   retourne 1 s'il y collision, 0 sinon
+*/
+
+
 int collision(plateau p, direction d, serpent s){
 	int x = s->coordonnees->x;
 	int y = s->coordonnees->y;

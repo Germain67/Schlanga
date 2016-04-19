@@ -1,3 +1,9 @@
+/**
+ * \file      test.c
+ * \date      19 avril 2016
+ * \brief     contient les tests unitaires des fonctions principales élaborées dans le projet
+ */
+
 #include "plateau.h"
 #include "snake.h"
 #include "sdl_functions.h"
@@ -10,7 +16,12 @@ void initEcran(SDL_Surface* ecr){
 	ecran = ecr;
 }
 
-// Test de la fonction displayPlateau et initMurs permettant l'affichage d'un plateau avec des murs autour.
+/**
+* \fn       test_displayPlateau_initMurs
+* \brief    Test de la fonction displayPlateau et initMurs permettant l'affichage d'un plateau avec des murs autour.
+* \return   rien
+*/
+
 void test_displayPlateau_initMurs() {
 	printf("Test de la fonction displayPlateau \n");
 	printf("Initialisation d'un plateau de taille 10*10 \n");
@@ -23,7 +34,12 @@ void test_displayPlateau_initMurs() {
 	sleep(2);
 }
 
-// Test une collision
+
+/**
+* \fn       test_collision
+* \brief    Test de la fonction qui gère les collisions.
+* \return   rien
+*/
 void test_collision() {
 	int choix;
 	position pos, pos1, pos2;
@@ -112,7 +128,14 @@ void test_collision() {
 	sleep(2);
 }
 
-// Test de la fonction addSerpentPlateau permettant l'ajout d'un serpent au plateau
+
+
+/**
+ * \fn       test_addSerpentPlateau
+ * \brief    Test de la fonction addSerpentPlateau permettant l'ajout d'un serpent au plateau
+ * \return
+*/
+
 void test_addSerpentPlateau(){
 	printf("Test de la fonction addSerpentPlateau \n");
 	plateau p=initPlateau(10,10);
@@ -134,7 +157,12 @@ void test_addSerpentPlateau(){
 	free_serpent(s);
 }
 
-// Test de la fonction updateSerpentPlateau permettant la mise à jour de la position d'un serpent sur le plateau (suppression de la queue de serpent antérieur et ajout de la tête du serpent suivant)
+
+/**
+ * \fn       test_updateSerpentPlateau
+ * \brief    Test de la fonction updateSerpentPlateau permettant la mise à jour de la position d'un serpent sur le plateau (suppression de la queue de serpent antérieur et ajout de la tête du serpent suivant)
+ * \return
+*/
 void test_updateSerpentPlateau(){
 	printf("Test de la fonction updateSerpentPlateau \n");
 	plateau p=initPlateau(10,10);

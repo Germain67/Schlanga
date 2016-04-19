@@ -1,3 +1,8 @@
+/**
+ * \struct snake.h
+*/
+
+
 #ifndef SNAKE_H
 #define SNAKE_H
 
@@ -15,6 +20,11 @@ typedef struct serpent {
   struct serpent *suivant;
 } *serpent;
 
+/*
+ * \enum direction
+ * \brief énumération des directions possibles pour le déplacement via les touches directionnelles
+ *
+ */
 
 typedef enum {
   HAUT, BAS, GAUCHE, DROITE

@@ -1,7 +1,21 @@
+/**
+ * \file      snake.c
+ * \date      19 avril 2016
+ * \brief     implémentation des fonctions de base relatives au serpent ou au schlanga
+ *
+ */
+
 #include "snake.h"
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+* \fn       cree_position
+* \brief    initialise et alloue la mémoire nécessaire à une position
+* \param    x  coordonnée x
+* \param    y  coordonnée y
+* \return   position initialisée
+*/
 position cree_position(int x, int y) {
     position p = NULL;
     p = (position) malloc(sizeof(position));
@@ -10,7 +24,13 @@ position cree_position(int x, int y) {
     return p;
 }
 
-/*ajout element a la tete du snake*/
+/**
+* \fn       ajout_entete
+* \brief    ajoute une position en tête du serpent
+* \param    suivant  serpent
+* \param    pos  position à ajouter en tête
+* \return   serpent avec nouvelle position en tête
+*/
 
 serpent ajout_entete(serpent suivant, position pos){
     serpent s = (serpent) malloc(sizeof(struct serpent));
@@ -19,6 +39,12 @@ serpent ajout_entete(serpent suivant, position pos){
     return s;
 }
 
+/**
+* \fn       get_position_queue
+* \brief    récupère la position de la queue du serpent
+* \param    s  serpent
+* \return   coordonnées de la queue
+*/
 position get_position_queue(serpent s){/*tests?*/
     serpent courant = s;
     while (courant->suivant !=NULL) {
@@ -28,7 +54,12 @@ position get_position_queue(serpent s){/*tests?*/
     return courant->coordonnees;
 }
 
-/*eliminer le dernier element du snake*/
+/**
+* \fn       suppression_queue
+* \brief    supprime la queue du serpent (dernier élément)
+* \param    s  serpent
+* \return   rien
+*/
 
 void suppression_queue(serpent s){
     serpent courant = s;
@@ -41,6 +72,14 @@ void suppression_queue(serpent s){
     free_serpent(courant);
 }
 
+
+/**
+* \fn       free_serpent
+* \brief    libère la mémoire allouée au serpent
+* \param    s  serpent
+* \return   pointeur NULL
+*/
+
 serpent free_serpent(serpent s) {
     serpent tmp = s;
     serpent next;
@@ -52,11 +91,25 @@ serpent free_serpent(serpent s) {
     return NULL;
 }
 
+/**
+* \fn       free_position
+* \brief    libère alloue la mémoire allouée à une position
+* \param    pos  position pos à libérer
+* \return
+*/
+
 void free_position(position pos) {
     free(pos);
 }
 
-//Creation du serpent pos= position de la queue
+/**
+* \fn       init_serpent
+* \brief    crée le serpent, pos_init est la queue du serpent initialisé
+* \param    taille  taille du serpent (entier)
+* \param    pos_init  position de la queue
+* \param    dir direction dans laquelle on veut orienter le serpent
+* \return   serpent dont les positions sont bien placées sur le plateau
+*/
 serpent init_serpent(int taille, position pos_init, direction dir)  {
     serpent s = NULL;
     int i;
@@ -92,7 +145,13 @@ serpent init_serpent(int taille, position pos_init, direction dir)  {
 }
 
 
-/*deplacement*/
+/**
+* \fn       deplacement
+* \brief    fonction utilisée pour déplacer le serpent ou le schlanga
+* \param    d  direction dans laquelle on veut déplacer le serpent
+* \param    s  serpent à déplacer
+* \return   serpent déplacé
+*/
 
 serpent deplacement(direction d, serpent s){
     position p;

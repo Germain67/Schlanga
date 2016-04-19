@@ -1,13 +1,27 @@
+/**
+ * \file     jeux.c
+ * \date     19 avril 2016
+ * \brief    contient les fonctions qui interviennent pendant la session de jeu
+ */
 #include "jeux.h"
 
 serpent snake_joueur;
 serpent schlanga;
 
-// Résultat : 0 : Pas de collision / 1 : Collision du schlanga - Victoire du snake / 2 : Collision du snake - Victoire du schlanga
-int resultat;
+
+/**
+ * \fn       initjeu
+ * \brief    initialise le plateau au démarrage du jeu
+ * \details  cette fonction n'est appelée qu'au début d'une session de jeu
+ * \param    lon  longueur du plateau à générer
+ * \param    lar  largeur du plateau à générer
+ * \param    t entier
+ * \return   plateau initialisé avec un schlanga et un serpent
+ */
+
 
 plateau initJeu(int lon, int lar, int t) {
-	// Le plateau est de taille longeur +2 et largeur+2 vu qu'il contient les murs
+	// Le plateau est de taille longueur +2 et largeur+2 vu qu'il contient les murs
 	plateau p = initPlateau(lon+2, lar+2);
 	initMurs(p);
 
@@ -22,6 +36,14 @@ plateau initJeu(int lon, int lar, int t) {
 	return p;
 }
 
+/**
+ * \fn       updateJeu
+ * \brief    permet de mettre à jour le plateau après chaque déplacement du schlanga ou du snake
+ * \param    p  plateau à mettre à jour
+ * \param    dir1_snake  direction dans laquelle doit aller le serpent ou le schlanga
+ * \param    etatPartie  variable décrivant l'état de la partie: 0 pour une partie normale, 1 si le joueur a perdu, 2 si le schlanga a perdu
+ * \return   plateau mis à jour
+ */
 
 plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie) {
 	*etatPartie = 0;
@@ -44,6 +66,13 @@ plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie) {
 
 	return p;
 }
+
+/**
+ * \fn       fin_de_partie_serpent
+ * \brief    libère la mémoire allouée au serpent et au schlanga
+ * \return   rien
+ */
+
 
 void fin_de_partie_serpent() {
 	free_serpent(snake_joueur);
