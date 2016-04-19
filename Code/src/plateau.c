@@ -81,7 +81,7 @@ void initMurs(plateau p){
 	for(x = 0; x < p->hauteur; x++){
 		for(y = 0; y <p->largeur; y++){
 			if(x == 0 || x == p->hauteur - 1 || y == 0 || y == p->largeur - 1){
-				p->data[x][y] = initElement(mur);
+				updateElement(mur,p->data[x][y]);
 			}
 		}
 	}
@@ -100,12 +100,11 @@ void initMurs(plateau p){
 void addSerpentPlateau(serpent s, plateau p, int isSchlanga){
 	serpent temp = s;
 	while(temp != NULL){
-		free(p->data[temp->coordonnees->x][temp->coordonnees->y]);
 		if (isSchlanga == 1) {
-			p->data[temp->coordonnees->x][temp->coordonnees->y] = initElement(snake_schlanga);
+			updateElement(snake_schlanga,p->data[temp->coordonnees->x][temp->coordonnees->y]);
 		}
 		else {
-			p->data[temp->coordonnees->x][temp->coordonnees->y] = initElement(snake);
+			updateElement(snake,p->data[temp->coordonnees->x][temp->coordonnees->y]);
 		}
 		temp = temp->suivant;
 	}
@@ -123,14 +122,13 @@ void addSerpentPlateau(serpent s, plateau p, int isSchlanga){
 */
 
 void updateSerpentPlateau(serpent tete, plateau p, position queue, int isSchlanga){
-	free(p->data[tete->coordonnees->x][tete->coordonnees->y]);
 	if(isSchlanga == 1){
-		p->data[tete->coordonnees->x][tete->coordonnees->y] = initElement(snake_schlanga);
+		updateElement(snake_schlanga,p->data[tete->coordonnees->x][tete->coordonnees->y]);
 	}
 	else{
-		p->data[tete->coordonnees->x][tete->coordonnees->y] = initElement(snake);
+		updateElement(snake,p->data[tete->coordonnees->x][tete->coordonnees->y]);
 	}
-	p->data[queue->x][queue->y] = initElement(vide);
+	updateElement(vide,p->data[queue->x][queue->y]);
 }
 
 /**

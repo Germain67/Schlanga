@@ -11,5 +11,6 @@ typedef struct element{
 } *element;
 
 element initElement(typeCase t);
+void updateElement(typeCase t, element e);
 
 #endif

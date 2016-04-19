@@ -16,3 +16,12 @@ element initElement(typeCase t){
 	return e;
 }
 
+/**
+ * \fn         updateElement
+ * \brief      Modifie le type d'un element
+ * \param      e element où le type est à modifier et t type de l'élément à modifier
+ * \return     rien
+ */
+void updateElement(typeCase t, element e){
+	e->type = t;
+}
