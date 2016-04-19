@@ -8,13 +8,6 @@
 #include "plateau.h"
 #include "snake.h"
 
-/**
- * \fn       initPlateau
- * \brief    génère et alloue la mémoire d'un plateau de cases vides
- * \param    hauteur du plateau
- * \param    largeur du plateau
- * \return   plateau initialisé
- */
 
 
 plateau initPlateau(int hauteur, int largeur){
