@@ -45,7 +45,7 @@ serpent ajout_entete(serpent suivant, position pos){
 * \param    s  serpent
 * \return   coordonnées de la queue
 */
-position get_position_queue(serpent s){/*tests?*/
+position get_position_queue(serpent s){
     serpent courant = s;
     while (courant->suivant !=NULL) {
        courant = courant->suivant;
@@ -60,7 +60,6 @@ position get_position_queue(serpent s){/*tests?*/
 * \param    s  serpent
 * \return   rien
 */
-
 void suppression_queue(serpent s){
     serpent courant = s;
     serpent precedent = NULL;
@@ -69,7 +68,6 @@ void suppression_queue(serpent s){
        courant = courant->suivant;
     }
     precedent->suivant = NULL;
-    free_serpent(courant);
 }
 
 /**
@@ -84,11 +82,13 @@ serpent free_serpent(serpent s) {
     serpent next;
     while (tmp != NULL) {
         next=tmp->suivant;
+	free(tmp->coordonnees);
         free(tmp);
         tmp=next;
     }
     return NULL;
 }
+
 
 /**
 * \fn       free_position
@@ -111,6 +111,7 @@ void free_position(position pos) {
 */
 serpent init_serpent(int taille, position pos_init, direction dir)  {
     serpent s = NULL;
+
     int i;
 
     position pos_suiv;

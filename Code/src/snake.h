@@ -35,7 +35,7 @@ position cree_position(int x, int y);
 void affiche_position(position p);
 void affiche_serpent(serpent s);
 void free_position(position pos);
-serpent ajout_entete(serpent suivant, position p);
+serpent ajout_entete(serpent suivant, position pos);
 position get_position_queue(serpent s);
 void suppression_queue(serpent s);
 serpent free_serpent(serpent s);
