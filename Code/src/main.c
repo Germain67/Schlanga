@@ -131,10 +131,6 @@ void startGame(int l, int h){
   free_plateau(p);
 }
 
-<<<<<<< a14d0b4baeb0090f104fab9a855bae4d75ee17a4
-/*int main(int argc, char *argv[])
-=======
-
 /**
 * \fn       main
 * \brief    Fonction main du programme chargé de l'appel aux fonctions d'affichage du menu
@@ -143,7 +139,6 @@ void startGame(int l, int h){
 */
 
 int main()
->>>>>>> de29b1bb6af60c3fe3cad771ab759e6fee1d9963
 {
   putenv("SDL_VIDEO_CENTERED=1"); 
   int l=20; int h=20; // Taille du plateau
@@ -215,7 +210,7 @@ int main()
   SDL_Quit();
 
   return 0;
-}*/
+}
 
 /*
 int main(int argc, char *argv[])
