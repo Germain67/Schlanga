@@ -12,13 +12,6 @@ typedef struct plateau{
 } *plateau;
 
 
-/**
- * \fn       initPlateau
- * \brief    génère et alloue la mémoire d'un plateau de cases vides
- * \param    hauteur du plateau
- * \param    largeur du plateau
- * \return   plateau initialisé
- */
 
 plateau initPlateau(int hauteur, int largeur);
 void free_element(plateau p, int x, int y);
