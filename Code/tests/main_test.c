@@ -8,12 +8,12 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "element.h"
-#include "plateau.h"
-#include "snake.h"
-#include "jeux.h"
-#include "test.h"
-#include "sdl_functions.h"
+#include "../src/element.h"
+#include "../src/plateau.h"
+#include "../src/snake.h"
+#include "../src/jeux.h"
+#include "../src/test.h"
+#include "../src/sdl_functions.h"
 
 int main() {
 	plateau p;

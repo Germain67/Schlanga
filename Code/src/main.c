@@ -14,7 +14,6 @@
 #include "plateau.h"
 #include "snake.h"
 #include "jeux.h"
-#include "test.h"
 #include "sdl_functions.h"
 #define FPS 30
 #define MOVE_TIME 150
