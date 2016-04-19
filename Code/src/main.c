@@ -17,12 +17,15 @@
 #include "sdl_functions.h"
 #define FPS 30
 #define MOVE_TIME 150
+#define KEYDOWN_TIME 200
+#define NB_MENU_ENTRY 4
+#define NB_OPTIONS_ENTRY 4
 
 int selected = 0;
 Uint32 lastRefresh = 0;
 Uint32 lastKeyPress = 0;
 Uint32 lastMove = 0;
-direction dir = DROITE;
+direction dir;
 plateau p;
 SDL_Surface *screen = NULL;
 SDL_Event event;
@@ -33,7 +36,67 @@ SDL_Event event;
 */
 
 void showOptions(){
-  //Non disponible pour le moment
+  int continuer = 1;
+  
+  SDL_Init(SDL_INIT_VIDEO);
+  screen = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE);
+
+  while (continuer)
+  {
+    SDL_PollEvent(&event);
+    Uint32 tempsActuel = SDL_GetTicks();
+    switch(event.type)
+    {
+        case SDL_QUIT:
+            continuer = 0;
+            break;
+        case SDL_KEYDOWN:
+            switch(event.key.keysym.sym)
+            {
+                case SDLK_ESCAPE:
+                    continuer = 0;
+                    break;
+                case SDLK_UP:
+                    if (tempsActuel - lastKeyPress > KEYDOWN_TIME)
+                    {
+                      selected = (selected + NB_OPTIONS_ENTRY - 1)%NB_OPTIONS_ENTRY;
+                      lastKeyPress = tempsActuel;
+                    }
+                    break;
+                case SDLK_DOWN:
+                    if (tempsActuel - lastKeyPress > KEYDOWN_TIME)
+                    {
+                      selected = (selected + 1)%NB_OPTIONS_ENTRY;
+                      lastKeyPress = tempsActuel;
+                    }
+                    break;
+                case SDLK_RETURN:
+                    if(selected == 0){
+                      
+                    }
+                    else if(selected == 1){
+                      
+                    }
+                    else if(selected == 2){
+                      
+                    }
+                    else if(selected == 3){
+                      
+                    }
+                    break;
+                default:
+                    break;
+            }
+            break;
+        default:
+          break;
+    }
+    if (tempsActuel - lastRefresh > (1000/FPS)) // Si 30 ms se sont écoulées 
+    {
+      displayOptions(screen, selected, GAUCHE);
+      lastRefresh = tempsActuel;
+    }
+  }
 }
 
 /**
@@ -60,6 +123,7 @@ void startGame(int l, int h){
   screen = SDL_SetVideoMode(25*(l+2), 25*(h+2), 32, SDL_HWSURFACE);
 
   p = initJeu(l, h, 8);
+  dir = DROITE;
 
   while (continuer)
   {
@@ -140,7 +204,8 @@ void startGame(int l, int h){
 int main()
 {
   putenv("SDL_VIDEO_CENTERED=1"); 
-  int l=20; int h=20; // Taille du plateau
+  int l=20; 
+  int h=20; // Taille du plateau
   int continuer = 1;
   SDL_Init(SDL_INIT_VIDEO);
   screen = SDL_SetVideoMode(400, 500, 32, SDL_HWSURFACE);
@@ -161,16 +226,16 @@ int main()
                     continuer = 0;
                     break;
                 case SDLK_UP:
-                    if (tempsActuel - lastKeyPress > 200)
+                    if (tempsActuel - lastKeyPress > KEYDOWN_TIME)
                     {
-                      selected = (selected + 3)%4;
+                      selected = (selected + NB_MENU_ENTRY - 1)%NB_MENU_ENTRY;
                       lastKeyPress = tempsActuel;
                     }
                     break;
                 case SDLK_DOWN:
-                    if (tempsActuel - lastKeyPress > 200)
+                    if (tempsActuel - lastKeyPress > KEYDOWN_TIME)
                     {
-                      selected = (selected + 1)%4;
+                      selected = (selected + 1)%NB_MENU_ENTRY;
                       lastKeyPress = tempsActuel;
                     }
                     break;
@@ -210,52 +275,3 @@ int main()
 
   return 0;
 }
-
-/*
-int main(int argc, char *argv[])
-{
-  printf("1)Jouer\n2)Test unitaires\n");
-  char c;
-  printf("Choix du menu : ");
-  scanf(" %c",&c);
-  printf("\n");
-
-  int continuer = 1;
-  SDL_Surface *ecran = NULL;
-  SDL_Event event;
-  SDL_Init(SDL_INIT_VIDEO);
-  ecran = SDL_SetVideoMode(750, 750, 32, SDL_HWSURFACE);
-
-  if( c == '2') {
-    initEcran(ecran);
-    while(1){
-      printf("1) Test unitaire de la fonction displayPlateau et initMurs permettant l'affichage d'un plateau avec des murs \n");
-      printf("2) Test unitaire de la fonction collision \n");
-      printf("3) Test unitaire de la fonction addSerpentPlateau \n");
-      printf("4) Test unitaire de la fonction updateSerpentPlateau \n");
-      printf("5) Quitter \n");
-      char d;
-      printf("Choix du menu : ");
-      scanf(" %c",&d);
-      printf("\n");
-      if ( d == '1') {
-        test_displayPlateau_initMurs();
-      }
-      else if ( d == '2') {
-        test_collision();
-      }
-      else if ( d == '3') {
-        test_addSerpentPlateau();
-      }
-      else if ( d == '4') {
-        test_updateSerpentPlateau();
-      }
-      else if (d == '5'){
-        return 0;
-      }
-      else {
-        printf("Vous n'avez pas sélectionné un menu qui existe. \n");
-      }
-    }
-  }
-*/

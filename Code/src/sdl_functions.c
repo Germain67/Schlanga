@@ -25,9 +25,20 @@ void displayPicture(SDL_Surface* ecran, int x, int y, char* file){
   image = SDL_LoadBMP(file);
   /* Transparence */
   SDL_SetColorKey(image, SDL_SRCCOLORKEY, SDL_MapRGB(image->format, 0, 0, 0));
-  /* On blitte l'image maintenant transparente sur le fond : */
+  /* On colle l'image maintenant transparente sur le fond : */
   SDL_BlitSurface(image, NULL, ecran, &position);
   SDL_FreeSurface(image);
+}
+
+void printNumber(int number, SDL_Surface* ecran, int x, int y){
+  int dizaine = number/10;
+  char dizPicture[13];
+  sprintf(dizPicture, "images/%d.bmp", dizaine);
+  int unite = number%10;
+  char unitPicture[13];
+  sprintf(unitPicture, "images/%d.bmp", unite);
+  displayPicture(ecran, x, y, dizPicture);
+  displayPicture(ecran, x + 30, y, unitPicture);
 }
 
 /**
@@ -78,6 +89,33 @@ void displayMenu(SDL_Surface* ecran, int selected){
   displayPicture(ecran, 100, 150, "images/scores.bmp");
   displayPicture(ecran, 100, 250, "images/options.bmp");
   displayPicture(ecran, 100, 350, "images/quitter.bmp");
+  //Flèche
+  displayPicture(ecran, 50, (selected + 1) * 100 - 65, "images/fleche.bmp");
+  //Affichage
+  SDL_Flip(ecran);
+}
+
+void displayOptions(SDL_Surface* ecran, int selected, direction dir){
+  // Effacement de l'écran
+  SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
+  //Elements des options
+  //Serpent
+  displayPicture(ecran, 100, 50, "images/serpents.bmp");
+  printNumber(10, ecran, 300, 50);
+  //Plateau
+  displayPicture(ecran, 100, 150, "images/plateau.bmp");
+  printNumber(20, ecran, 300, 150);
+  displayPicture(ecran, 380, 150, "images/X.bmp");
+  printNumber(20, ecran, 420, 150);
+  //Vitesse
+  displayPicture(ecran, 100, 250, "images/vitesse.bmp");
+  displayPicture(ecran, 300, 250, "images/lent.bmp");
+  displayPicture(ecran, 450, 250, "images/moyen.bmp");
+  displayPicture(ecran, 600, 250, "images/rapide.bmp");
+  //Objets
+  displayPicture(ecran, 100, 350, "images/objets.bmp");
+  displayPicture(ecran, 300, 350, "images/active.bmp");
+  displayPicture(ecran, 500, 350, "images/desactive.bmp");
   //Flèche
   displayPicture(ecran, 50, (selected + 1) * 100 - 65, "images/fleche.bmp");
   //Affichage
