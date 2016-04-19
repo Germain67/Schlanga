@@ -1,0 +1,101 @@
+\hypertarget{test_8c}{\section{Référence du fichier test.\-c}
+\label{test_8c}\index{test.\-c@{test.\-c}}
+}
+
+
+contient les tests unitaires des fonctions principales élaborées dans le projet  
+
+
+{\ttfamily \#include \char`\"{}plateau.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}snake.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}sdl\-\_\-functions.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include $<$S\-D\-L/\-S\-D\-L.\-h$>$}\\*
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{test_8c_a5a9e81489001c11dcba25a25e425ed23}{void {\bfseries init\-Ecran} (S\-D\-L\-\_\-\-Surface $\ast$ecr)}\label{test_8c_a5a9e81489001c11dcba25a25e425ed23}
+
+\item 
+void \hyperlink{test_8c_a247e3a2da8516cfd831168e3110739b9}{test\-\_\-display\-Plateau\-\_\-init\-Murs} ()
+\begin{DoxyCompactList}\small\item\em Test de la fonction display\-Plateau et init\-Murs permettant l'affichage d'un plateau avec des murs autour. \end{DoxyCompactList}\item 
+void \hyperlink{test_8c_a115bc69b5e12cd598f9dd6b6de452fef}{test\-\_\-collision} ()
+\begin{DoxyCompactList}\small\item\em Test de la fonction qui gère les collisions. \end{DoxyCompactList}\item 
+void \hyperlink{test_8c_ad21ed3438f0935a8d4e4c989dcc7fd86}{test\-\_\-add\-Serpent\-Plateau} ()
+\begin{DoxyCompactList}\small\item\em Test de la fonction add\-Serpent\-Plateau permettant l'ajout d'un serpent au plateau. \end{DoxyCompactList}\item 
+void \hyperlink{test_8c_a38c0c29ad5fce12dffa9ed13b41ec343}{test\-\_\-update\-Serpent\-Plateau} ()
+\begin{DoxyCompactList}\small\item\em Test de la fonction update\-Serpent\-Plateau permettant la mise à jour de la position d'un serpent sur le plateau (suppression de la queue de serpent antérieur et ajout de la tête du serpent suivant) \end{DoxyCompactList}\item 
+\hypertarget{test_8c_af8390b0e51b057280d1b900287890505}{void {\bfseries free\-\_\-ecran} ()}\label{test_8c_af8390b0e51b057280d1b900287890505}
+
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{test_8c_ad7336f08728614cd400604d2ba6ca1ef}{S\-D\-L\-\_\-\-Surface $\ast$ {\bfseries ecran} = N\-U\-L\-L}\label{test_8c_ad7336f08728614cd400604d2ba6ca1ef}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+contient les tests unitaires des fonctions principales élaborées dans le projet \begin{DoxyDate}{Date}
+19 avril 2016 
+\end{DoxyDate}
+
+
+\subsection{Documentation des fonctions}
+\hypertarget{test_8c_ad21ed3438f0935a8d4e4c989dcc7fd86}{\index{test.\-c@{test.\-c}!test\-\_\-add\-Serpent\-Plateau@{test\-\_\-add\-Serpent\-Plateau}}
+\index{test\-\_\-add\-Serpent\-Plateau@{test\-\_\-add\-Serpent\-Plateau}!test.c@{test.\-c}}
+\subsubsection[{test\-\_\-add\-Serpent\-Plateau}]{\setlength{\rightskip}{0pt plus 5cm}test\-\_\-add\-Serpent\-Plateau (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{test_8c_ad21ed3438f0935a8d4e4c989dcc7fd86}
+
+
+Test de la fonction add\-Serpent\-Plateau permettant l'ajout d'un serpent au plateau. 
+
+\begin{DoxyReturn}{Renvoie}
+
+\end{DoxyReturn}
+\hypertarget{test_8c_a115bc69b5e12cd598f9dd6b6de452fef}{\index{test.\-c@{test.\-c}!test\-\_\-collision@{test\-\_\-collision}}
+\index{test\-\_\-collision@{test\-\_\-collision}!test.c@{test.\-c}}
+\subsubsection[{test\-\_\-collision}]{\setlength{\rightskip}{0pt plus 5cm}test\-\_\-collision (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{test_8c_a115bc69b5e12cd598f9dd6b6de452fef}
+
+
+Test de la fonction qui gère les collisions. 
+
+\begin{DoxyReturn}{Renvoie}
+rien 
+\end{DoxyReturn}
+\hypertarget{test_8c_a247e3a2da8516cfd831168e3110739b9}{\index{test.\-c@{test.\-c}!test\-\_\-display\-Plateau\-\_\-init\-Murs@{test\-\_\-display\-Plateau\-\_\-init\-Murs}}
+\index{test\-\_\-display\-Plateau\-\_\-init\-Murs@{test\-\_\-display\-Plateau\-\_\-init\-Murs}!test.c@{test.\-c}}
+\subsubsection[{test\-\_\-display\-Plateau\-\_\-init\-Murs}]{\setlength{\rightskip}{0pt plus 5cm}test\-\_\-display\-Plateau\-\_\-init\-Murs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{test_8c_a247e3a2da8516cfd831168e3110739b9}
+
+
+Test de la fonction display\-Plateau et init\-Murs permettant l'affichage d'un plateau avec des murs autour. 
+
+\begin{DoxyReturn}{Renvoie}
+rien 
+\end{DoxyReturn}
+\hypertarget{test_8c_a38c0c29ad5fce12dffa9ed13b41ec343}{\index{test.\-c@{test.\-c}!test\-\_\-update\-Serpent\-Plateau@{test\-\_\-update\-Serpent\-Plateau}}
+\index{test\-\_\-update\-Serpent\-Plateau@{test\-\_\-update\-Serpent\-Plateau}!test.c@{test.\-c}}
+\subsubsection[{test\-\_\-update\-Serpent\-Plateau}]{\setlength{\rightskip}{0pt plus 5cm}test\-\_\-update\-Serpent\-Plateau (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{test_8c_a38c0c29ad5fce12dffa9ed13b41ec343}
+
+
+Test de la fonction update\-Serpent\-Plateau permettant la mise à jour de la position d'un serpent sur le plateau (suppression de la queue de serpent antérieur et ajout de la tête du serpent suivant) 
+
+\begin{DoxyReturn}{Renvoie}
+
+\end{DoxyReturn}

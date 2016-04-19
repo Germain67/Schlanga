@@ -1,0 +1,40 @@
+\hypertarget{plateau_8c}{\section{Référence du fichier plateau.\-c}
+\label{plateau_8c}\index{plateau.\-c@{plateau.\-c}}
+}
+
+
+Implémentation des fonctions relatives à la manipulation du plateau de jeu.  
+
+
+{\ttfamily \#include \char`\"{}plateau.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}snake.\-h\char`\"{}}\\*
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{plateau_8c_a5d594ca6e0ac0a6206283270160d9245}{\hyperlink{structplateau}{plateau} {\bfseries init\-Plateau} (int hauteur, int largeur)}\label{plateau_8c_a5d594ca6e0ac0a6206283270160d9245}
+
+\item 
+\hypertarget{plateau_8c_a43852d878fea926a7ea5c263b6c5e066}{void {\bfseries free\-\_\-element} (\hyperlink{structplateau}{plateau} p, int x, int y)}\label{plateau_8c_a43852d878fea926a7ea5c263b6c5e066}
+
+\item 
+\hypertarget{plateau_8c_ac2e0ff5affd885b9f5427ddc913f508b}{void {\bfseries free\-\_\-plateau} (\hyperlink{structplateau}{plateau} p)}\label{plateau_8c_ac2e0ff5affd885b9f5427ddc913f508b}
+
+\item 
+\hypertarget{plateau_8c_ad8028c56cd7c8c01c43faca8251af764}{void {\bfseries init\-Murs} (\hyperlink{structplateau}{plateau} p)}\label{plateau_8c_ad8028c56cd7c8c01c43faca8251af764}
+
+\item 
+\hypertarget{plateau_8c_a4c69a3309b628c9c588187d5cb9e9ad4}{void {\bfseries add\-Serpent\-Plateau} (\hyperlink{structserpent}{serpent} s, \hyperlink{structplateau}{plateau} p, int is\-Schlanga)}\label{plateau_8c_a4c69a3309b628c9c588187d5cb9e9ad4}
+
+\item 
+\hypertarget{plateau_8c_a199d542349146aba1b132af580a0f2b3}{void {\bfseries update\-Serpent\-Plateau} (\hyperlink{structserpent}{serpent} tete, \hyperlink{structplateau}{plateau} p, \hyperlink{structposition}{position} queue, int is\-Schlanga)}\label{plateau_8c_a199d542349146aba1b132af580a0f2b3}
+
+\item 
+\hypertarget{plateau_8c_ae62206778f6101e7240488b10a334e39}{int {\bfseries collision} (\hyperlink{structplateau}{plateau} p, direction d, \hyperlink{structserpent}{serpent} s)}\label{plateau_8c_ae62206778f6101e7240488b10a334e39}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Implémentation des fonctions relatives à la manipulation du plateau de jeu. \begin{DoxyDate}{Date}
+19 avril 2016 
+\end{DoxyDate}

@@ -177,7 +177,7 @@ int main()
                 case SDLK_RETURN:
                     if(selected == 0){
                       startGame(l,h);
-                      continuer = 0;
+                      screen = SDL_SetVideoMode(400, 500, 32, SDL_HWSURFACE);
                     }
                     else if(selected == 1){
                       showScores();
