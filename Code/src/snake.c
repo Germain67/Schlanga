@@ -72,7 +72,6 @@ void suppression_queue(serpent s){
     free_serpent(courant);
 }
 
-
 /**
 * \fn       free_serpent
 * \brief    libère la mémoire allouée au serpent
