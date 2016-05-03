@@ -9,9 +9,10 @@
 #include "plateau.h"
 #include "snake.h"
 
+void initOptions(int* tailleS, int* tailleP, int* vitesse, int* objets, int* diff);
 void displayPicture(SDL_Surface* ecran, int x, int y, char* file);
 void displayPlateau(SDL_Surface* ecran, plateau p);
 void displayMenu(SDL_Surface* ecran, int position);
-void displayOptions(SDL_Surface* ecran, int selected, direction dir);
+void displayOptions(SDL_Surface* ecran, int selected, int selectedColumn);
 
 #endif

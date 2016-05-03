@@ -16,6 +16,20 @@
 * \param    *file : Pointeur vers le fichier contenant l'image
 */
 
+int* tailleSnake;
+int* taille_plateau;
+int* speed;
+int* objectActivated;
+int* difficulte;
+
+void initOptions(int* tailleS, int* tailleP, int* vitesse, int* objets, int* diff){
+  tailleSnake = tailleS;
+  taille_plateau = tailleP;
+  speed = vitesse;
+  objectActivated = objets; 
+  difficulte = diff;
+}
+
 void displayPicture(SDL_Surface* ecran, int x, int y, char* file){
   SDL_Rect position;
   position.x = x;
@@ -95,18 +109,33 @@ void displayMenu(SDL_Surface* ecran, int selected){
   SDL_Flip(ecran);
 }
 
-void displayOptions(SDL_Surface* ecran, int selected, direction dir){
+void displayOptions(SDL_Surface* ecran, int selected, int selectedColumn){
   // Effacement de l'écran
   SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
-  //Elements des options
-  //Serpent
+  //Mise à jour des options
   displayPicture(ecran, 100, 50, "images/serpents.bmp");
-  printNumber(10, ecran, 300, 50);
+  if(selected == 0){
+    *tailleSnake += selectedColumn;
+  }
+  else if(selected == 1){
+    *taille_plateau += selectedColumn;
+  }
+  else if(selected == 2){
+    *speed += selectedColumn;
+  }
+  else if(selected == 3){
+    *objectActivated += selectedColumn;
+  }
+  else if(selected == 4){
+    *difficulte += selectedColumn;
+  }
+  //Serpent
+  printNumber(*tailleSnake, ecran, 300, 50);
   //Plateau
   displayPicture(ecran, 100, 150, "images/plateau.bmp");
-  printNumber(20, ecran, 300, 150);
+  printNumber(*taille_plateau, ecran, 300, 150);
   displayPicture(ecran, 380, 150, "images/X.bmp");
-  printNumber(20, ecran, 420, 150);
+  printNumber(*taille_plateau, ecran, 420, 150);
   //Vitesse
   displayPicture(ecran, 100, 250, "images/vitesse.bmp");
   displayPicture(ecran, 300, 250, "images/lent.bmp");
@@ -116,8 +145,40 @@ void displayOptions(SDL_Surface* ecran, int selected, direction dir){
   displayPicture(ecran, 100, 350, "images/objets.bmp");
   displayPicture(ecran, 300, 350, "images/active.bmp");
   displayPicture(ecran, 500, 350, "images/desactive.bmp");
+  //IA
+  displayPicture(ecran, 100, 450, "images/ia.bmp");
+  displayPicture(ecran, 300, 450, "images/facile.bmp");
+  displayPicture(ecran, 450, 450, "images/moyen.bmp");
+  displayPicture(ecran, 600, 450, "images/difficile.bmp");
   //Flèche
   displayPicture(ecran, 50, (selected + 1) * 100 - 65, "images/fleche.bmp");
+  //Rectangles de sélection vitesse
+  if(*speed%3 == 0){
+    displayPicture(ecran, 300, 250, "images/selection.bmp");
+  }
+  else if(*speed%3 == 1){
+    displayPicture(ecran, 450, 250, "images/selection.bmp");
+  }
+  else{
+    displayPicture(ecran, 600, 250, "images/selection.bmp");
+  }
+  //Rectangles de sélection objets
+  if(*objectActivated%2 == 0){
+    displayPicture(ecran, 300, 350, "images/selection.bmp");
+  }
+  else{
+    displayPicture(ecran, 500, 350, "images/selection.bmp");
+  }
+  //Rectangles de sélection IA
+  if(*difficulte%3 == 0){
+    displayPicture(ecran, 300, 450, "images/selection.bmp");
+  }
+  else if(*difficulte%3 == 1){
+    displayPicture(ecran, 450, 450, "images/selection.bmp");
+  }
+  else{
+    displayPicture(ecran, 600, 450, "images/selection.bmp");
+  }
   //Affichage
   SDL_Flip(ecran);
 }

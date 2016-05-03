@@ -16,12 +16,12 @@
 #include "jeux.h"
 #include "sdl_functions.h"
 #define FPS 30
-#define MOVE_TIME 150
 #define KEYDOWN_TIME 200
 #define NB_MENU_ENTRY 4
-#define NB_OPTIONS_ENTRY 4
+#define NB_OPTIONS_ENTRY 5
 
 int selected = 0;
+int selectedColumn = 0;
 Uint32 lastRefresh = 0;
 Uint32 lastKeyPress = 0;
 Uint32 lastMove = 0;
@@ -29,6 +29,14 @@ direction dir;
 plateau p;
 SDL_Surface *screen = NULL;
 SDL_Event event;
+
+/* Options */
+
+int tailleS = 10;
+int tailleP = 20;
+int vitesse = 1;
+int objets = 0;
+int diff = 1;
 
 /**
 * \fn       showOptions
@@ -40,6 +48,8 @@ void showOptions(){
   
   SDL_Init(SDL_INIT_VIDEO);
   screen = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE);
+
+  initOptions(&tailleS, &tailleP, &vitesse, &objets, &diff);
 
   while (continuer)
   {
@@ -70,18 +80,18 @@ void showOptions(){
                       lastKeyPress = tempsActuel;
                     }
                     break;
-                case SDLK_RETURN:
-                    if(selected == 0){
-                      
+                case SDLK_RIGHT:
+                    if (tempsActuel - lastKeyPress > KEYDOWN_TIME)
+                    {
+                      selectedColumn = 1;
+                      lastKeyPress = tempsActuel;
                     }
-                    else if(selected == 1){
-                      
-                    }
-                    else if(selected == 2){
-                      
-                    }
-                    else if(selected == 3){
-                      
+                    break;
+                case SDLK_LEFT:
+                    if (tempsActuel - lastKeyPress > KEYDOWN_TIME)
+                    {
+                      selectedColumn = -1;
+                      lastKeyPress = tempsActuel;
                     }
                     break;
                 default:
@@ -93,8 +103,9 @@ void showOptions(){
     }
     if (tempsActuel - lastRefresh > (1000/FPS)) // Si 30 ms se sont écoulées 
     {
-      displayOptions(screen, selected, GAUCHE);
+      displayOptions(screen, selected, selectedColumn);
       lastRefresh = tempsActuel;
+      selectedColumn = 0;
     }
   }
 }
@@ -122,8 +133,10 @@ void startGame(int l, int h){
   SDL_Init(SDL_INIT_VIDEO);
   screen = SDL_SetVideoMode(25*(l+2), 25*(h+2), 32, SDL_HWSURFACE);
 
-  p = initJeu(l, h, 8);
+  p = initJeu(l, h, tailleS, diff);
   dir = DROITE;
+
+  int move_time = ((vitesse+3)%3) * -100 + 350;
 
   while (continuer)
   {
@@ -168,7 +181,7 @@ void startGame(int l, int h){
     }
 
     Uint32 tempsActuel = SDL_GetTicks();
-    if (tempsActuel - lastMove > MOVE_TIME) /* Si 30 ms se sont écoulées */
+    if (tempsActuel - lastMove > move_time) /* Si 30 ms se sont écoulées */
     {
       int etatPartie = 0;
       p = updateJeu(p, dir, &etatPartie);
@@ -204,8 +217,6 @@ void startGame(int l, int h){
 int main()
 {
   putenv("SDL_VIDEO_CENTERED=1"); 
-  int l=20; 
-  int h=20; // Taille du plateau
   int continuer = 1;
   SDL_Init(SDL_INIT_VIDEO);
   screen = SDL_SetVideoMode(400, 500, 32, SDL_HWSURFACE);
@@ -222,9 +233,6 @@ int main()
         case SDL_KEYDOWN:
             switch(event.key.keysym.sym)
             {
-                case SDLK_ESCAPE:
-                    continuer = 0;
-                    break;
                 case SDLK_UP:
                     if (tempsActuel - lastKeyPress > KEYDOWN_TIME)
                     {
@@ -241,14 +249,16 @@ int main()
                     break;
                 case SDLK_RETURN:
                     if(selected == 0){
-                      startGame(l,h);
+                      startGame(tailleP,tailleP);
                       screen = SDL_SetVideoMode(400, 500, 32, SDL_HWSURFACE);
                     }
                     else if(selected == 1){
                       showScores();
+                      screen = SDL_SetVideoMode(400, 500, 32, SDL_HWSURFACE);
                     }
                     else if(selected == 2){
                       showOptions();
+                      screen = SDL_SetVideoMode(400, 500, 32, SDL_HWSURFACE);
                     }
                     else if(selected == 3){
                       continuer = 0;

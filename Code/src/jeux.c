@@ -7,6 +7,7 @@
 
 serpent snake_joueur;
 serpent schlanga;
+int difficulte;
 
 
 /**
@@ -20,7 +21,8 @@ serpent schlanga;
  */
 
 
-plateau initJeu(int lon, int lar, int t) {
+plateau initJeu(int lon, int lar, int t, int diff) {
+	difficulte = diff;
 	// Le plateau est de taille longeur +2 et largeur+2 vu qu'il contient les murs
 	plateau p = initPlateau(lon+2, lar+2);
 	initMurs(p);
@@ -49,7 +51,18 @@ plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie) {
 	*etatPartie = 0;
 	position queue = get_position_queue(snake_joueur);
 	position queue1 = get_position_queue(schlanga);
-	direction dir2 = IA_defensif_direction(schlanga, p);
+	direction dir2;
+	if(difficulte == 0){
+		dir2 = aleatoire(schlanga, p);
+	}
+	else if(difficulte == 1)
+	{
+		dir2 = IA_defensif_direction(schlanga, p);
+	}
+	else
+	{
+		dir2 = IA_defensif_direction(schlanga, p);
+	}
 	if (collision(p,dir2,schlanga) == 1){
 		*etatPartie = 1;
 	}
