@@ -18,7 +18,7 @@
 #define FPS 30
 #define KEYDOWN_TIME 200
 #define NB_MENU_ENTRY 4
-#define NB_OPTIONS_ENTRY 5
+#define NB_OPTIONS_ENTRY 6
 
 int selected = 0;
 int selectedColumn = 0;
@@ -49,6 +49,7 @@ void showOptions(){
   SDL_Init(SDL_INIT_VIDEO);
   screen = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE);
 
+  selected = 0;
   initOptions(&tailleS, &tailleP, &vitesse, &objets, &diff);
 
   while (continuer)
@@ -65,6 +66,11 @@ void showOptions(){
             {
                 case SDLK_ESCAPE:
                     continuer = 0;
+                    break;
+                case SDLK_RETURN:
+                    if(selected == 5){
+                      continuer = 0;
+                    }
                     break;
                 case SDLK_UP:
                     if (tempsActuel - lastKeyPress > KEYDOWN_TIME)
@@ -251,14 +257,17 @@ int main()
                     if(selected == 0){
                       startGame(tailleP,tailleP);
                       screen = SDL_SetVideoMode(400, 500, 32, SDL_HWSURFACE);
+                      selected = 0;
                     }
                     else if(selected == 1){
                       showScores();
                       screen = SDL_SetVideoMode(400, 500, 32, SDL_HWSURFACE);
+                      selected = 1;
                     }
                     else if(selected == 2){
                       showOptions();
                       screen = SDL_SetVideoMode(400, 500, 32, SDL_HWSURFACE);
+                      selected = 2;
                     }
                     else if(selected == 3){
                       continuer = 0;

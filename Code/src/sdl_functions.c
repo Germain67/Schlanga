@@ -36,9 +36,9 @@ void displayPicture(SDL_Surface* ecran, int x, int y, char* file){
   position.y = y;
   SDL_Surface *image = NULL;
   /* On charge l'image : */
-  image = SDL_LoadBMP(file);
+  image = SDL_DisplayFormat(SDL_LoadBMP(file));
   /* Transparence */
-  SDL_SetColorKey(image, SDL_SRCCOLORKEY, SDL_MapRGB(image->format, 0, 0, 0));
+  SDL_SetColorKey(image, SDL_RLEACCEL | SDL_SRCCOLORKEY, SDL_MapRGB(image->format, 0, 0, 0));
   /* On colle l'image maintenant transparente sur le fond : */
   SDL_BlitSurface(image, NULL, ecran, &position);
   SDL_FreeSurface(image);
@@ -70,6 +70,8 @@ void displayPlateau(SDL_Surface* ecran, plateau p){
   for(x = 0; x<p->hauteur; x++){
     for(y = 0; y<p->largeur; y++){
       element currentCase = p->data[x][y];
+      displayPicture(ecran, x*25, y*25, "images/vide.bmp");
+
       //Vert pour le snake
       if(currentCase->type == snake){
         displayPicture(ecran, x*25, y*25, "images/snake.bmp");
@@ -113,12 +115,22 @@ void displayOptions(SDL_Surface* ecran, int selected, int selectedColumn){
   // Effacement de l'écran
   SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
   //Mise à jour des options
-  displayPicture(ecran, 100, 50, "images/serpents.bmp");
   if(selected == 0){
-    *tailleSnake += selectedColumn;
+    int newval = *tailleSnake + selectedColumn;
+    if(newval >= 2 && newval <= *taille_plateau / 2)
+    {
+      *tailleSnake = newval;
+    }
   }
   else if(selected == 1){
-    *taille_plateau += selectedColumn;
+    int newval = *taille_plateau + selectedColumn;
+    if(newval >= 10 && newval <= 30)
+    {
+      *taille_plateau = newval;
+      if(*tailleSnake > newval/2){
+        *tailleSnake -= 1;
+      }
+    }
   }
   else if(selected == 2){
     *speed += selectedColumn;
@@ -130,6 +142,7 @@ void displayOptions(SDL_Surface* ecran, int selected, int selectedColumn){
     *difficulte += selectedColumn;
   }
   //Serpent
+  displayPicture(ecran, 100, 50, "images/taille.bmp");
   printNumber(*tailleSnake, ecran, 300, 50);
   //Plateau
   displayPicture(ecran, 100, 150, "images/plateau.bmp");
@@ -139,17 +152,19 @@ void displayOptions(SDL_Surface* ecran, int selected, int selectedColumn){
   //Vitesse
   displayPicture(ecran, 100, 250, "images/vitesse.bmp");
   displayPicture(ecran, 300, 250, "images/lent.bmp");
-  displayPicture(ecran, 450, 250, "images/moyen.bmp");
+  displayPicture(ecran, 450, 240, "images/moyen.bmp");
   displayPicture(ecran, 600, 250, "images/rapide.bmp");
   //Objets
   displayPicture(ecran, 100, 350, "images/objets.bmp");
   displayPicture(ecran, 300, 350, "images/active.bmp");
   displayPicture(ecran, 500, 350, "images/desactive.bmp");
   //IA
-  displayPicture(ecran, 100, 450, "images/ia.bmp");
-  displayPicture(ecran, 300, 450, "images/facile.bmp");
-  displayPicture(ecran, 450, 450, "images/moyen.bmp");
-  displayPicture(ecran, 600, 450, "images/difficile.bmp");
+  displayPicture(ecran, 100, 440, "images/ia.bmp");
+  displayPicture(ecran, 300, 440, "images/facile.bmp");
+  displayPicture(ecran, 450, 440, "images/moyen.bmp");
+  displayPicture(ecran, 600, 440, "images/difficile.bmp");
+  //Valider
+  displayPicture(ecran, 300, 550, "images/valider.bmp");
   //Flèche
   displayPicture(ecran, 50, (selected + 1) * 100 - 65, "images/fleche.bmp");
   //Rectangles de sélection vitesse
