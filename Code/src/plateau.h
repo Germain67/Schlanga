@@ -20,5 +20,7 @@ void initMurs(plateau p);
 void addSerpentPlateau(serpent s, plateau p, int isSchlanga);
 void updateSerpentPlateau(serpent tete, plateau p, position queue, int isSchlanga);
 int collision(plateau p, direction d, serpent s);
+int appartient_plateau(position p , plateau plat);
+int deadend(plateau p, direction d, serpent s);
 
 #endif

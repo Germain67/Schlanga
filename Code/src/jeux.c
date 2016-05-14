@@ -61,7 +61,7 @@ plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie) {
 	}
 	else
 	{
-		dir2 = IA_defensif_direction(schlanga, p);
+		dir2 = IA_agressif_direction(schlanga, snake_joueur, p);
 	}
 	if (collision(p,dir2,schlanga) == 1){
 		*etatPartie = 1;

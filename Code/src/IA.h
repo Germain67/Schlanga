@@ -15,5 +15,6 @@
 
 direction aleatoire(serpent schlanga, plateau p);
 direction IA_defensif_direction(serpent schlanga, plateau p);
+direction IA_agressif_direction(serpent schlanga, serpent snake, plateau p);
 
 #endif //SCHLANGA_IA_H

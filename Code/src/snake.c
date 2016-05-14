@@ -173,5 +173,11 @@ serpent deplacement(direction d, serpent s){
     return ajout_entete(s,p);    
 }
 
+int appartient(position x, serpent l){
+    if ( l == NULL ) return(0);
+    if ( x == l->coordonnees ) return(1);
+    return(appartient(x, l->suivant));
+}
+
 
 

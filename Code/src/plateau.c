@@ -176,3 +176,106 @@ int collision(plateau p, direction d, serpent s){
 	}
 	return b;
 }
+
+int appartient_plateau(position p , plateau plat){
+	int x = plat->largeur;
+	int y = plat->hauteur;
+	int x1 = p->x;
+	int y1 = p->y;	
+	if(x1 > 0 && x1 < x){
+		if (y1 > 0 && y1 < y){
+			return 1;
+		}
+	}
+	else{
+		return 0;
+	}
+}
+
+int deadend(plateau p, direction d, serpent s){
+	int x = s->coordonnees->x;
+	int y = s->coordonnees->y;
+	int b=0;
+	position pos = cree_position((x+1),(y+2));
+	position pos1 = cree_position((x+1),(y+1));
+	position pos2 = cree_position((x+1),(y-1));
+	position pos3 = cree_position((x-1),(y+1));
+	position pos4 = cree_position((x-1),(y-1));
+	if(d == DROITE)	{
+		if ((appartient_plateau(pos1,p) == 1) && (appartient_plateau(pos2,p) == 1)){
+			if (p->data[x+1][y-1]->type != vide && p->data[x+1][y+1]->type != vide){
+				b = 1;
+			}
+			if (appartient_plateau(pos,p) == 1){
+				if (p->data[x+1][y-1]->type != vide && p->data[x+1][y+2]->type != vide){
+					b = 1;
+				}
+			}
+			pos->y = (y-2);
+			if (appartient_plateau(pos,p) == 1){
+				if (p->data[x+1][y-2]->type != vide && p->data[x+1][y+1]->type != vide){
+					b = 1;
+				}
+			}
+		}
+	}
+	if (d == GAUCHE){
+		if (appartient_plateau(pos3,p) == 1 && appartient_plateau(pos4,p) == 1){
+			if (p->data[x-1][y-1]->type != vide && p->data[x-1][y+1]->type != vide){
+				b = 1;
+			}
+			pos->x = (x-1);
+			if (appartient_plateau(pos,p) == 1){
+				if (p->data[x-1][y-2]->type != vide && p->data[x-1][y+1]->type != vide){
+					b = 1;
+				}
+			}
+			pos->y = (y+2);
+			if (appartient_plateau(pos,p) == 1){
+				if (p->data[x-1][y-1]->type != vide && p->data[x-1][y+2]->type != vide){
+					b = 1;
+				}
+			}
+		}
+	}
+	if (d == HAUT){
+		if ((appartient_plateau(pos2,p) == 1) && (appartient_plateau(pos4,p) == 1)){
+			if (p->data[x-1][y-1]->type != vide && p->data[x+1][y-1]->type != vide){
+				b = 1;
+			}
+			pos->x = (x-2);
+			pos->y = (y-1);
+			if (appartient_plateau(pos,p) == 1){
+				if (p->data[x-2][y-1]->type != vide && p->data[x+1][y-1]->type != vide){
+					b = 1;
+				}
+			}
+			pos->x = (x+2);
+			if (appartient_plateau(pos,p) == 1){
+				if (p->data[x-1][y-1]->type != vide && p->data[x+2][y-1]->type != vide){
+					b = 1;
+				}
+			}
+		}
+	}
+	if (d == BAS){
+		if (appartient_plateau(pos1,p) == 1 && appartient_plateau(pos3,p) == 1){
+			if (p->data[x-1][y+1]->type != vide && p->data[x+1][y+1]->type != vide){
+				b = 1;
+			}	
+			pos->y = (y+1);
+			if (appartient_plateau(pos,p) == 1){
+				if (p->data[x-1][y+1]->type != vide && p->data[x+2][y+1]->type != vide){
+					b = 1;
+				}
+			}
+			pos->x = (x-2);
+			if (appartient_plateau(pos,p) == 1){
+				if (p->data[x-2][y+1]->type != vide && p->data[x+1][y+1]->type != vide){
+					b = 1;
+				}
+			}
+		}
+	}
+	return b;
+}

@@ -264,3 +264,371 @@ direction IA_defensif_direction(serpent schlanga, plateau p) {
 	
 	return dir;
 }
+
+direction IA_agressif_direction(serpent schlanga, serpent snake, plateau p) { 
+	direction dir;
+	direction dirsnake;
+	position cible;
+	int y=schlanga->coordonnees->y;
+	int x=schlanga->coordonnees->x;
+	serpent S = snake->suivant;
+	int y1=snake->coordonnees->y;
+	int x1=snake->coordonnees->x;
+	int y2=S->coordonnees->y;
+	int x2=S->coordonnees->x;
+
+	if(x1 == x2){
+		if(y1 > y2){
+			dirsnake = BAS;
+			cible =  cree_position(x1, (y1 + 2));
+			if (appartient_plateau(cible,p) == 0){
+				cible = snake->coordonnees;
+			}
+		}
+		else{
+			dirsnake = HAUT;
+			cible =  cree_position(x1, (y1 - 2));
+			if (appartient_plateau(cible,p) == 0){
+				cible = snake->coordonnees;
+			}
+		}
+	}
+	else{
+		if(x1 > x2){
+			dirsnake = DROITE;
+			cible =  cree_position((x1 + 2), y1);
+			if (appartient_plateau(cible,p) == 0){
+				cible = snake->coordonnees;
+			}
+		}
+		else{
+			dirsnake = GAUCHE;
+			cible =  cree_position((x1 - 2), y1);
+			if (appartient_plateau(cible,p) == 0){
+				cible = snake->coordonnees;
+			}
+		}
+	}
+
+	y1=cible->y;
+	x1=cible->x;
+	if (cible != schlanga->coordonnees && appartient(cible, schlanga) == 0){	
+		if(x<x1 && y<y1){
+			if (dirsnake == HAUT){
+				dir = DROITE;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = BAS;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = GAUCHE;
+						if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+							dir = HAUT;
+							if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+								dir = IA_defensif_direction(schlanga,p);
+							}
+						}		
+					}
+				}
+			}
+			if(dirsnake == GAUCHE){
+				dir = BAS;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = DROITE;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = GAUCHE;
+						if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+							dir = HAUT;
+							if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+								dir = IA_defensif_direction(schlanga,p);
+							}
+						}		
+					}
+				}
+			}
+			if(dirsnake == BAS){
+				dir = BAS;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = DROITE;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = GAUCHE;
+						if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+							dir = HAUT;
+							if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+								dir = IA_defensif_direction(schlanga,p);
+							}
+						}		
+					}
+				}
+			}
+			if(dirsnake == DROITE){
+				dir = DROITE;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = BAS;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = GAUCHE;
+						if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+							dir = HAUT;
+							if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+								dir = IA_defensif_direction(schlanga,p);
+							}
+						}		
+					}
+				}
+			}	
+		}
+		if(x<x1 && y>y1){
+			if (dirsnake == HAUT){
+				dir = HAUT;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = DROITE;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = GAUCHE;
+						if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+							dir = BAS;
+							if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+								dir = IA_defensif_direction(schlanga,p);
+							}
+						}		
+					}
+				}
+			}	
+			if(dirsnake == GAUCHE){
+				dir = HAUT;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = DROITE;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = GAUCHE;
+						if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+							dir = BAS;
+							if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+								dir = IA_defensif_direction(schlanga,p);
+							}
+						}		
+					}
+				}
+			}
+			if(dirsnake == BAS){
+				dir = DROITE;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = HAUT;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = GAUCHE;
+						if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+							dir = BAS;
+							if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+								dir = IA_defensif_direction(schlanga,p);
+							}
+						}		
+					}
+				}
+			}	
+			if(dirsnake == DROITE){
+				dir = DROITE;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = HAUT;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = GAUCHE;
+						if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+							dir = BAS;
+							if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+								dir = IA_defensif_direction(schlanga,p);
+							}
+						}		
+					}
+				}
+			}
+		}
+		if(x>x1 && y<y1){
+			if (dirsnake == HAUT){
+				dir = GAUCHE;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = BAS;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = DROITE;
+						if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+							dir = HAUT;
+							if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+								dir = IA_defensif_direction(schlanga,p);
+							}
+						}		
+					}
+				}
+			}
+			if(dirsnake == GAUCHE){
+				dir = GAUCHE;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = BAS;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = DROITE;
+						if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+							dir = HAUT;
+						if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+								dir = IA_defensif_direction(schlanga,p);
+							}
+						}		
+					}
+				}
+			}
+			if(dirsnake == BAS){
+				dir = BAS;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = GAUCHE;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = DROITE;
+						if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+							dir = HAUT;
+							if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+								dir = IA_defensif_direction(schlanga,p);
+							}
+						}		
+					}
+				}
+			}
+			if(dirsnake == DROITE){
+				dir = BAS;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = GAUCHE;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = DROITE;
+						if (collision(p,dir,schlanga)!=0|| deadend(p, dir, schlanga) != 0){
+							dir = HAUT;
+							if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+								dir = IA_defensif_direction(schlanga,p);
+							}
+						}		
+					}
+				}
+			}
+		}	
+		if(x>x1 && y>y1){
+			if (dirsnake == HAUT){
+				dir = HAUT;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = GAUCHE;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = DROITE;
+						if (collision(p,dir,schlanga)!=0|| deadend(p, dir, schlanga) != 0){
+							dir = BAS;
+							if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+								dir = IA_defensif_direction(schlanga,p);
+							}
+						}		
+					}
+				}
+			}
+			if(dirsnake == GAUCHE){
+				dir = GAUCHE;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = HAUT;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = DROITE;
+						if (collision(p,dir,schlanga)!=0|| deadend(p, dir, schlanga) != 0){
+							dir = BAS;
+							if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+								dir = IA_defensif_direction(schlanga,p);
+							}
+						}		
+					}
+				}
+			}
+			if(dirsnake == BAS){
+				dir = GAUCHE;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = HAUT;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = DROITE;
+						if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+							dir = BAS;
+							if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+								dir = IA_defensif_direction(schlanga,p);
+							}
+						}		
+					}
+				}
+			}
+			if(dirsnake == DROITE){
+				dir = HAUT;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = GAUCHE;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = DROITE;
+						if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+							dir = BAS;
+							if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+								dir = IA_defensif_direction(schlanga,p);
+							}
+						}		
+					}
+				}
+			}
+		}
+		if(x==x1 && y<y1){
+			dir = BAS;
+			if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+				dir = GAUCHE;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = DROITE;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = HAUT;
+						if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+							dir = IA_defensif_direction(schlanga,p);
+						}
+					}		
+				}
+			}
+		}
+		if(x==x1 && y>y1){
+			dir = HAUT;
+			if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+				dir = GAUCHE;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = DROITE;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = BAS;
+						if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+							dir = IA_defensif_direction(schlanga,p);
+						}
+					}		
+				}
+			}
+		}
+		if(x<x1 && y==y1){
+			dir = DROITE;
+			if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+				dir = BAS;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = HAUT;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = GAUCHE;
+						if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+							dir = IA_defensif_direction(schlanga,p);
+						}
+					}		
+				}
+			}
+		}
+		if(x>x1 && y==y1){
+			dir = GAUCHE;
+			if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+				dir = HAUT;
+				if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+					dir = BAS;
+					if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+						dir = DROITE;
+						if (collision(p,dir,schlanga)!=0 || deadend(p, dir, schlanga) != 0){
+							dir = IA_defensif_direction(schlanga,p);
+						}
+					}		
+				}
+			}
+		}
+	}
+	else{
+		if(cible != schlanga->coordonnees){
+
+		}
+		else{
+			
+		}
+	}
+	return dir;
+}

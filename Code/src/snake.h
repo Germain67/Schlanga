@@ -41,5 +41,6 @@ void suppression_queue(serpent s);
 serpent free_serpent(serpent s);
 serpent deplacement(direction d, serpent s);
 serpent init_serpent(int taille, position pos, direction dir);
+int appartient(position x, serpent l);
 
 #endif
