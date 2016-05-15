@@ -3,13 +3,13 @@ TARGET   = main
 
 CC       = gcc
 # compiling flags here
-CFLAGS   = -Wall -I. `sdl-config --libs` 
-#-lSDL_image
+CFLAGS   = -Wall -I. `sdl-config --libs` -lSDL_image -lSDL_ttf
+
 
 LINKER   = gcc -o
 # linking flags here
-LFLAGS   = -I. -lm `sdl-config --libs` 
-#-lSDL_image
+LFLAGS   = -I. -lm `sdl-config --libs` -lSDL_image -lSDL_ttf
+
 
 # change these to set the proper directories where each files shoould be
 SRCDIR   = src
