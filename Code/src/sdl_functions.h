@@ -14,5 +14,7 @@ void displayPicture(SDL_Surface* ecran, int x, int y, char* file);
 void displayPlateau(SDL_Surface* ecran, plateau p);
 void displayMenu(SDL_Surface* ecran, int position);
 void displayOptions(SDL_Surface* ecran, int selected, int selectedColumn);
+void Gameover(SDL_Surface *ecran, int compteur, char* mess);
+void showLiveScore(SDL_Surface *ecran, int time, int score, int l);
 
 #endif

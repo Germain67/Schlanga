@@ -7,6 +7,8 @@
  */
 
 #include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
+#include <SDL/SDL_ttf.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -29,6 +31,7 @@ direction dir;
 plateau p;
 SDL_Surface *screen = NULL;
 SDL_Event event;
+int score = 0;
 
 /* Options */
 
@@ -125,6 +128,40 @@ void showScores(){
   //TODO: Implémenter l'affichage des scores
 }
 
+void fin_jeu(){
+  int continuer = 1;
+  SDL_Init(SDL_INIT_VIDEO);
+  TTF_Init();
+  screen = SDL_SetVideoMode(640, 480, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
+  SDL_WM_SetCaption("Fin du jeu !", NULL);
+  Gameover(screen, score, "Vous avez perdu !");
+  while (continuer)
+  {
+    SDL_PollEvent(&event);
+    switch(event.type)
+    {
+        case SDL_QUIT:
+            continuer = 0;
+            break;
+        case SDL_KEYDOWN:
+            switch(event.key.keysym.sym)
+            {
+                case SDLK_ESCAPE:
+                    continuer = 0;
+                    break;
+                case SDLK_RETURN:
+                    continuer = 0;
+                    break;
+                default:
+                    break;
+            }
+            break;
+        default:
+          break;
+    }
+  }
+}
+
 /**
 * \fn       startGame
 * \brief    Démarre la partie, fait l'affichage du plateau à l'écran
@@ -137,12 +174,17 @@ void startGame(int l, int h){
   int continuer = 1;
   
   SDL_Init(SDL_INIT_VIDEO);
+  TTF_Init();
   screen = SDL_SetVideoMode(25*(l+2), 25*(h+2), 32, SDL_HWSURFACE);
 
   p = initJeu(l, h, tailleS, diff);
   dir = DROITE;
 
   int move_time = ((vitesse+3)%3) * -100 + 350;
+  score = 0;
+  Uint32 tempsActuel;
+  Uint32 lastTime  = SDL_GetTicks();
+  int temps = 0;
 
   while (continuer)
   {
@@ -185,11 +227,11 @@ void startGame(int l, int h){
         default:
           break;
     }
-
-    Uint32 tempsActuel = SDL_GetTicks();
+    tempsActuel = SDL_GetTicks();
     if (tempsActuel - lastMove > move_time) /* Si 30 ms se sont écoulées */
     {
       int etatPartie = 0;
+      score += 1;
       p = updateJeu(p, dir, &etatPartie);
       if(etatPartie == 1){
         printf("Vous avez gagné !\n");
@@ -204,13 +246,18 @@ void startGame(int l, int h){
     if (tempsActuel - lastRefresh > (1000/FPS)) /* Si 30 ms se sont écoulées */
     {
       displayPlateau(screen, p);
+      showLiveScore(screen, temps, score, l);
       lastRefresh = tempsActuel;
     }
+    if(tempsActuel - lastTime > 1000){
+      temps += 1;
+      lastTime = tempsActuel;
+    }
   }
-
    // Fin de partie, il faut tout free
   fin_de_partie_serpent();
   free_plateau(p);
+  fin_jeu();
 }
 
 /**
