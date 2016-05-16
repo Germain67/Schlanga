@@ -104,22 +104,24 @@ void showLiveScore(SDL_Surface *ecran, int time, int score, int l)
     SDL_Surface *texte = NULL;
     SDL_Rect position;
     TTF_Font *police = NULL;
-    SDL_Color couleurNoire = {0, 0, 0}, couleurBlanche = {255, 255, 255};
+    SDL_Color couleurBlanche = {255, 255, 255};
     char temps[20] = ""; /* Tableau de char suffisamment grand */
 
     /* Chargement de la police */
     police = TTF_OpenFont("fonts/poison.ttf", 20);
 
+    TTF_SetFontStyle(police, TTF_STYLE_BOLD);
+
     /* Initialisation du temps et du texte */
     sprintf(temps, "Temps : %d", time);
-    texte = TTF_RenderText_Shaded(police, temps, couleurNoire, couleurBlanche);
+    texte = TTF_RenderText_Blended(police, temps, couleurBlanche);
     position.x = 15*(l+2);
     position.y = 0;
     SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
     SDL_FreeSurface(texte); /* On supprime la surface précédente */
 
     sprintf(temps, "Score : %d", score); /* On écrit dans la chaîne "temps" le nouveau temps */
-    texte = TTF_RenderText_Shaded(police, temps, couleurNoire, couleurBlanche); /* On écrit la chaîne temps dans la SDL_Surface */
+    texte = TTF_RenderText_Blended(police, temps, couleurBlanche); /* On écrit la chaîne temps dans la SDL_Surface */
 
     position.x = 20*(l+2);
     position.y = 0;

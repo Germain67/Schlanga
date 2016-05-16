@@ -41,6 +41,11 @@ int vitesse = 1;
 int objets = 0;
 int diff = 1;
 
+/*Scores*/
+
+int highscores[100] = {};
+
+
 /**
 * \fn       showOptions
 * \brief    Affiche les options du jeu (à implémenter)
@@ -119,22 +124,148 @@ void showOptions(){
   }
 }
 
+// Fonction qui trie les 7 meilleurs scores dans un tableau highscores
+void tri_scores(int score) {
+
+    highscores[99]=score;
+
+    int i, j;
+    double elementInsere;
+
+    for (i = 1; i < 100; i++) {
+        /* Stockage de la valeur en i */
+        elementInsere = highscores[i];
+        /* Décale les éléments situés avant highscores[i] vers la droite
+           jusqu'à trouver la position d'insertion */
+        for (j = i; j > 0 && highscores[j - 1] < elementInsere; j--) {
+            highscores[j] = highscores[j - 1];
+        }
+        /* Insertion de la valeur stockée à la place vacante */
+        highscores[j] = elementInsere;
+    }
+}
+
+//Fonction qui écrit les scores stockés dans le tableau Highscores dans un fichier .txt
+void memScores() {
+    FILE* fichier = NULL;
+    fichier = fopen("fonts/scores.txt", "w");
+    int i, compteur=1;
+
+    if (fichier != NULL)
+    {
+        for (i=0; i<100; i++) {
+            compteur=i+1;
+            fprintf(fichier, "%d - %d\n", compteur, highscores[i]);
+        }
+        fclose(fichier);
+    }
+}
+
 /**
 * \fn       showScores
-* \brief    Affiche les scores du jeu (à implémenter)
+* \brief    Affiche les scores du jeu
 */
 
-void showScores(){
-  //TODO: Implémenter l'affichage des scores
-}
+    void showScores() {
+        SDL_Init(SDL_INIT_VIDEO);
+        TTF_Init();
+        putenv("SDL_VIDEO_CENTERED=1");
+        SDL_Surface *ecran = NULL, *texte = NULL, *fond = NULL, *score=NULL;
+        SDL_Rect position;
+        SDL_Event event;
+        TTF_Font *police = NULL;
+        SDL_Color couleurNoire = {0, 0, 0};
+        int continuer = 1, i=0;
+        ecran = SDL_SetVideoMode(640, 680, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
+        //SDL_WM_SetCaption("Classement", NULL);
+        fond = IMG_Load("images/sable.jpg");
+
+        /* Chargement de la police */
+        police = TTF_OpenFont("fonts/angelina.ttf", 65);
+
+
+
+        SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
+        position.x = 0;
+        position.y = 0;
+        SDL_BlitSurface(fond, NULL, ecran, &position); /* Blit du fond */
+        SDL_Flip(ecran);
+
+
+        texte = TTF_RenderText_Blended(police, "Meilleurs scores:", couleurNoire);
+        position.x = 180;
+        position.y = 30;
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        SDL_Flip(ecran);
+
+        position.x += 50;
+        FILE* fichier = NULL;
+        char chaine[100]=""; // Chaîne vide de taille 100
+        int nb=0;
+        char nom[100];
+        char lettrenom;
+        fichier = fopen("fonts/scores.txt", "r");
+
+
+        if (fichier != NULL)
+        {
+            for (i=0;i<7;i++)
+            {
+                lettrenom=fgetc(fichier);
+                while (lettrenom != '\n')
+                {
+                    nom[nb]=lettrenom;
+                    nb++;
+                    lettrenom=fgetc(fichier);
+                }
+                nom[nb]='\0';
+                sprintf(chaine, "%s",nom);
+                position.y += 80;
+                score = TTF_RenderText_Blended(police, chaine, couleurNoire);
+                SDL_BlitSurface(score, NULL, ecran, &position);
+                SDL_Flip(ecran);
+                strcpy(nom,"");
+                nb=0;
+
+
+            }
+
+            fclose(fichier);
+        }
+
+        while (continuer) {
+            SDL_WaitEvent(&event);
+            switch (event.type) {
+                case SDL_QUIT:
+                    continuer = 0;
+                    break;
+                case SDL_KEYDOWN:
+                    switch (event.key.keysym.sym) {
+                        case SDLK_ESCAPE:
+                            continuer = 0;
+                            break;
+                        default:
+                            break;
+                    }
+            }
+
+        }
+
+        TTF_CloseFont(police);
+        TTF_Quit();
+        SDL_FreeSurface(texte);
+        SDL_Quit();
+    }
+
 
 void fin_jeu(){
   int continuer = 1;
   SDL_Init(SDL_INIT_VIDEO);
   TTF_Init();
   screen = SDL_SetVideoMode(640, 480, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
-  SDL_WM_SetCaption("Fin du jeu !", NULL);
+  //SDL_WM_SetCaption("Fin du jeu !", NULL);
   Gameover(screen, score, "Vous avez perdu !");
+
   while (continuer)
   {
     SDL_PollEvent(&event);
@@ -160,7 +291,11 @@ void fin_jeu(){
           break;
     }
   }
+
 }
+
+
+
 
 /**
 * \fn       startGame
@@ -176,6 +311,7 @@ void startGame(int l, int h){
   SDL_Init(SDL_INIT_VIDEO);
   TTF_Init();
   screen = SDL_SetVideoMode(25*(l+2), 25*(h+2), 32, SDL_HWSURFACE);
+
 
   p = initJeu(l, h, tailleS, diff);
   dir = DROITE;
@@ -235,9 +371,10 @@ void startGame(int l, int h){
       p = updateJeu(p, dir, &etatPartie);
       if(etatPartie == 1){
         printf("Vous avez gagné !\n");
-        break;
+        break;;
       }
       else if(etatPartie == 2){
+
         printf("Vous avez perdu !\n");
         break;
       }
@@ -254,10 +391,14 @@ void startGame(int l, int h){
       lastTime = tempsActuel;
     }
   }
+    tri_scores(score);
+    memScores();
+
    // Fin de partie, il faut tout free
   fin_de_partie_serpent();
   free_plateau(p);
   fin_jeu();
+
 }
 
 /**
@@ -269,10 +410,12 @@ void startGame(int l, int h){
 
 int main()
 {
+
   putenv("SDL_VIDEO_CENTERED=1"); 
   int continuer = 1;
   SDL_Init(SDL_INIT_VIDEO);
   screen = SDL_SetVideoMode(400, 500, 32, SDL_HWSURFACE);
+    SDL_WM_SetCaption("Snake VS Schlangà", NULL);
 
   while (continuer)
   {
@@ -286,6 +429,10 @@ int main()
         case SDL_KEYDOWN:
             switch(event.key.keysym.sym)
             {
+                case SDLK_ESCAPE:
+                    continuer = 0;
+                    break;
+
                 case SDLK_UP:
                     if (tempsActuel - lastKeyPress > KEYDOWN_TIME)
                     {
@@ -302,11 +449,12 @@ int main()
                     break;
                 case SDLK_RETURN:
                     if(selected == 0){
-                      startGame(tailleP,tailleP);
+                     startGame(tailleP,tailleP);
                       screen = SDL_SetVideoMode(400, 500, 32, SDL_HWSURFACE);
                       selected = 0;
                     }
                     else if(selected == 1){
+                        memScores();
                       showScores();
                       screen = SDL_SetVideoMode(400, 500, 32, SDL_HWSURFACE);
                       selected = 1;
