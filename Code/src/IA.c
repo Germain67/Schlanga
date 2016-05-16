@@ -266,6 +266,15 @@ direction IA_defensif_direction(serpent schlanga, plateau p) {
 	return dir;
 }
 
+/**
+ * \fn       IA_agressif_direction
+ * \brief    dirige le schlanga en lui faisant adopter un comportement offensif
+ * \details  le schlanga se dirige vers les zones où il peut se déplacer en se rapprochant du serpent lorsque celui-ci est proche
+ * \param    param1  schlanga (serpent à diriger)
+ * \param    param1  snake (serpent du joueur)
+ * \param    param2  plateau sur lequel on joue
+ * \return   direction dans laquelle doit aller le schlanga
+ */
 direction IA_agressif_direction(serpent schlanga, serpent snake, plateau p) { 
 	direction dir;
 	direction dirsnake;

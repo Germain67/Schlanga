@@ -10,15 +10,6 @@
 #include <SDL/SDL_ttf.h>
 
 
-/**
-* \fn       displayPicture
-* \brief    Fonction chargée de l'affichage d'une image a la position x,y de la fenetre
-* \param    *ecran : Pointeur vers l'écran
-* \param    x : Position de l'image en x
-* \param    y : Position de l'image en y
-* \param    *file : Pointeur vers le fichier contenant l'image
-*/
-
 int* tailleSnake;
 int* taille_plateau;
 int* speed;
@@ -33,6 +24,14 @@ void initOptions(int* tailleS, int* tailleP, int* vitesse, int* objets, int* dif
   difficulte = diff;
 }
 
+/**
+* \fn       displayPicture
+* \brief    Fonction chargée de l'affichage d'une image a la position x,y de la fenetre
+* \param    *ecran : Pointeur vers l'écran
+* \param    x : Position de l'image en x
+* \param    y : Position de l'image en y
+* \param    *file : Pointeur vers le fichier contenant l'image
+*/
 void displayPicture(SDL_Surface* ecran, int x, int y, char* file){
   SDL_Rect position;
   position.x = x;

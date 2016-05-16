@@ -129,7 +129,10 @@ void showOptions(){
   }
 }
 
-// Fonction qui trie les 7 meilleurs scores dans un tableau highscores
+/**
+* \fn       Tri score
+* \brief    Fonction qui trie les 7 meilleurs scores dans un tableau highscores
+*/
 void tri_scores(int score) {
 
     highscores[99]=score;
@@ -150,7 +153,10 @@ void tri_scores(int score) {
     }
 }
 
-//Fonction qui écrit les scores stockés dans le tableau Highscores dans un fichier .txt
+/**
+* \fn       memScores
+* \brief    Fonction qui écrit les scores stockés dans le tableau Highscores dans un fichier .txt
+*/
 void memScores() {
     FILE* fichier = NULL;
     fichier = fopen("fonts/scores.txt", "w");
@@ -169,9 +175,8 @@ void memScores() {
 
 /**
 * \fn       showScores
-* \brief    Affiche les scores du jeu (à implémenter)
+* \brief    Affiche les scores du jeu
 */
-
 void showScores() {
   SDL_Init(SDL_INIT_VIDEO);
   TTF_Init();
@@ -266,6 +271,10 @@ void showScores() {
   SDL_Quit();
 }
 
+/**
+* \fn       fin_jeu
+* \brief    Détermine le comportement du jeu à la fin d'une partie
+*/
 void fin_jeu(){
   int continuer = 1;
   SDL_Init(SDL_INIT_VIDEO);

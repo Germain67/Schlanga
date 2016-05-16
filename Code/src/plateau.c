@@ -143,8 +143,6 @@ void updateSerpentPlateau(serpent tete, plateau p, position queue, int isSchlang
 * \param    s  serpent concerné par le test
 * \return   retourne 1 s'il y collision, 0 sinon
 */
-
-
 int collision(plateau p, direction d, serpent s){
 	int x = s->coordonnees->x;
 	int y = s->coordonnees->y;
@@ -166,6 +164,14 @@ int collision(plateau p, direction d, serpent s){
 	return collision_coord(p,x,y);
 }
 
+/**
+* \fn       collision
+* \brief    gère les collisions du serpent avec les obstacles et les murs
+* \param    p  plateau de jeu
+* \param    x  coordonnée du plateau que l'on veut tester
+* \param    y  coordonnée du plateau que l'on veut tester
+* \return   retourne 1 s'il y collision, 0 sinon
+*/
 int collision_coord(plateau p, int x, int y) {
 	int b=0;
 	if (p->data[x][y]->type == snake ) {
@@ -189,8 +195,6 @@ int collision_coord(plateau p, int x, int y) {
 * \param    s  serpent concerné par le test
 * \return   retourne la case suivante
 */
-
-
 typeCase collision_type(plateau p, direction d, serpent s){
 	int x = s->coordonnees->x;
 	int y = s->coordonnees->y;
@@ -213,6 +217,13 @@ typeCase collision_type(plateau p, direction d, serpent s){
 	return p->data[x][y]->type;
 }
 
+/**
+* \fn       appartient_plateau
+* \brief    Vérifie si une position appartient au plateau ou non.
+* \param    p  position à vérifier
+* \param    plat plateau
+* \return   retourne 1 si la position appartient au plateau, 0 sinon.
+*/
 int appartient_plateau(position p , plateau plat){
 	int x = plat->largeur;
 	int y = plat->hauteur;
@@ -230,6 +241,14 @@ int appartient_plateau(position p , plateau plat){
 	return res;
 }
 
+/**
+* \fn       deadend
+* \brief    Vérifie si le serpent peut se déplacer ou non.
+* \param    p  plateau
+* \param    d  direction
+* \param    s  serpent
+* \return   retourne 1 si la direction est possible, 0 sinon.
+*/
 int deadend(plateau p, direction d, serpent s){
 	int x = s->coordonnees->x;
 	int y = s->coordonnees->y;

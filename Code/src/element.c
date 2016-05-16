@@ -1,3 +1,8 @@
+/**
+ * \file      element.c
+ * \date      16 mai 2016
+ * \brief     Gestion des différents éléments du plateau 
+ */
 #include "element.h"
 #include "snake.h"
 #include "plateau.h"
