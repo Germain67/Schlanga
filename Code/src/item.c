@@ -1,3 +1,8 @@
+/**
+ * \file      item.c
+ * \date      16 mai 2016
+ * \brief     Gestion des différents items qui apparaissent sur le plateau 
+ */
 #include "item.h"
 #include <stdlib.h>
 #include <time.h>

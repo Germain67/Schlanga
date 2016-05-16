@@ -1,3 +1,7 @@
+/**
+ * \struct jeux.h
+*/
+
 #ifndef JEUX_H
 #define JEUX_H
 

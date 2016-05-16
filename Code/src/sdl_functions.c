@@ -16,6 +16,15 @@ int* speed;
 int* objectActivated;
 int* difficulte;
 
+/**
+* \fn       initOptions
+* \brief    Fonction qui permet de modifier les différentes options du jeu
+* \param    int* tailleS : Taille des serpents
+* \param    int* tailleP : Taille du plateau
+* \param    int* vitesse : Vitesse du jeu
+* \param    int* objets : Présence d'un objet ou non
+* \param    int* diff : Difficulté d'un jeu
+*/
 void initOptions(int* tailleS, int* tailleP, int* vitesse, int* objets, int* diff){
   tailleSnake = tailleS;
   taille_plateau = tailleP;
@@ -48,6 +57,14 @@ void displayPicture(SDL_Surface* ecran, int x, int y, char* file){
   SDL_FreeSurface(image);
 }
 
+/**
+* \fn       printNumber
+* \brief    Fonction qui affiche des numéros
+* \param    number : le numéro que l'on veut afficher
+* \param    *ecran : pointeur vers l'écran
+* \param    x : Position de l'image en x
+* \param    y : Position de l'image en y
+*/
 void printNumber(int number, SDL_Surface* ecran, int x, int y){
   int dizaine = number/10;
   char dizPicture[13];
@@ -65,7 +82,6 @@ void printNumber(int number, SDL_Surface* ecran, int x, int y){
 * \param    *ecran : Pointeur vers l'écran
 * \param    p : Plateau à afficher
 */
-
 void displayPlateau(SDL_Surface* ecran, plateau p){
   // Effacement de l'écran
   SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
@@ -110,6 +126,14 @@ void displayPlateau(SDL_Surface* ecran, plateau p){
   SDL_Flip(ecran);
 }
 
+/**
+* \fn       showLiveScore
+* \brief    Fonction chargée de mettre à jour
+* \param    *ecran : Pointeur vers l'écran
+* \param    time : le temps à afficher
+* \param    score : le score à afficher
+* \param    l : largeur du plateau
+*/
 void showLiveScore(SDL_Surface *ecran, int time, int score, int l)
 {
     SDL_Surface *texte = NULL;
@@ -145,7 +169,13 @@ void showLiveScore(SDL_Surface *ecran, int time, int score, int l)
     SDL_FreeSurface(texte);
 }
 
-
+/**
+* \fn       Gameover
+* \brief    Fonction chargée d'afficher la page de fin de partie
+* \param    *ecran : Pointeur vers l'écran
+* \param    compteur : Score
+* \param    mess : Message à afficher
+*/
 void Gameover(SDL_Surface *ecran, int compteur, char* mess) {
     SDL_Surface *texte = NULL, *fond = NULL, *gameover;
     SDL_Rect position;
@@ -207,6 +237,14 @@ void displayMenu(SDL_Surface* ecran, int selected){
   SDL_Flip(ecran);
 }
 
+/**
+* \fn       displayOptions
+* \brief    Fonction chargée de l'affichage des options 
+            ainsi que de l'affichage d'une fleche au niveau du choix courant
+* \param    *ecran : Pointeur vers l'écran
+* \param    selected : Index du choix dans le menu
+* \param    selectedColumn : Index du choix à chaque ligne
+*/
 void displayOptions(SDL_Surface* ecran, int selected, int selectedColumn){
   // Effacement de l'écran
   SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));

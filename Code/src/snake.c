@@ -173,6 +173,13 @@ serpent deplacement(direction d, serpent s){
     return ajout_entete(s,p);    
 }
 
+/**
+* \fn       appartient
+* \brief    fonction utilisée connaitre si une position appartient au serpent
+* \param    position : Position à vérifier
+* \param    l : Serpent
+* \return   1 si la position à vérifier contient le serpent, 0 sinon.
+*/
 int appartient(position x, serpent l){
     if ( l == NULL ) return(0);
     if ( x == l->coordonnees ) return(1);

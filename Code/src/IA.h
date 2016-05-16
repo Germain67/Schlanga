@@ -2,6 +2,11 @@
 // Created by lise on 07/03/16.
 //
 
+/**
+ * \struct IA.h
+*/
+
+
 #ifndef SCHLANGA_IA_H
 #define SCHLANGA_IA_H
 

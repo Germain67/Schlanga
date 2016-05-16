@@ -1,3 +1,7 @@
+/**
+ * \struct sdl_functions.h
+*/
+
 #ifndef SDL_FUNCTIONS_H
 #define SDL_FUNCTIONS_H
 
