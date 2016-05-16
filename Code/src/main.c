@@ -31,6 +31,7 @@ direction dir;
 plateau p;
 SDL_Surface *screen = NULL;
 SDL_Event event;
+int etatPartie;
 int score = 0;
 
 /* Options */
@@ -166,96 +167,99 @@ void memScores() {
 * \brief    Affiche les scores du jeu
 */
 
-    void showScores() {
-        SDL_Init(SDL_INIT_VIDEO);
-        TTF_Init();
-        putenv("SDL_VIDEO_CENTERED=1");
-        SDL_Surface *ecran = NULL, *texte = NULL, *fond = NULL, *score=NULL;
-        SDL_Rect position;
-        SDL_Event event;
-        TTF_Font *police = NULL;
-        SDL_Color couleurNoire = {0, 0, 0};
-        int continuer = 1, i=0;
-        ecran = SDL_SetVideoMode(640, 680, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
-        //SDL_WM_SetCaption("Classement", NULL);
-        fond = IMG_Load("images/sable.jpg");
+void showScores() {
+    SDL_Init(SDL_INIT_VIDEO);
+    TTF_Init();
+    putenv("SDL_VIDEO_CENTERED=1");
+    SDL_Surface *ecran = NULL, *texte = NULL, *fond = NULL, *score=NULL;
+    SDL_Rect position;
+    SDL_Event event;
+    TTF_Font *police = NULL;
+    SDL_Color couleurNoire = {0, 0, 0};
+    int continuer = 1, i=0;
+    ecran = SDL_SetVideoMode(640, 680, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
+    //SDL_WM_SetCaption("Classement", NULL);
+    fond = IMG_Load("images/sable.jpg");
 
-        /* Chargement de la police */
-        police = TTF_OpenFont("fonts/angelina.ttf", 65);
-
-
-
-        SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
-        position.x = 0;
-        position.y = 0;
-        SDL_BlitSurface(fond, NULL, ecran, &position); /* Blit du fond */
-        SDL_Flip(ecran);
+    /* Chargement de la police */
+    police = TTF_OpenFont("fonts/angelina.ttf", 65);
 
 
-        texte = TTF_RenderText_Blended(police, "Meilleurs scores:", couleurNoire);
-        position.x = 180;
-        position.y = 30;
-        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
-        SDL_Flip(ecran);
 
-        position.x += 50;
-        FILE* fichier = NULL;
-        char chaine[100]=""; // Chaîne vide de taille 100
-        int nb=0;
-        char nom[100];
-        char lettrenom;
-        fichier = fopen("fonts/scores.txt", "r");
+    SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
+    position.x = 0;
+    position.y = 0;
+    SDL_BlitSurface(fond, NULL, ecran, &position); /* Blit du fond */
+    SDL_Flip(ecran);
 
 
-        if (fichier != NULL)
+    texte = TTF_RenderText_Blended(police, "Meilleurs scores:", couleurNoire);
+    position.x = 180;
+    position.y = 30;
+    SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+    SDL_Flip(ecran);
+
+    position.x += 50;
+    FILE* fichier = NULL;
+    char chaine[100]=""; // Chaîne vide de taille 100
+    int nb=0;
+    char nom[100];
+    char lettrenom;
+    fichier = fopen("fonts/scores.txt", "r");
+
+
+    if (fichier != NULL)
+    {
+        for (i=0;i<7;i++)
         {
-            for (i=0;i<7;i++)
+            lettrenom=fgetc(fichier);
+            while (lettrenom != '\n')
             {
+                nom[nb]=lettrenom;
+                nb++;
                 lettrenom=fgetc(fichier);
-                while (lettrenom != '\n')
-                {
-                    nom[nb]=lettrenom;
-                    nb++;
-                    lettrenom=fgetc(fichier);
-                }
-                nom[nb]='\0';
-                sprintf(chaine, "%s",nom);
-                position.y += 80;
-                score = TTF_RenderText_Blended(police, chaine, couleurNoire);
-                SDL_BlitSurface(score, NULL, ecran, &position);
-                SDL_Flip(ecran);
-                strcpy(nom,"");
-                nb=0;
-
-
             }
+            nom[nb]='\0';
+            sprintf(chaine, "%s",nom);
+            position.y += 80;
+            score = TTF_RenderText_Blended(police, chaine, couleurNoire);
+            SDL_BlitSurface(score, NULL, ecran, &position);
+            SDL_Flip(ecran);
+            strcpy(nom,"");
+            nb=0;
 
-            fclose(fichier);
-        }
-
-        while (continuer) {
-            SDL_WaitEvent(&event);
-            switch (event.type) {
-                case SDL_QUIT:
-                    continuer = 0;
-                    break;
-                case SDL_KEYDOWN:
-                    switch (event.key.keysym.sym) {
-                        case SDLK_ESCAPE:
-                            continuer = 0;
-                            break;
-                        default:
-                            break;
-                    }
-            }
 
         }
 
-        TTF_CloseFont(police);
-        TTF_Quit();
-        SDL_FreeSurface(texte);
-        SDL_Quit();
+        fclose(fichier);
     }
+
+    while (continuer) {
+        SDL_WaitEvent(&event);
+        switch (event.type) {
+            case SDL_QUIT:
+                continuer = 0;
+                break;
+            case SDL_KEYDOWN:
+                switch (event.key.keysym.sym) {
+                    case SDLK_ESCAPE:
+                        continuer = 0;
+                        break;
+                    case SDLK_RETURN:
+                        continuer = 0;
+                        break;
+                    default:
+                        break;
+                }
+        }
+
+    }
+
+    TTF_CloseFont(police);
+    TTF_Quit();
+    SDL_FreeSurface(texte);
+    SDL_Quit();
+}
 
 
 void fin_jeu(){
@@ -264,8 +268,14 @@ void fin_jeu(){
   TTF_Init();
   screen = SDL_SetVideoMode(640, 480, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
   //SDL_WM_SetCaption("Fin du jeu !", NULL);
-  Gameover(screen, score, "Vous avez perdu !");
-
+  if(etatPartie == 1){
+    Gameover(screen, score, "Vous avez gagné !");
+  }
+  else
+  {
+    Gameover(screen, score, "Vous avez perdu !");
+  }
+  
   while (continuer)
   {
     SDL_PollEvent(&event);
@@ -321,6 +331,7 @@ void startGame(int l, int h){
   Uint32 tempsActuel;
   Uint32 lastTime  = SDL_GetTicks();
   int temps = 0;
+  etatPartie = 0;
 
   while (continuer)
   {
@@ -366,7 +377,7 @@ void startGame(int l, int h){
     tempsActuel = SDL_GetTicks();
     if (tempsActuel - lastMove > move_time) /* Si 30 ms se sont écoulées */
     {
-      int etatPartie = 0;
+      etatPartie = 0;
       score += 1;
       p = updateJeu(p, dir, &etatPartie);
       if(etatPartie == 1){

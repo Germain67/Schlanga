@@ -1,4 +1,4 @@
-\hypertarget{sdl__functions_8c}{\section{Référence du fichier sdl\-\_\-functions.\-c}
+\hypertarget{sdl__functions_8c}{\section{sdl\-\_\-functions.\-c File Reference}
 \label{sdl__functions_8c}\index{sdl\-\_\-functions.\-c@{sdl\-\_\-functions.\-c}}
 }
 
@@ -7,21 +7,56 @@ Fonctions utilisant la librairie S\-D\-L servant à afficher le menu, le plateau
 
 
 {\ttfamily \#include \char`\"{}sdl\-\_\-functions.\-h\char`\"{}}\\*
-\subsection*{Fonctions}
+{\ttfamily \#include $<$S\-D\-L/\-S\-D\-L\-\_\-image.\-h$>$}\\*
+{\ttfamily \#include $<$S\-D\-L/\-S\-D\-L\-\_\-ttf.\-h$>$}\\*
+\subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hypertarget{sdl__functions_8c_ac57b1bb22fa0a1c0726046830c4a320c}{void {\bfseries init\-Options} (int $\ast$taille\-S, int $\ast$taille\-P, int $\ast$vitesse, int $\ast$objets, int $\ast$diff)}\label{sdl__functions_8c_ac57b1bb22fa0a1c0726046830c4a320c}
+
+\item 
 \hypertarget{sdl__functions_8c_a3ac70673a8a1ab084e303f4b2da98591}{void {\bfseries display\-Picture} (S\-D\-L\-\_\-\-Surface $\ast$ecran, int x, int y, char $\ast$file)}\label{sdl__functions_8c_a3ac70673a8a1ab084e303f4b2da98591}
+
+\item 
+\hypertarget{sdl__functions_8c_a1ab2c32e26ca48eba1eebbd34473bc90}{void {\bfseries print\-Number} (int number, S\-D\-L\-\_\-\-Surface $\ast$ecran, int x, int y)}\label{sdl__functions_8c_a1ab2c32e26ca48eba1eebbd34473bc90}
 
 \item 
 \hypertarget{sdl__functions_8c_a7ca97e1322d03f477f0127563fc7f4ac}{void {\bfseries display\-Plateau} (S\-D\-L\-\_\-\-Surface $\ast$ecran, \hyperlink{structplateau}{plateau} p)}\label{sdl__functions_8c_a7ca97e1322d03f477f0127563fc7f4ac}
 
 \item 
+\hypertarget{sdl__functions_8c_a302a391485a0d938cfa8c9c5c55c4df4}{void {\bfseries show\-Live\-Score} (S\-D\-L\-\_\-\-Surface $\ast$ecran, int time, int score, int l)}\label{sdl__functions_8c_a302a391485a0d938cfa8c9c5c55c4df4}
+
+\item 
+\hypertarget{sdl__functions_8c_a37bb1b6c3332aaafda767ad1dd97195e}{void {\bfseries Gameover} (S\-D\-L\-\_\-\-Surface $\ast$ecran, int compteur, char $\ast$mess)}\label{sdl__functions_8c_a37bb1b6c3332aaafda767ad1dd97195e}
+
+\item 
 \hypertarget{sdl__functions_8c_a44c1b15e646a4a707192e902807d8770}{void {\bfseries display\-Menu} (S\-D\-L\-\_\-\-Surface $\ast$ecran, int selected)}\label{sdl__functions_8c_a44c1b15e646a4a707192e902807d8770}
+
+\item 
+\hypertarget{sdl__functions_8c_aec8499dbfff68a9e102f020a25eb75f3}{void {\bfseries display\-Options} (S\-D\-L\-\_\-\-Surface $\ast$ecran, int selected, int selected\-Column)}\label{sdl__functions_8c_aec8499dbfff68a9e102f020a25eb75f3}
+
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{sdl__functions_8c_af4338db58dbcc9dc68f039e6247c4f6e}{int $\ast$ {\bfseries taille\-Snake}}\label{sdl__functions_8c_af4338db58dbcc9dc68f039e6247c4f6e}
+
+\item 
+\hypertarget{sdl__functions_8c_a8d6cc90113c82d1f6034bd1a71990d22}{int $\ast$ {\bfseries taille\-\_\-plateau}}\label{sdl__functions_8c_a8d6cc90113c82d1f6034bd1a71990d22}
+
+\item 
+\hypertarget{sdl__functions_8c_ae05a8c96723a016a1d94dc16512647ac}{int $\ast$ {\bfseries speed}}\label{sdl__functions_8c_ae05a8c96723a016a1d94dc16512647ac}
+
+\item 
+\hypertarget{sdl__functions_8c_ac5d8a509fe52f058a20782f671d24c8d}{int $\ast$ {\bfseries object\-Activated}}\label{sdl__functions_8c_ac5d8a509fe52f058a20782f671d24c8d}
+
+\item 
+\hypertarget{sdl__functions_8c_abb68a030a69cdf8167b503dd05f0f275}{int $\ast$ {\bfseries difficulte}}\label{sdl__functions_8c_abb68a030a69cdf8167b503dd05f0f275}
 
 \end{DoxyCompactItemize}
 
 
-\subsection{Description détaillée}
+\subsection{Detailed Description}
 Fonctions utilisant la librairie S\-D\-L servant à afficher le menu, le plateau de jeu et les images. \begin{DoxyDate}{Date}
 19 avril 2016 
 \end{DoxyDate}

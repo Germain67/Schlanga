@@ -1,4 +1,4 @@
-\hypertarget{jeux_8c}{\section{Référence du fichier jeux.\-c}
+\hypertarget{jeux_8c}{\section{jeux.\-c File Reference}
 \label{jeux_8c}\index{jeux.\-c@{jeux.\-c}}
 }
 
@@ -7,10 +7,10 @@ contient les fonctions qui interviennent pendant la session de jeu
 
 
 {\ttfamily \#include \char`\"{}jeux.\-h\char`\"{}}\\*
-\subsection*{Fonctions}
+\subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{jeux_8c_ac8fe5a965f86e805a8e5bfe712da62b7}{\hyperlink{structplateau}{plateau} {\bfseries init\-Jeu} (int lon, int lar, int t)}\label{jeux_8c_ac8fe5a965f86e805a8e5bfe712da62b7}
+\hypertarget{jeux_8c_a3aa239b4f44ac61e9c951a4bcec963cc}{\hyperlink{structplateau}{plateau} {\bfseries init\-Jeu} (int lon, int lar, int t, int diff)}\label{jeux_8c_a3aa239b4f44ac61e9c951a4bcec963cc}
 
 \item 
 \hypertarget{jeux_8c_a6db88411e5d6527054168ab42ba7dfe4}{\hyperlink{structplateau}{plateau} {\bfseries update\-Jeu} (\hyperlink{structplateau}{plateau} p, direction dir1\-\_\-snake, int $\ast$etat\-Partie)}\label{jeux_8c_a6db88411e5d6527054168ab42ba7dfe4}
@@ -26,16 +26,19 @@ void \hyperlink{jeux_8c_aee1fe31b9f25d556afc607962140d018}{fin\-\_\-de\-\_\-part
 \item 
 \hypertarget{jeux_8c_a481c588e82c480a2b08e66fbfe13c0ac}{\hyperlink{structserpent}{serpent} {\bfseries schlanga}}\label{jeux_8c_a481c588e82c480a2b08e66fbfe13c0ac}
 
+\item 
+\hypertarget{jeux_8c_a378a641279f14bbdfc1752b3e8c56561}{int {\bfseries difficulte}}\label{jeux_8c_a378a641279f14bbdfc1752b3e8c56561}
+
 \end{DoxyCompactItemize}
 
 
-\subsection{Description détaillée}
+\subsection{Detailed Description}
 contient les fonctions qui interviennent pendant la session de jeu \begin{DoxyDate}{Date}
 19 avril 2016 
 \end{DoxyDate}
 
 
-\subsection{Documentation des fonctions}
+\subsection{Function Documentation}
 \hypertarget{jeux_8c_aee1fe31b9f25d556afc607962140d018}{\index{jeux.\-c@{jeux.\-c}!fin\-\_\-de\-\_\-partie\-\_\-serpent@{fin\-\_\-de\-\_\-partie\-\_\-serpent}}
 \index{fin\-\_\-de\-\_\-partie\-\_\-serpent@{fin\-\_\-de\-\_\-partie\-\_\-serpent}!jeux.c@{jeux.\-c}}
 \subsubsection[{fin\-\_\-de\-\_\-partie\-\_\-serpent}]{\setlength{\rightskip}{0pt plus 5cm}fin\-\_\-de\-\_\-partie\-\_\-serpent (
@@ -47,6 +50,6 @@ contient les fonctions qui interviennent pendant la session de jeu \begin{DoxyDa
 
 libère la mémoire allouée au serpent et au schlanga 
 
-\begin{DoxyReturn}{Renvoie}
+\begin{DoxyReturn}{Returns}
 rien 
 \end{DoxyReturn}

@@ -1,4 +1,4 @@
-\hypertarget{plateau_8c}{\section{Référence du fichier plateau.\-c}
+\hypertarget{plateau_8c}{\section{plateau.\-c File Reference}
 \label{plateau_8c}\index{plateau.\-c@{plateau.\-c}}
 }
 
@@ -8,7 +8,7 @@ Implémentation des fonctions relatives à la manipulation du plateau de jeu.
 
 {\ttfamily \#include \char`\"{}plateau.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}snake.\-h\char`\"{}}\\*
-\subsection*{Fonctions}
+\subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{plateau_8c_a5d594ca6e0ac0a6206283270160d9245}{\hyperlink{structplateau}{plateau} {\bfseries init\-Plateau} (int hauteur, int largeur)}\label{plateau_8c_a5d594ca6e0ac0a6206283270160d9245}
@@ -31,10 +31,16 @@ Implémentation des fonctions relatives à la manipulation du plateau de jeu.
 \item 
 \hypertarget{plateau_8c_ae62206778f6101e7240488b10a334e39}{int {\bfseries collision} (\hyperlink{structplateau}{plateau} p, direction d, \hyperlink{structserpent}{serpent} s)}\label{plateau_8c_ae62206778f6101e7240488b10a334e39}
 
+\item 
+\hypertarget{plateau_8c_a851a6f4045f74a6c7cd1ff9e058f7a02}{int {\bfseries appartient\-\_\-plateau} (\hyperlink{structposition}{position} p, \hyperlink{structplateau}{plateau} plat)}\label{plateau_8c_a851a6f4045f74a6c7cd1ff9e058f7a02}
+
+\item 
+\hypertarget{plateau_8c_a537ec99039f250e0b8b3164ff8e1600e}{int {\bfseries deadend} (\hyperlink{structplateau}{plateau} p, direction d, \hyperlink{structserpent}{serpent} s)}\label{plateau_8c_a537ec99039f250e0b8b3164ff8e1600e}
+
 \end{DoxyCompactItemize}
 
 
-\subsection{Description détaillée}
+\subsection{Detailed Description}
 Implémentation des fonctions relatives à la manipulation du plateau de jeu. \begin{DoxyDate}{Date}
 19 avril 2016 
 \end{DoxyDate}

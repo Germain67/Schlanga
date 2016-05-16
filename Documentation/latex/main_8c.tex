@@ -1,4 +1,4 @@
-\hypertarget{main_8c}{\section{Référence du fichier main.\-c}
+\hypertarget{main_8c}{\section{main.\-c File Reference}
 \label{main_8c}\index{main.\-c@{main.\-c}}
 }
 
@@ -7,6 +7,8 @@ Main chargée de l'affichage du menu et du jeu ainsi que la capture des événem
 
 
 {\ttfamily \#include $<$S\-D\-L/\-S\-D\-L.\-h$>$}\\*
+{\ttfamily \#include $<$S\-D\-L/\-S\-D\-L\-\_\-image.\-h$>$}\\*
+{\ttfamily \#include $<$S\-D\-L/\-S\-D\-L\-\_\-ttf.\-h$>$}\\*
 {\ttfamily \#include $<$unistd.\-h$>$}\\*
 {\ttfamily \#include $<$stdlib.\-h$>$}\\*
 {\ttfamily \#include $<$stdio.\-h$>$}\\*
@@ -21,10 +23,16 @@ Main chargée de l'affichage du menu et du jeu ainsi que la capture des événem
 \hypertarget{main_8c_ac92ca5ab87034a348decad7ee8d4bd1b}{\#define {\bfseries F\-P\-S}~30}\label{main_8c_ac92ca5ab87034a348decad7ee8d4bd1b}
 
 \item 
-\hypertarget{main_8c_af92987fa28f95158530e288a1d97f6cb}{\#define {\bfseries M\-O\-V\-E\-\_\-\-T\-I\-M\-E}~150}\label{main_8c_af92987fa28f95158530e288a1d97f6cb}
+\hypertarget{main_8c_acc565bb96796d8f2fa3cdeb7a8872944}{\#define {\bfseries K\-E\-Y\-D\-O\-W\-N\-\_\-\-T\-I\-M\-E}~200}\label{main_8c_acc565bb96796d8f2fa3cdeb7a8872944}
+
+\item 
+\hypertarget{main_8c_a37e45b52b3a497f31a91ec97ba944544}{\#define {\bfseries N\-B\-\_\-\-M\-E\-N\-U\-\_\-\-E\-N\-T\-R\-Y}~4}\label{main_8c_a37e45b52b3a497f31a91ec97ba944544}
+
+\item 
+\hypertarget{main_8c_a7db0bdcea825e36b3a77f88084079939}{\#define {\bfseries N\-B\-\_\-\-O\-P\-T\-I\-O\-N\-S\-\_\-\-E\-N\-T\-R\-Y}~6}\label{main_8c_a7db0bdcea825e36b3a77f88084079939}
 
 \end{DoxyCompactItemize}
-\subsection*{Fonctions}
+\subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{main_8c_a4a89658d22be6310bfac147df4e0312e}{void \hyperlink{main_8c_a4a89658d22be6310bfac147df4e0312e}{show\-Options} ()}\label{main_8c_a4a89658d22be6310bfac147df4e0312e}
@@ -33,6 +41,9 @@ Main chargée de l'affichage du menu et du jeu ainsi que la capture des événem
 \hypertarget{main_8c_a96e28de51dbd290da9309cb12c126bae}{void \hyperlink{main_8c_a96e28de51dbd290da9309cb12c126bae}{show\-Scores} ()}\label{main_8c_a96e28de51dbd290da9309cb12c126bae}
 
 \begin{DoxyCompactList}\small\item\em Affiche les scores du jeu (à implémenter) \end{DoxyCompactList}\item 
+\hypertarget{main_8c_abf9443c7f56b7fdaf662643f6408593c}{void {\bfseries fin\-\_\-jeu} ()}\label{main_8c_abf9443c7f56b7fdaf662643f6408593c}
+
+\item 
 \hypertarget{main_8c_a29225f9bef457251158246e64dd5aed1}{void {\bfseries start\-Game} (int l, int h)}\label{main_8c_a29225f9bef457251158246e64dd5aed1}
 
 \item 
@@ -44,6 +55,9 @@ int \hyperlink{main_8c_a51af30a60f9f02777c6396b8247e356f}{main} ()
 \hypertarget{main_8c_adab4da51ba40d5a492becdceccccbfcd}{int {\bfseries selected} = 0}\label{main_8c_adab4da51ba40d5a492becdceccccbfcd}
 
 \item 
+\hypertarget{main_8c_ad14ad6bec6d5ac913bd6c73f03f70d0a}{int {\bfseries selected\-Column} = 0}\label{main_8c_ad14ad6bec6d5ac913bd6c73f03f70d0a}
+
+\item 
 \hypertarget{main_8c_ac2e9f6b5d35546058ff6eb1dcd5e9b4b}{Uint32 {\bfseries last\-Refresh} = 0}\label{main_8c_ac2e9f6b5d35546058ff6eb1dcd5e9b4b}
 
 \item 
@@ -53,7 +67,7 @@ int \hyperlink{main_8c_a51af30a60f9f02777c6396b8247e356f}{main} ()
 \hypertarget{main_8c_a9af5d0daebb88c5d4d85b8070c43b913}{Uint32 {\bfseries last\-Move} = 0}\label{main_8c_a9af5d0daebb88c5d4d85b8070c43b913}
 
 \item 
-\hypertarget{main_8c_ae4d7074e1fbd5d499081830e19685e64}{direction {\bfseries dir} = D\-R\-O\-I\-T\-E}\label{main_8c_ae4d7074e1fbd5d499081830e19685e64}
+\hypertarget{main_8c_ae4d7074e1fbd5d499081830e19685e64}{direction {\bfseries dir}}\label{main_8c_ae4d7074e1fbd5d499081830e19685e64}
 
 \item 
 \hypertarget{main_8c_aae6655bfb6f76f59c192067caf5445bd}{\hyperlink{structplateau}{plateau} {\bfseries p}}\label{main_8c_aae6655bfb6f76f59c192067caf5445bd}
@@ -64,16 +78,34 @@ int \hyperlink{main_8c_a51af30a60f9f02777c6396b8247e356f}{main} ()
 \item 
 \hypertarget{main_8c_a6b57f01d3c576db5368dd0efc2f435a4}{S\-D\-L\-\_\-\-Event {\bfseries event}}\label{main_8c_a6b57f01d3c576db5368dd0efc2f435a4}
 
+\item 
+\hypertarget{main_8c_aef160b7437d94056f1dc59646cd5b87d}{int {\bfseries score} = 0}\label{main_8c_aef160b7437d94056f1dc59646cd5b87d}
+
+\item 
+\hypertarget{main_8c_a2f56587a4e221379027dd2ea6304591a}{int {\bfseries taille\-S} = 10}\label{main_8c_a2f56587a4e221379027dd2ea6304591a}
+
+\item 
+\hypertarget{main_8c_a8071e8db6f985e80e7bb92cefba27396}{int {\bfseries taille\-P} = 20}\label{main_8c_a8071e8db6f985e80e7bb92cefba27396}
+
+\item 
+\hypertarget{main_8c_a4b512d0a6dcc3c7d7e6dd9a7714852c4}{int {\bfseries vitesse} = 1}\label{main_8c_a4b512d0a6dcc3c7d7e6dd9a7714852c4}
+
+\item 
+\hypertarget{main_8c_a5336c179ecf46f4efc50a1d45c73bd00}{int {\bfseries objets} = 0}\label{main_8c_a5336c179ecf46f4efc50a1d45c73bd00}
+
+\item 
+\hypertarget{main_8c_a65f3a8178e1f997a7a19a988bb0f4e1a}{int {\bfseries diff} = 1}\label{main_8c_a65f3a8178e1f997a7a19a988bb0f4e1a}
+
 \end{DoxyCompactItemize}
 
 
-\subsection{Description détaillée}
+\subsection{Detailed Description}
 Main chargée de l'affichage du menu et du jeu ainsi que la capture des événements des touches. \begin{DoxyDate}{Date}
 19 avril 2016 
 \end{DoxyDate}
 
 
-\subsection{Documentation des fonctions}
+\subsection{Function Documentation}
 \hypertarget{main_8c_a51af30a60f9f02777c6396b8247e356f}{\index{main.\-c@{main.\-c}!main@{main}}
 \index{main@{main}!main.c@{main.\-c}}
 \subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}main (
@@ -85,6 +117,6 @@ Main chargée de l'affichage du menu et du jeu ainsi que la capture des événem
 
 Fonction main du programme chargé de l'appel aux fonctions d'affichage du menu et de la gestion des touches dans le menu. 
 
-\begin{DoxyReturn}{Renvoie}
+\begin{DoxyReturn}{Returns}
 Renvoie 0 si le programme s'est executé correctement 
 \end{DoxyReturn}
