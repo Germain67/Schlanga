@@ -33,8 +33,9 @@ $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	@echo "Compiled "$<" successfully!"
 
 .PHONEY: test
-test:
-	gcc -o bin/main_test tests/main_test.c
+test: $(OBJECTS)
+	gcc -c tests/main_test.c -o build/main_test.o
+	$(LINKER) bin/main_test build/element.o build/IA.o build/item.o build/jeux.o build/main_test.o build/plateau.o build/score.o build/sdl_functions.o build/snake.o build/test.o $(LFLAGS)
 
 .PHONEY: clean
 clean:

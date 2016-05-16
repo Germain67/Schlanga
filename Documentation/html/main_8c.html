@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Schlanga: main.c File Reference</title>
+<title>Schlanga: /home/germain/programmation/Schlanga/Code/src/main.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -78,6 +78,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_23fdee2f6995db16c755697cdf620cf4.html">Code</a></li><li class="navelem"><a class="el" href="dir_562250f81d431c2e4bf06f5f84066d42.html">src</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
@@ -101,6 +105,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &quot;plateau.h&quot;</code><br/>
 <code>#include &quot;snake.h&quot;</code><br/>
 <code>#include &quot;jeux.h&quot;</code><br/>
+<code>#include &quot;item.h&quot;</code><br/>
 <code>#include &quot;sdl_functions.h&quot;</code><br/>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -108,6 +113,9 @@ Macros</h2></td></tr>
 <tr class="memitem:ac92ca5ab87034a348decad7ee8d4bd1b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac92ca5ab87034a348decad7ee8d4bd1b"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>FPS</b>&#160;&#160;&#160;30</td></tr>
 <tr class="separator:ac92ca5ab87034a348decad7ee8d4bd1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36af4320feee72e8d3e290545192ddae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36af4320feee72e8d3e290545192ddae"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>OBJET</b>&#160;&#160;&#160;50</td></tr>
+<tr class="separator:a36af4320feee72e8d3e290545192ddae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc565bb96796d8f2fa3cdeb7a8872944"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc565bb96796d8f2fa3cdeb7a8872944"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>KEYDOWN_TIME</b>&#160;&#160;&#160;200</td></tr>
 <tr class="separator:acc565bb96796d8f2fa3cdeb7a8872944"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,15 +130,23 @@ Macros</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a4a89658d22be6310bfac147df4e0312e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a89658d22be6310bfac147df4e0312e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a4a89658d22be6310bfac147df4e0312e">showOptions</a> ()</td></tr>
-<tr class="memdesc:a4a89658d22be6310bfac147df4e0312e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche les options du jeu (à implémenter) <br/></td></tr>
+<tr class="memdesc:a4a89658d22be6310bfac147df4e0312e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche les options du jeu. <br/></td></tr>
 <tr class="separator:a4a89658d22be6310bfac147df4e0312e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18015b55969b3fe5cdae43c1e49a040b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a18015b55969b3fe5cdae43c1e49a040b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>tri_scores</b> (int <a class="el" href="main_8c.html#aae13e92096740ad454faa9f84b908961">score</a>)</td></tr>
+<tr class="separator:a18015b55969b3fe5cdae43c1e49a040b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a313214c174b4a8100f175539e200bb1f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a313214c174b4a8100f175539e200bb1f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a313214c174b4a8100f175539e200bb1f">memScores</a> ()</td></tr>
+<tr class="memdesc:a313214c174b4a8100f175539e200bb1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui écrit les scores stockés dans le tableau Highscores dans un fichier .txt. <br/></td></tr>
+<tr class="separator:a313214c174b4a8100f175539e200bb1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96e28de51dbd290da9309cb12c126bae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96e28de51dbd290da9309cb12c126bae"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a96e28de51dbd290da9309cb12c126bae">showScores</a> ()</td></tr>
-<tr class="memdesc:a96e28de51dbd290da9309cb12c126bae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche les scores du jeu (à implémenter) <br/></td></tr>
+<tr class="memdesc:a96e28de51dbd290da9309cb12c126bae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche les scores du jeu. <br/></td></tr>
 <tr class="separator:a96e28de51dbd290da9309cb12c126bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf9443c7f56b7fdaf662643f6408593c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abf9443c7f56b7fdaf662643f6408593c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>fin_jeu</b> ()</td></tr>
-<tr class="separator:abf9443c7f56b7fdaf662643f6408593c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c64749263f4d0c45029ca4a894b3170"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c64749263f4d0c45029ca4a894b3170"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a2c64749263f4d0c45029ca4a894b3170">fin_jeu</a> ()</td></tr>
+<tr class="memdesc:a2c64749263f4d0c45029ca4a894b3170"><td class="mdescLeft">&#160;</td><td class="mdescRight">Détermine le comportement du jeu à la fin d'une partie. <br/></td></tr>
+<tr class="separator:a2c64749263f4d0c45029ca4a894b3170"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29225f9bef457251158246e64dd5aed1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a29225f9bef457251158246e64dd5aed1"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>startGame</b> (int l, int h)</td></tr>
 <tr class="separator:a29225f9bef457251158246e64dd5aed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,6 +165,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>selectedColumn</b> = 0
 <tr class="memitem:ac2e9f6b5d35546058ff6eb1dcd5e9b4b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac2e9f6b5d35546058ff6eb1dcd5e9b4b"></a>
 Uint32&#160;</td><td class="memItemRight" valign="bottom"><b>lastRefresh</b> = 0</td></tr>
 <tr class="separator:ac2e9f6b5d35546058ff6eb1dcd5e9b4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d66be74bd4a4fc6514f4f04c0bdac2e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d66be74bd4a4fc6514f4f04c0bdac2e"></a>
+Uint32&#160;</td><td class="memItemRight" valign="bottom"><b>lastObjet</b> = 0</td></tr>
+<tr class="separator:a6d66be74bd4a4fc6514f4f04c0bdac2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad30d8bd9e2e0951662e54c1991813235"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad30d8bd9e2e0951662e54c1991813235"></a>
 Uint32&#160;</td><td class="memItemRight" valign="bottom"><b>lastKeyPress</b> = 0</td></tr>
 <tr class="separator:ad30d8bd9e2e0951662e54c1991813235"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -167,9 +186,16 @@ SDL_Surface *&#160;</td><td class="memItemRight" valign="bottom"><b>screen</b> =
 <tr class="memitem:a6b57f01d3c576db5368dd0efc2f435a4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6b57f01d3c576db5368dd0efc2f435a4"></a>
 SDL_Event&#160;</td><td class="memItemRight" valign="bottom"><b>event</b></td></tr>
 <tr class="separator:a6b57f01d3c576db5368dd0efc2f435a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef160b7437d94056f1dc59646cd5b87d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef160b7437d94056f1dc59646cd5b87d"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>score</b> = 0</td></tr>
-<tr class="separator:aef160b7437d94056f1dc59646cd5b87d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3512e0ce5a9a5f4313d0d22d91016cab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3512e0ce5a9a5f4313d0d22d91016cab"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>etatPartie</b></td></tr>
+<tr class="separator:a3512e0ce5a9a5f4313d0d22d91016cab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae13e92096740ad454faa9f84b908961"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae13e92096740ad454faa9f84b908961"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#aae13e92096740ad454faa9f84b908961">score</a> = 0</td></tr>
+<tr class="memdesc:aae13e92096740ad454faa9f84b908961"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui trie les 7 meilleurs scores dans un tableau highscores. <br/></td></tr>
+<tr class="separator:aae13e92096740ad454faa9f84b908961"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e745a7b9c39f28ac1879b2d686b0bc7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2e745a7b9c39f28ac1879b2d686b0bc7"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>nb_item</b> = 0</td></tr>
+<tr class="separator:a2e745a7b9c39f28ac1879b2d686b0bc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f56587a4e221379027dd2ea6304591a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f56587a4e221379027dd2ea6304591a"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>tailleS</b> = 10</td></tr>
 <tr class="separator:a2f56587a4e221379027dd2ea6304591a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,6 +211,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>objets</b> = 0</td></t
 <tr class="memitem:a65f3a8178e1f997a7a19a988bb0f4e1a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65f3a8178e1f997a7a19a988bb0f4e1a"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>diff</b> = 1</td></tr>
 <tr class="separator:a65f3a8178e1f997a7a19a988bb0f4e1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44f271e7a921110e04529efed9c02420"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a44f271e7a921110e04529efed9c02420"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>highscores</b> [100] = {}</td></tr>
+<tr class="separator:a44f271e7a921110e04529efed9c02420"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main chargée de l'affichage du menu et du jeu ainsi que la capture des événements des touches. </p>
@@ -211,7 +240,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>diff</b> = 1</td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 16 2016 11:59:47 for Schlanga by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon May 16 2016 19:35:28 for Schlanga by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

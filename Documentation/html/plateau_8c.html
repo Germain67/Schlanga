@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Schlanga: plateau.c File Reference</title>
+<title>Schlanga: /home/germain/programmation/Schlanga/Code/src/plateau.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -78,6 +78,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_23fdee2f6995db16c755697cdf620cf4.html">Code</a></li><li class="navelem"><a class="el" href="dir_562250f81d431c2e4bf06f5f84066d42.html">src</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
@@ -109,12 +113,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>initMurs</b> (<a clas
 <tr class="memitem:a4c69a3309b628c9c588187d5cb9e9ad4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c69a3309b628c9c588187d5cb9e9ad4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>addSerpentPlateau</b> (<a class="el" href="structserpent.html">serpent</a> s, <a class="el" href="structplateau.html">plateau</a> p, int isSchlanga)</td></tr>
 <tr class="separator:a4c69a3309b628c9c588187d5cb9e9ad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a199d542349146aba1b132af580a0f2b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a199d542349146aba1b132af580a0f2b3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateSerpentPlateau</b> (<a class="el" href="structserpent.html">serpent</a> tete, <a class="el" href="structplateau.html">plateau</a> p, <a class="el" href="structposition.html">position</a> queue, int isSchlanga)</td></tr>
-<tr class="separator:a199d542349146aba1b132af580a0f2b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3445e2e406328cd71420411ad4fdd3ea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3445e2e406328cd71420411ad4fdd3ea"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>updateSerpentPlateau</b> (<a class="el" href="structserpent.html">serpent</a> tete, <a class="el" href="structplateau.html">plateau</a> p, <a class="el" href="structposition.html">position</a> queue, int isSchlanga, direction dir, typeCase Case)</td></tr>
+<tr class="separator:a3445e2e406328cd71420411ad4fdd3ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae62206778f6101e7240488b10a334e39"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae62206778f6101e7240488b10a334e39"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>collision</b> (<a class="el" href="structplateau.html">plateau</a> p, direction d, <a class="el" href="structserpent.html">serpent</a> s)</td></tr>
 <tr class="separator:ae62206778f6101e7240488b10a334e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97d748932394d0393ec24f4f94d17649"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97d748932394d0393ec24f4f94d17649"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>collision_coord</b> (<a class="el" href="structplateau.html">plateau</a> p, int x, int y)</td></tr>
+<tr class="separator:a97d748932394d0393ec24f4f94d17649"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac88fc3f804416b1376e2e410cddca764"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac88fc3f804416b1376e2e410cddca764"></a>
+typeCase&#160;</td><td class="memItemRight" valign="bottom"><b>collision_type</b> (<a class="el" href="structplateau.html">plateau</a> p, direction d, <a class="el" href="structserpent.html">serpent</a> s)</td></tr>
+<tr class="separator:ac88fc3f804416b1376e2e410cddca764"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a851a6f4045f74a6c7cd1ff9e058f7a02"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a851a6f4045f74a6c7cd1ff9e058f7a02"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>appartient_plateau</b> (<a class="el" href="structposition.html">position</a> p, <a class="el" href="structplateau.html">plateau</a> plat)</td></tr>
 <tr class="separator:a851a6f4045f74a6c7cd1ff9e058f7a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,7 +138,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>deadend</b> (<a class=
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 16 2016 11:59:47 for Schlanga by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon May 16 2016 19:35:28 for Schlanga by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

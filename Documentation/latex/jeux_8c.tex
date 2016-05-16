@@ -1,5 +1,5 @@
-\hypertarget{jeux_8c}{\section{jeux.\-c File Reference}
-\label{jeux_8c}\index{jeux.\-c@{jeux.\-c}}
+\hypertarget{jeux_8c}{\section{/home/germain/programmation/\-Schlanga/\-Code/src/jeux.c File Reference}
+\label{jeux_8c}\index{/home/germain/programmation/\-Schlanga/\-Code/src/jeux.\-c@{/home/germain/programmation/\-Schlanga/\-Code/src/jeux.\-c}}
 }
 
 
@@ -13,7 +13,12 @@ contient les fonctions qui interviennent pendant la session de jeu
 \hypertarget{jeux_8c_a3aa239b4f44ac61e9c951a4bcec963cc}{\hyperlink{structplateau}{plateau} {\bfseries init\-Jeu} (int lon, int lar, int t, int diff)}\label{jeux_8c_a3aa239b4f44ac61e9c951a4bcec963cc}
 
 \item 
-\hypertarget{jeux_8c_a6db88411e5d6527054168ab42ba7dfe4}{\hyperlink{structplateau}{plateau} {\bfseries update\-Jeu} (\hyperlink{structplateau}{plateau} p, direction dir1\-\_\-snake, int $\ast$etat\-Partie)}\label{jeux_8c_a6db88411e5d6527054168ab42ba7dfe4}
+\hypertarget{jeux_8c_add1d71ab953d451f084a4dfa3e5a8fc7}{\hyperlink{structplateau}{plateau} {\bfseries update\-Jeu} (\hyperlink{structplateau}{plateau} p, direction dir1\-\_\-snake, int $\ast$etat\-Partie, int v, int nb)}\label{jeux_8c_add1d71ab953d451f084a4dfa3e5a8fc7}
+
+\item 
+int \hyperlink{jeux_8c_ae9011e82843900a30006de53c803b351}{update\-Vitesse} ()
+\begin{DoxyCompactList}\small\item\em permet de mettre à jour la vitesse \end{DoxyCompactList}\item 
+\hypertarget{jeux_8c_a3c2655c2600213b34a0d8da71600b4f2}{int {\bfseries update\-Nb\-Item\-\_\-lost} ()}\label{jeux_8c_a3c2655c2600213b34a0d8da71600b4f2}
 
 \item 
 void \hyperlink{jeux_8c_aee1fe31b9f25d556afc607962140d018}{fin\-\_\-de\-\_\-partie\-\_\-serpent} ()
@@ -28,6 +33,12 @@ void \hyperlink{jeux_8c_aee1fe31b9f25d556afc607962140d018}{fin\-\_\-de\-\_\-part
 
 \item 
 \hypertarget{jeux_8c_a378a641279f14bbdfc1752b3e8c56561}{int {\bfseries difficulte}}\label{jeux_8c_a378a641279f14bbdfc1752b3e8c56561}
+
+\item 
+\hypertarget{jeux_8c_a4b512d0a6dcc3c7d7e6dd9a7714852c4}{int {\bfseries vitesse}}\label{jeux_8c_a4b512d0a6dcc3c7d7e6dd9a7714852c4}
+
+\item 
+\hypertarget{jeux_8c_a0a8bc6a49d302720ea7b39df3c8832b0}{int {\bfseries nb\-\_\-item\-\_\-lost}}\label{jeux_8c_a0a8bc6a49d302720ea7b39df3c8832b0}
 
 \end{DoxyCompactItemize}
 
@@ -52,4 +63,18 @@ libère la mémoire allouée au serpent et au schlanga
 
 \begin{DoxyReturn}{Returns}
 rien 
+\end{DoxyReturn}
+\hypertarget{jeux_8c_ae9011e82843900a30006de53c803b351}{\index{jeux.\-c@{jeux.\-c}!update\-Vitesse@{update\-Vitesse}}
+\index{update\-Vitesse@{update\-Vitesse}!jeux.c@{jeux.\-c}}
+\subsubsection[{update\-Vitesse}]{\setlength{\rightskip}{0pt plus 5cm}update\-Vitesse (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{jeux_8c_ae9011e82843900a30006de53c803b351}
+
+
+permet de mettre à jour la vitesse 
+
+\begin{DoxyReturn}{Returns}
+vitesse mise à jour 
 \end{DoxyReturn}

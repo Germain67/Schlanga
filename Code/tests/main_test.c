@@ -12,15 +12,16 @@
 #include "../src/jeux.h"
 
 int main() {
-	plateau p;
-	int lon=25, lar=25, t=10; // Test avec un plateau de taille 25*25 et des serpents de taille 10
+  plateau p;
+  int lon=25, lar=25, t=10; // Test avec un plateau de taille 25*25 et des serpents de taille 10
 
-	p=initJeu(lon, lar, t); // Initialisation d'un plateau 25*25 avec des serpents de taille 10
+  p=initJeu(lon, lar, t, 1); // Initialisation d'un plateau 25*25 avec des serpents de taille 10
 
-	int etatPartie = 0; 
-	p=updateJeu (p, HAUT, &etatPartie); // Mise à jour d'un plateau vers le jeu
-	fin_de_partie_serpent();
-	free_plateau(p);
+  int etatPartie = 0; 
+  p=updateJeu (p, HAUT, &etatPartie, 300, 0); // Mise à jour d'un plateau vers le jeu
+  fin_de_partie_serpent();
+  free_plateau(p);
+  printf("JM je te suce la bite.\n");
 
 	return 0;
 }

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Schlanga: jeux.c File Reference</title>
+<title>Schlanga: /home/germain/programmation/Schlanga/Code/src/jeux.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -78,6 +78,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_23fdee2f6995db16c755697cdf620cf4.html">Code</a></li><li class="navelem"><a class="el" href="dir_562250f81d431c2e4bf06f5f84066d42.html">src</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
@@ -97,9 +101,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a3aa239b4f44ac61e9c951a4bcec963cc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3aa239b4f44ac61e9c951a4bcec963cc"></a>
 <a class="el" href="structplateau.html">plateau</a>&#160;</td><td class="memItemRight" valign="bottom"><b>initJeu</b> (int lon, int lar, int t, int diff)</td></tr>
 <tr class="separator:a3aa239b4f44ac61e9c951a4bcec963cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6db88411e5d6527054168ab42ba7dfe4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6db88411e5d6527054168ab42ba7dfe4"></a>
-<a class="el" href="structplateau.html">plateau</a>&#160;</td><td class="memItemRight" valign="bottom"><b>updateJeu</b> (<a class="el" href="structplateau.html">plateau</a> p, direction dir1_snake, int *etatPartie)</td></tr>
-<tr class="separator:a6db88411e5d6527054168ab42ba7dfe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add1d71ab953d451f084a4dfa3e5a8fc7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add1d71ab953d451f084a4dfa3e5a8fc7"></a>
+<a class="el" href="structplateau.html">plateau</a>&#160;</td><td class="memItemRight" valign="bottom"><b>updateJeu</b> (<a class="el" href="structplateau.html">plateau</a> p, direction dir1_snake, int *etatPartie, int v, int nb)</td></tr>
+<tr class="separator:add1d71ab953d451f084a4dfa3e5a8fc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9011e82843900a30006de53c803b351"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jeux_8c.html#ae9011e82843900a30006de53c803b351">updateVitesse</a> ()</td></tr>
+<tr class="memdesc:ae9011e82843900a30006de53c803b351"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de mettre à jour la vitesse  <a href="#ae9011e82843900a30006de53c803b351">More...</a><br/></td></tr>
+<tr class="separator:ae9011e82843900a30006de53c803b351"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c2655c2600213b34a0d8da71600b4f2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c2655c2600213b34a0d8da71600b4f2"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>updateNbItem_lost</b> ()</td></tr>
+<tr class="separator:a3c2655c2600213b34a0d8da71600b4f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee1fe31b9f25d556afc607962140d018"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jeux_8c.html#aee1fe31b9f25d556afc607962140d018">fin_de_partie_serpent</a> ()</td></tr>
 <tr class="memdesc:aee1fe31b9f25d556afc607962140d018"><td class="mdescLeft">&#160;</td><td class="mdescRight">libère la mémoire allouée au serpent et au schlanga  <a href="#aee1fe31b9f25d556afc607962140d018">More...</a><br/></td></tr>
 <tr class="separator:aee1fe31b9f25d556afc607962140d018"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -115,6 +125,12 @@ Variables</h2></td></tr>
 <tr class="memitem:a378a641279f14bbdfc1752b3e8c56561"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a378a641279f14bbdfc1752b3e8c56561"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>difficulte</b></td></tr>
 <tr class="separator:a378a641279f14bbdfc1752b3e8c56561"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b512d0a6dcc3c7d7e6dd9a7714852c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b512d0a6dcc3c7d7e6dd9a7714852c4"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>vitesse</b></td></tr>
+<tr class="separator:a4b512d0a6dcc3c7d7e6dd9a7714852c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a8bc6a49d302720ea7b39df3c8832b0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a8bc6a49d302720ea7b39df3c8832b0"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>nb_item_lost</b></td></tr>
+<tr class="separator:a0a8bc6a49d302720ea7b39df3c8832b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>contient les fonctions qui interviennent pendant la session de jeu </p>
@@ -138,10 +154,28 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>difficulte</b></td></t
 
 </div>
 </div>
+<a class="anchor" id="ae9011e82843900a30006de53c803b351"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">updateVitesse </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>permet de mettre à jour la vitesse </p>
+<dl class="section return"><dt>Returns</dt><dd>vitesse mise à jour </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 16 2016 11:59:47 for Schlanga by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon May 16 2016 19:35:28 for Schlanga by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

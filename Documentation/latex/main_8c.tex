@@ -1,5 +1,5 @@
-\hypertarget{main_8c}{\section{main.\-c File Reference}
-\label{main_8c}\index{main.\-c@{main.\-c}}
+\hypertarget{main_8c}{\section{/home/germain/programmation/\-Schlanga/\-Code/src/main.c File Reference}
+\label{main_8c}\index{/home/germain/programmation/\-Schlanga/\-Code/src/main.\-c@{/home/germain/programmation/\-Schlanga/\-Code/src/main.\-c}}
 }
 
 
@@ -16,11 +16,15 @@ Main chargée de l'affichage du menu et du jeu ainsi que la capture des événem
 {\ttfamily \#include \char`\"{}plateau.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}snake.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}jeux.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}item.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}sdl\-\_\-functions.\-h\char`\"{}}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{main_8c_ac92ca5ab87034a348decad7ee8d4bd1b}{\#define {\bfseries F\-P\-S}~30}\label{main_8c_ac92ca5ab87034a348decad7ee8d4bd1b}
+
+\item 
+\hypertarget{main_8c_a36af4320feee72e8d3e290545192ddae}{\#define {\bfseries O\-B\-J\-E\-T}~50}\label{main_8c_a36af4320feee72e8d3e290545192ddae}
 
 \item 
 \hypertarget{main_8c_acc565bb96796d8f2fa3cdeb7a8872944}{\#define {\bfseries K\-E\-Y\-D\-O\-W\-N\-\_\-\-T\-I\-M\-E}~200}\label{main_8c_acc565bb96796d8f2fa3cdeb7a8872944}
@@ -37,13 +41,19 @@ Main chargée de l'affichage du menu et du jeu ainsi que la capture des événem
 \item 
 \hypertarget{main_8c_a4a89658d22be6310bfac147df4e0312e}{void \hyperlink{main_8c_a4a89658d22be6310bfac147df4e0312e}{show\-Options} ()}\label{main_8c_a4a89658d22be6310bfac147df4e0312e}
 
-\begin{DoxyCompactList}\small\item\em Affiche les options du jeu (à implémenter) \end{DoxyCompactList}\item 
-\hypertarget{main_8c_a96e28de51dbd290da9309cb12c126bae}{void \hyperlink{main_8c_a96e28de51dbd290da9309cb12c126bae}{show\-Scores} ()}\label{main_8c_a96e28de51dbd290da9309cb12c126bae}
-
-\begin{DoxyCompactList}\small\item\em Affiche les scores du jeu (à implémenter) \end{DoxyCompactList}\item 
-\hypertarget{main_8c_abf9443c7f56b7fdaf662643f6408593c}{void {\bfseries fin\-\_\-jeu} ()}\label{main_8c_abf9443c7f56b7fdaf662643f6408593c}
+\begin{DoxyCompactList}\small\item\em Affiche les options du jeu. \end{DoxyCompactList}\item 
+\hypertarget{main_8c_a18015b55969b3fe5cdae43c1e49a040b}{void {\bfseries tri\-\_\-scores} (int \hyperlink{main_8c_aae13e92096740ad454faa9f84b908961}{score})}\label{main_8c_a18015b55969b3fe5cdae43c1e49a040b}
 
 \item 
+\hypertarget{main_8c_a313214c174b4a8100f175539e200bb1f}{void \hyperlink{main_8c_a313214c174b4a8100f175539e200bb1f}{mem\-Scores} ()}\label{main_8c_a313214c174b4a8100f175539e200bb1f}
+
+\begin{DoxyCompactList}\small\item\em Fonction qui écrit les scores stockés dans le tableau Highscores dans un fichier .txt. \end{DoxyCompactList}\item 
+\hypertarget{main_8c_a96e28de51dbd290da9309cb12c126bae}{void \hyperlink{main_8c_a96e28de51dbd290da9309cb12c126bae}{show\-Scores} ()}\label{main_8c_a96e28de51dbd290da9309cb12c126bae}
+
+\begin{DoxyCompactList}\small\item\em Affiche les scores du jeu. \end{DoxyCompactList}\item 
+\hypertarget{main_8c_a2c64749263f4d0c45029ca4a894b3170}{void \hyperlink{main_8c_a2c64749263f4d0c45029ca4a894b3170}{fin\-\_\-jeu} ()}\label{main_8c_a2c64749263f4d0c45029ca4a894b3170}
+
+\begin{DoxyCompactList}\small\item\em Détermine le comportement du jeu à la fin d'une partie. \end{DoxyCompactList}\item 
 \hypertarget{main_8c_a29225f9bef457251158246e64dd5aed1}{void {\bfseries start\-Game} (int l, int h)}\label{main_8c_a29225f9bef457251158246e64dd5aed1}
 
 \item 
@@ -59,6 +69,9 @@ int \hyperlink{main_8c_a51af30a60f9f02777c6396b8247e356f}{main} ()
 
 \item 
 \hypertarget{main_8c_ac2e9f6b5d35546058ff6eb1dcd5e9b4b}{Uint32 {\bfseries last\-Refresh} = 0}\label{main_8c_ac2e9f6b5d35546058ff6eb1dcd5e9b4b}
+
+\item 
+\hypertarget{main_8c_a6d66be74bd4a4fc6514f4f04c0bdac2e}{Uint32 {\bfseries last\-Objet} = 0}\label{main_8c_a6d66be74bd4a4fc6514f4f04c0bdac2e}
 
 \item 
 \hypertarget{main_8c_ad30d8bd9e2e0951662e54c1991813235}{Uint32 {\bfseries last\-Key\-Press} = 0}\label{main_8c_ad30d8bd9e2e0951662e54c1991813235}
@@ -79,7 +92,13 @@ int \hyperlink{main_8c_a51af30a60f9f02777c6396b8247e356f}{main} ()
 \hypertarget{main_8c_a6b57f01d3c576db5368dd0efc2f435a4}{S\-D\-L\-\_\-\-Event {\bfseries event}}\label{main_8c_a6b57f01d3c576db5368dd0efc2f435a4}
 
 \item 
-\hypertarget{main_8c_aef160b7437d94056f1dc59646cd5b87d}{int {\bfseries score} = 0}\label{main_8c_aef160b7437d94056f1dc59646cd5b87d}
+\hypertarget{main_8c_a3512e0ce5a9a5f4313d0d22d91016cab}{int {\bfseries etat\-Partie}}\label{main_8c_a3512e0ce5a9a5f4313d0d22d91016cab}
+
+\item 
+\hypertarget{main_8c_aae13e92096740ad454faa9f84b908961}{int \hyperlink{main_8c_aae13e92096740ad454faa9f84b908961}{score} = 0}\label{main_8c_aae13e92096740ad454faa9f84b908961}
+
+\begin{DoxyCompactList}\small\item\em Fonction qui trie les 7 meilleurs scores dans un tableau highscores. \end{DoxyCompactList}\item 
+\hypertarget{main_8c_a2e745a7b9c39f28ac1879b2d686b0bc7}{int {\bfseries nb\-\_\-item} = 0}\label{main_8c_a2e745a7b9c39f28ac1879b2d686b0bc7}
 
 \item 
 \hypertarget{main_8c_a2f56587a4e221379027dd2ea6304591a}{int {\bfseries taille\-S} = 10}\label{main_8c_a2f56587a4e221379027dd2ea6304591a}
@@ -95,6 +114,9 @@ int \hyperlink{main_8c_a51af30a60f9f02777c6396b8247e356f}{main} ()
 
 \item 
 \hypertarget{main_8c_a65f3a8178e1f997a7a19a988bb0f4e1a}{int {\bfseries diff} = 1}\label{main_8c_a65f3a8178e1f997a7a19a988bb0f4e1a}
+
+\item 
+\hypertarget{main_8c_a44f271e7a921110e04529efed9c02420}{int {\bfseries highscores} \mbox{[}100\mbox{]} = \{\}}\label{main_8c_a44f271e7a921110e04529efed9c02420}
 
 \end{DoxyCompactItemize}
 
