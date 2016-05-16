@@ -36,6 +36,7 @@ SDL_Surface *screen = NULL;
 SDL_Event event;
 int etatPartie;
 int score = 0;
+int nb_item = 0;
 
 /* Options */
 
@@ -376,7 +377,8 @@ void startGame(int l, int h){
     if (objets == 0) { 
     	if (tempsActuel - lastObjet > (OBJET*1000/FPS))
     	{
-      		create_item(p);
+      		create_item(p,nb_item);
+      		nb_item = updateNbItem_created ();
       		lastObjet = tempsActuel;
     	}
     }
@@ -385,8 +387,9 @@ void startGame(int l, int h){
     {
       etatPartie = 0;
       score += 1;
-      p = updateJeu(p, dir, &etatPartie, move_time);
+      p = updateJeu(p, dir, &etatPartie, move_time,nb_item);
       move_time = updateVitesse();
+      nb_item = updateNbItem_lost();
       if(etatPartie == 1){
         printf("Vous avez gagné !\n");
         break;

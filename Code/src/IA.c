@@ -46,6 +46,7 @@ direction aleatoire(serpent schlanga, plateau p) {
     }
     if (l==0) { // Le schlanga ne peut plus se déplacer, il a perdu, il nous suffit de lui donner une direction aléatoire
 	    pos_possible[l]=0;
+	    l=1;
     }
 
     //srand(time(NULL));

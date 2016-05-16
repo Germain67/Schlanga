@@ -9,6 +9,7 @@ serpent snake_joueur;
 serpent schlanga;
 int difficulte;
 int vitesse;
+int nb_item_lost;
 
 
 /**
@@ -48,8 +49,9 @@ plateau initJeu(int lon, int lar, int t, int diff) {
  * \return   plateau mis à jour
  */
 
-plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie, int v) {
+plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie, int v, int nb) {
 	vitesse=v;
+	nb_item_lost=nb;
 	*etatPartie = 0;
 	position queue;
 	position queue1;
@@ -80,6 +82,7 @@ plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie, int v) {
 		schlanga = deplacement_grandir(dir2, schlanga);
 		queue1 = get_position_queue(schlanga);
 		updateSerpentPlateau(schlanga,p,queue1, 1,dir2,Case_schlanga);
+		nb_item_lost --;
 	}
 
 	else if (Case_schlanga == reduire) {
@@ -89,6 +92,7 @@ plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie, int v) {
     		suppression_queue(schlanga);
 		queue1 = get_position_queue(schlanga);
 		updateSerpentPlateau(schlanga,p,queue1, 1,dir2,Case_schlanga);
+		nb_item_lost --;
 	}
 	else if (Case_schlanga == accelerer) {
 		if (vitesse > 50) {
@@ -97,12 +101,14 @@ plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie, int v) {
 		schlanga = deplacement(dir2, schlanga);
 		queue1 = get_position_queue(schlanga);
 		updateSerpentPlateau(schlanga,p,queue1, 1,dir2,Case_schlanga);
+		nb_item_lost --;
 	}
 	else if (Case_schlanga == ralentir) {
 		vitesse=vitesse+50;
 		schlanga = deplacement(dir2, schlanga);
 		queue1 = get_position_queue(schlanga);
 		updateSerpentPlateau(schlanga,p,queue1, 1,dir2,Case_schlanga);
+		nb_item_lost --;
 	}
 
 // Collision du snake
@@ -123,6 +129,7 @@ plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie, int v) {
 		snake_joueur = deplacement_grandir(dir1_snake, snake_joueur);
 		queue = get_position_queue(snake_joueur);
 		updateSerpentPlateau(snake_joueur,p,queue, 0,dir1_snake,Case_snake);
+		nb_item_lost --;
 	}
 
 	else if (Case_snake == reduire) {
@@ -132,6 +139,7 @@ plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie, int v) {
     		suppression_queue(snake_joueur);
 		queue = get_position_queue(snake_joueur);
 		updateSerpentPlateau(snake_joueur,p,queue, 0,dir1_snake,Case_snake);
+		nb_item_lost --;
 	}
 	else if (Case_snake == accelerer) {
 		if (vitesse > 50) {
@@ -140,12 +148,14 @@ plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie, int v) {
 		snake_joueur = deplacement(dir1_snake, snake_joueur);
 		queue = get_position_queue(snake_joueur);
 		updateSerpentPlateau(snake_joueur,p,queue, 0,dir1_snake,Case_snake);
+		nb_item_lost --;
 	}
 	else if (Case_snake == ralentir) {
 		vitesse=vitesse+50;
 		snake_joueur = deplacement(dir1_snake, snake_joueur);
 		queue = get_position_queue(snake_joueur);
 		updateSerpentPlateau(snake_joueur,p,queue, 0,dir1_snake,Case_snake);
+		nb_item_lost --;
 	}
 	return p;
 }
@@ -157,6 +167,15 @@ plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie, int v) {
  */
 int updateVitesse () {
 	return vitesse;
+}
+
+/**
+ * \fn       updateNbItem
+ * \brief    permet de mettre à jour le nombre d'item quand un item est mangé
+ * \return   vitesse mise à jour
+ */
+int updateNbItem_lost () {
+	return nb_item_lost;
 }
 
 /**

@@ -10,8 +10,9 @@
 #include <stdlib.h>
 
 plateau initJeu(int lon, int lar, int t, int diff);
-plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie, int v);
+plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie, int v, int nb);
 int updateVitesse ();
+int updateNbItem_lost ();
 void fin_de_partie_serpent();
 
 #endif

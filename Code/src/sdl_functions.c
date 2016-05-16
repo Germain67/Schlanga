@@ -119,10 +119,12 @@ void showLiveScore(SDL_Surface *ecran, int time, int score, int l)
     SDL_Color couleurBlanche = {255, 255, 255};
     char temps[20] = ""; /* Tableau de char suffisamment grand */
 
+    TTF_Init();
     /* Chargement de la police */
     police = TTF_OpenFont("fonts/poison.ttf", 20);
 
-    //TTF_SetFontStyle(police, TTF_STYLE_BOLD);
+
+    TTF_SetFontStyle(police, TTF_STYLE_BOLD);
 
     /* Initialisation du temps et du texte */
     sprintf(temps, "Temps : %d", time);
