@@ -48,6 +48,10 @@ void displayPicture(SDL_Surface* ecran, int x, int y, char* file){
   SDL_Surface *image = NULL;
   /* On charge l'image : */
   SDL_Surface *load=SDL_LoadBMP(file);
+  if(load == NULL){
+    perror("Error: /images folder can't be loaded, it must be in the same folder as the executable");
+    exit(1);
+  }
   image = SDL_DisplayFormat(load);
   SDL_FreeSurface(load);
   /* Transparence */
@@ -145,7 +149,10 @@ void showLiveScore(SDL_Surface *ecran, int time, int score, int l)
     TTF_Init();
     /* Chargement de la police */
     police = TTF_OpenFont("fonts/poison.ttf", 20);
-
+    if(!police){
+      perror("Error: /fonts folder can't be loaded, it must be in the same folder as the executable");
+      exit(1);
+    }
 
     TTF_SetFontStyle(police, TTF_STYLE_BOLD);
 
@@ -186,6 +193,10 @@ void Gameover(SDL_Surface *ecran, int compteur, char* mess) {
 
     /* Chargement de la police */
     police = TTF_OpenFont("fonts/angelina.ttf", 65);
+    if(!police){
+      perror("Error: /fonts folder can't be loaded, it must be in the same folder as the executable");
+      exit(1);
+    }
 
     /* Initialisation du temps et du texte */
     sprintf(scores, "Votre score : %d", compteur);

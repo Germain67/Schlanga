@@ -21,7 +21,7 @@ int main() {
   p=updateJeu (p, HAUT, &etatPartie, 300, 0); // Mise à jour d'un plateau vers le jeu
   fin_de_partie_serpent();
   free_plateau(p);
-  printf("JM je te suce la bite.\n");
+  printf("Jeu de test terminé, aucun problème rencontré.\n");
 
 	return 0;
 }

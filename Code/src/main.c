@@ -31,6 +31,7 @@ Uint32 lastObjet = 0;
 Uint32 lastKeyPress = 0;
 Uint32 lastMove = 0;
 direction dir;
+direction lastdir;
 plateau p;
 SDL_Surface *screen = NULL;
 SDL_Event event;
@@ -193,6 +194,11 @@ void showScores() {
 
   /* Chargement de la police */
   police = TTF_OpenFont("fonts/angelina.ttf", 65);
+  if(!police){
+    perror("Error: /fonts folder can't be loaded, it must be in the same folder as the executable");
+    exit(1);
+  }
+
 
 
 
@@ -331,6 +337,7 @@ void startGame(int l, int h){
 
   p = initJeu(l, h, tailleS, diff);
   dir = DROITE;
+  lastdir = DROITE;
 
   int move_time = ((vitesse+3)%3) * -100 + 350;
   score = 0;
@@ -355,22 +362,22 @@ void startGame(int l, int h){
                     continuer = 0;
                     break;
                 case SDLK_UP:
-                    if(dir != BAS){
+                    if(lastdir != BAS){
                       dir = HAUT;
                     }
                     break;
                 case SDLK_DOWN:
-                    if(dir != HAUT){
+                    if(lastdir != HAUT){
                       dir = BAS;
                     }
                     break;
                 case SDLK_RIGHT:
-                    if(dir != GAUCHE){
+                    if(lastdir != GAUCHE){
                       dir = DROITE;
                     }
                     break;
                 case SDLK_LEFT:
-                    if(dir != DROITE){
+                    if(lastdir != DROITE){
                       dir = GAUCHE;
                     }
                     break;
@@ -383,6 +390,7 @@ void startGame(int l, int h){
     }
 
     tempsActuel = SDL_GetTicks();
+    //Affichage des objets
     if (objets == 0) { 
     	if (tempsActuel - lastObjet > (OBJET*1000/FPS))
     	{
@@ -391,12 +399,13 @@ void startGame(int l, int h){
       		lastObjet = tempsActuel;
     	}
     }
-
+    //Deplacement du serpent
     if (tempsActuel - lastMove > move_time) /* Si 30 ms se sont écoulées */
     {
       etatPartie = 0;
       score += 1;
       p = updateJeu(p, dir, &etatPartie, move_time,nb_item);
+      lastdir = dir;
       move_time = updateVitesse();
       nb_item = updateNbItem_lost();
       if(etatPartie == 1){
@@ -409,6 +418,7 @@ void startGame(int l, int h){
       }
       lastMove = tempsActuel; /* Le temps "actuel" devient le temps "precedent" pour nos futurs calculs */
     }
+    //Affichage du plateau
     if (tempsActuel - lastRefresh > (1000/FPS)) /* Si 30 ms se sont écoulées */
     {
       displayPlateau(screen, p);
