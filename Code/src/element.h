@@ -3,7 +3,7 @@
 
 typedef enum
 {
-  snake, snake_schlanga, objet, mur, vide 
+  snake, snake_schlanga, mur, vide, grandir, reduire, accelerer, ralentir
 } typeCase;
 
 typedef struct element{

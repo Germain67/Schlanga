@@ -178,7 +178,7 @@ void test_updateSerpentPlateau(){
 	
 	position queue=get_position_queue(s);
 	s=deplacement(DROITE,s);
-	updateSerpentPlateau(s,p,queue,0);
+	updateSerpentPlateau(s,p,queue,0,DROITE,vide);
 
 	displayPlateau(ecran, p);
 	printf("Plateau après la mise à jour du serpent \n");

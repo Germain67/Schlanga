@@ -8,6 +8,7 @@
 serpent snake_joueur;
 serpent schlanga;
 int difficulte;
+int vitesse;
 
 
 /**
@@ -47,10 +48,11 @@ plateau initJeu(int lon, int lar, int t, int diff) {
  * \return   plateau mis à jour
  */
 
-plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie) {
+plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie, int v) {
+	vitesse=v;
 	*etatPartie = 0;
-	position queue = get_position_queue(snake_joueur);
-	position queue1 = get_position_queue(schlanga);
+	position queue;
+	position queue1;
 	direction dir2;
 	if(difficulte == 0){
 		dir2 = aleatoire(schlanga, p);
@@ -66,18 +68,95 @@ plateau updateJeu (plateau p, direction dir1_snake, int* etatPartie) {
 	if (collision(p,dir2,schlanga) == 1){
 		*etatPartie = 1;
 	}
-	schlanga = deplacement(dir2, schlanga);
-	updateSerpentPlateau(schlanga,p,queue1, 1);
+// Déplacement du schlanga
+	typeCase Case_schlanga=collision_type(p,dir2,schlanga);	
+	if (Case_schlanga == vide || Case_schlanga == mur || Case_schlanga == snake_schlanga || Case_schlanga == snake) {
+		schlanga = deplacement(dir2, schlanga);
+		queue1 = get_position_queue(schlanga);
+		updateSerpentPlateau(schlanga,p,queue1, 1,dir2,Case_schlanga);
+	}
+
+	else if (Case_schlanga == grandir) {
+		schlanga = deplacement_grandir(dir2, schlanga);
+		queue1 = get_position_queue(schlanga);
+		updateSerpentPlateau(schlanga,p,queue1, 1,dir2,Case_schlanga);
+	}
+
+	else if (Case_schlanga == reduire) {
+		schlanga = deplacement_reduire(dir2, schlanga);
+		queue1 = get_position_queue(schlanga);
+		updateSerpentPlateau(schlanga,p,queue1, 1,dir2,Case_schlanga);
+    		suppression_queue(schlanga);
+		queue1 = get_position_queue(schlanga);
+		updateSerpentPlateau(schlanga,p,queue1, 1,dir2,Case_schlanga);
+	}
+	else if (Case_schlanga == accelerer) {
+		if (vitesse > 50) {
+			vitesse=vitesse-50;
+		}
+		schlanga = deplacement(dir2, schlanga);
+		queue1 = get_position_queue(schlanga);
+		updateSerpentPlateau(schlanga,p,queue1, 1,dir2,Case_schlanga);
+	}
+	else if (Case_schlanga == ralentir) {
+		vitesse=vitesse+50;
+		schlanga = deplacement(dir2, schlanga);
+		queue1 = get_position_queue(schlanga);
+		updateSerpentPlateau(schlanga,p,queue1, 1,dir2,Case_schlanga);
+	}
+
+// Collision du snake
 	if (collision(p,dir1_snake,snake_joueur) == 1){
 		*etatPartie = 2;
 	}
-	snake_joueur = deplacement(dir1_snake, snake_joueur);
-	updateSerpentPlateau(snake_joueur,p,queue, 0);
+	
+// Déplacement du snake
+	typeCase Case_snake=collision_type(p,dir1_snake,snake_joueur);
+	if (Case_snake == vide || Case_snake == mur || Case_snake == snake_schlanga || Case_snake == snake) {
+		snake_joueur = deplacement(dir1_snake, snake_joueur);
+		queue = get_position_queue(snake_joueur);
+		updateSerpentPlateau(snake_joueur,p,queue, 0,dir1_snake,Case_snake);
 
-	free_position(queue);
-	free_position(queue1);
+	}
 
+	else if (Case_snake == grandir) {
+		snake_joueur = deplacement_grandir(dir1_snake, snake_joueur);
+		queue = get_position_queue(snake_joueur);
+		updateSerpentPlateau(snake_joueur,p,queue, 0,dir1_snake,Case_snake);
+	}
+
+	else if (Case_snake == reduire) {
+		snake_joueur = deplacement_reduire(dir1_snake, snake_joueur);
+		queue = get_position_queue(snake_joueur);
+		updateSerpentPlateau(snake_joueur,p,queue, 0,dir1_snake,Case_snake);
+    		suppression_queue(snake_joueur);
+		queue = get_position_queue(snake_joueur);
+		updateSerpentPlateau(snake_joueur,p,queue, 0,dir1_snake,Case_snake);
+	}
+	else if (Case_snake == accelerer) {
+		if (vitesse > 50) {
+			vitesse=vitesse-50;
+		}
+		snake_joueur = deplacement(dir1_snake, snake_joueur);
+		queue = get_position_queue(snake_joueur);
+		updateSerpentPlateau(snake_joueur,p,queue, 0,dir1_snake,Case_snake);
+	}
+	else if (Case_snake == ralentir) {
+		vitesse=vitesse+50;
+		snake_joueur = deplacement(dir1_snake, snake_joueur);
+		queue = get_position_queue(snake_joueur);
+		updateSerpentPlateau(snake_joueur,p,queue, 0,dir1_snake,Case_snake);
+	}
 	return p;
+}
+
+/**
+ * \fn       updateVitesse
+ * \brief    permet de mettre à jour la vitesse
+ * \return   vitesse mise à jour
+ */
+int updateVitesse () {
+	return vitesse;
 }
 
 /**

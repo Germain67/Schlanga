@@ -122,14 +122,17 @@ void addSerpentPlateau(serpent s, plateau p, int isSchlanga){
 * \return   rien
 */
 
-void updateSerpentPlateau(serpent tete, plateau p, position queue, int isSchlanga){
+void updateSerpentPlateau(serpent tete, plateau p, position queue, int isSchlanga, direction dir, typeCase Case){
+	if (Case != grandir) {
+		updateElement(vide,p->data[queue->x][queue->y]);
+	}
+
 	if(isSchlanga == 1){
 		updateElement(snake_schlanga,p->data[tete->coordonnees->x][tete->coordonnees->y]);
 	}
 	else{
 		updateElement(snake,p->data[tete->coordonnees->x][tete->coordonnees->y]);
 	}
-	updateElement(vide,p->data[queue->x][queue->y]);
 }
 
 /**
@@ -145,7 +148,6 @@ void updateSerpentPlateau(serpent tete, plateau p, position queue, int isSchlang
 int collision(plateau p, direction d, serpent s){
 	int x = s->coordonnees->x;
 	int y = s->coordonnees->y;
-	int b=0;	
 	if (d==HAUT){
 		y=y-1;
 	}
@@ -161,7 +163,11 @@ int collision(plateau p, direction d, serpent s){
 	if (d==GAUCHE){
 		x=x-1;
 	}
+	return collision_coord(p,x,y);
+}
 
+int collision_coord(plateau p, int x, int y) {
+	int b=0;
 	if (p->data[x][y]->type == snake ) {
 		b=1;
 	}
@@ -171,25 +177,57 @@ int collision(plateau p, direction d, serpent s){
 	if (p->data[x][y]->type == mur ) {
 		b=1;
 	}
-	if (p->data[x][y]->type == objet ) {
-		b=1;
-	}
 	return b;
+}
+
+
+/**
+* \fn       collision_type
+* \brief    gère les collisions du serpent avec les obstacles et les murs
+* \param    p  plateau de jeu
+* \param    d  direction de la case avec laquelle on veut tester la collision
+* \param    s  serpent concerné par le test
+* \return   retourne la case suivante
+*/
+
+
+typeCase collision_type(plateau p, direction d, serpent s){
+	int x = s->coordonnees->x;
+	int y = s->coordonnees->y;
+	if (d==HAUT){
+		y=y-1;
+	}
+
+	if (d==BAS){
+		y=y+1;
+	}
+	
+	if (d==DROITE){
+		x=x+1;
+    }
+    
+	if (d==GAUCHE){
+		x=x-1;
+	}
+
+	return p->data[x][y]->type;
 }
 
 int appartient_plateau(position p , plateau plat){
 	int x = plat->largeur;
 	int y = plat->hauteur;
+	int res=0;
 	int x1 = p->x;
 	int y1 = p->y;	
 	if(x1 > 0 && x1 < x){
 		if (y1 > 0 && y1 < y){
-			return 1;
+			res=1;
 		}
 	}
 	else{
-		return 0;
+		res=0;
 	}
+	return res;
 }
 
 int deadend(plateau p, direction d, serpent s){
@@ -203,17 +241,17 @@ int deadend(plateau p, direction d, serpent s){
 	position pos4 = cree_position((x-1),(y-1));
 	if(d == DROITE)	{
 		if ((appartient_plateau(pos1,p) == 1) && (appartient_plateau(pos2,p) == 1)){
-			if (p->data[x+1][y-1]->type != vide && p->data[x+1][y+1]->type != vide){
+			if (collision_coord(p,x+1,y-1) == 0 && collision_coord(p,x+1,y+1) == 0){
 				b = 1;
 			}
 			if (appartient_plateau(pos,p) == 1){
-				if (p->data[x+1][y-1]->type != vide && p->data[x+1][y+2]->type != vide){
+				if (collision_coord(p,x+1,y-1) == 0 && collision_coord(p,x+1,y+2) == 0){
 					b = 1;
 				}
 			}
 			pos->y = (y-2);
 			if (appartient_plateau(pos,p) == 1){
-				if (p->data[x+1][y-2]->type != vide && p->data[x+1][y+1]->type != vide){
+				if (collision_coord(p,x+1,y-2) == 0 && collision_coord(p,x+1,y+1) == 0){
 					b = 1;
 				}
 			}
@@ -221,18 +259,18 @@ int deadend(plateau p, direction d, serpent s){
 	}
 	if (d == GAUCHE){
 		if (appartient_plateau(pos3,p) == 1 && appartient_plateau(pos4,p) == 1){
-			if (p->data[x-1][y-1]->type != vide && p->data[x-1][y+1]->type != vide){
+			if (collision_coord(p,x-1,y-1) == 0 && collision_coord(p,x-1,y+1) == 0){
 				b = 1;
 			}
 			pos->x = (x-1);
 			if (appartient_plateau(pos,p) == 1){
-				if (p->data[x-1][y-2]->type != vide && p->data[x-1][y+1]->type != vide){
+				if (collision_coord(p,x-1,y-2) == 0 && collision_coord(p,x-1,y+1) == 0){
 					b = 1;
 				}
 			}
 			pos->y = (y+2);
 			if (appartient_plateau(pos,p) == 1){
-				if (p->data[x-1][y-1]->type != vide && p->data[x-1][y+2]->type != vide){
+				if (collision_coord(p,x-1,y-1) == 0 && collision_coord(p,x-1,y+2) == 0){
 					b = 1;
 				}
 			}
@@ -240,19 +278,19 @@ int deadend(plateau p, direction d, serpent s){
 	}
 	if (d == HAUT){
 		if ((appartient_plateau(pos2,p) == 1) && (appartient_plateau(pos4,p) == 1)){
-			if (p->data[x-1][y-1]->type != vide && p->data[x+1][y-1]->type != vide){
+			if (collision_coord(p,x-1,y-1) == 0 && collision_coord(p,x+1,y-1) == 0){
 				b = 1;
 			}
 			pos->x = (x-2);
 			pos->y = (y-1);
 			if (appartient_plateau(pos,p) == 1){
-				if (p->data[x-2][y-1]->type != vide && p->data[x+1][y-1]->type != vide){
+				if (collision_coord(p,x-2,y-1) == 0 && collision_coord(p,x+1,y-1) == 0){
 					b = 1;
 				}
 			}
 			pos->x = (x+2);
 			if (appartient_plateau(pos,p) == 1){
-				if (p->data[x-1][y-1]->type != vide && p->data[x+2][y-1]->type != vide){
+				if (collision_coord(p,x-1,y-1) == 0 && collision_coord(p,x+2,y-1) == 0){
 					b = 1;
 				}
 			}
@@ -260,18 +298,18 @@ int deadend(plateau p, direction d, serpent s){
 	}
 	if (d == BAS){
 		if (appartient_plateau(pos1,p) == 1 && appartient_plateau(pos3,p) == 1){
-			if (p->data[x-1][y+1]->type != vide && p->data[x+1][y+1]->type != vide){
+			if (collision_coord(p,x-1,y+1) == 0 && collision_coord(p,x+1,y+1) == 0){
 				b = 1;
 			}	
 			pos->y = (y+1);
 			if (appartient_plateau(pos,p) == 1){
-				if (p->data[x-1][y+1]->type != vide && p->data[x+2][y+1]->type != vide){
+				if (collision_coord(p,x-1,y+1) == 0 && collision_coord(p,x+2,y+1) == 0){
 					b = 1;
 				}
 			}
 			pos->x = (x-2);
 			if (appartient_plateau(pos,p) == 1){
-				if (p->data[x-2][y+1]->type != vide && p->data[x+1][y+1]->type != vide){
+				if (collision_coord(p,x-2,y+1) == 0 && collision_coord(p,x+1,y+1) == 0){
 					b = 1;
 				}
 			}

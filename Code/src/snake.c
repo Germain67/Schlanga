@@ -179,5 +179,3 @@ int appartient(position x, serpent l){
     return(appartient(x, l->suivant));
 }
 
-
-

@@ -9,6 +9,7 @@
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_ttf.h>
 
+
 /**
 * \fn       displayPicture
 * \brief    Fonction chargée de l'affichage d'une image a la position x,y de la fenetre
@@ -38,7 +39,9 @@ void displayPicture(SDL_Surface* ecran, int x, int y, char* file){
   position.y = y;
   SDL_Surface *image = NULL;
   /* On charge l'image : */
-  image = SDL_DisplayFormat(SDL_LoadBMP(file));
+  SDL_Surface *load=SDL_LoadBMP(file);
+  image = SDL_DisplayFormat(load);
+  SDL_FreeSurface(load);
   /* Transparence */
   SDL_SetColorKey(image, SDL_RLEACCEL | SDL_SRCCOLORKEY, SDL_MapRGB(image->format, 0, 0, 0));
   /* On colle l'image maintenant transparente sur le fond : */
@@ -72,32 +75,41 @@ void displayPlateau(SDL_Surface* ecran, plateau p){
   for(x = 0; x<p->hauteur; x++){
     for(y = 0; y<p->largeur; y++){
       element currentCase = p->data[x][y];
-      displayPicture(ecran, x*25, y*25, "images/vide.bmp");
+        displayPicture(ecran, x*25, y*25, "images/vide.bmp");       
+	//Vert pour le snake
+     	if(currentCase->type == snake){
+        	displayPicture(ecran, x*25, y*25, "images/snake.bmp");
+      	}	
 
-      //Vert pour le snake
-      if(currentCase->type == snake){
-        displayPicture(ecran, x*25, y*25, "images/snake.bmp");
-      }
-      //Noir pour un mur
-      else if(currentCase->type == mur){
-        displayPicture(ecran, x*25, y*25, "images/mur.bmp");
-      }
-      //Rouge pour le schlanga
-      else if(currentCase->type == snake_schlanga){
-        displayPicture(ecran, x*25, y*25, "images/schlanga.bmp");
-      }
+      	//Rouge pour le schlanga
+      	else if(currentCase->type == snake_schlanga){
+        	displayPicture(ecran, x*25, y*25, "images/schlanga.bmp");
+      	}
+
+      	//Noir pour un mur
+      	else if(currentCase->type == mur){
+        	displayPicture(ecran, x*25, y*25, "images/mur.bmp");
+      	}
+      	//Bleu pour grandir
+      	else if(currentCase->type == grandir){
+        	displayPicture(ecran, x*25, y*25, "images/grandir.bmp");
+      	}
+      	//Orange pour réduire
+      	else if(currentCase->type == reduire){
+        	displayPicture(ecran, x*25, y*25, "images/reduire.bmp");
+      	}
+      	//Rouge pour accélérer
+      	else if(currentCase->type == accelerer){
+        	displayPicture(ecran, x*25, y*25, "images/accelerer.bmp");
+      	}
+      	//Fushia pour ralentir
+      	else if(currentCase->type == ralentir){
+        	displayPicture(ecran, x*25, y*25, "images/ralentir.bmp");
+      	}
     }
   }
   SDL_Flip(ecran);
 }
-
-/**
-* \fn       displayMenu
-* \brief    Fonction chargée de l'affichage du menu 
-            ainsi que de l'affichage d'une fleche au niveau du choix courant
-* \param    *ecran : Pointeur vers l'écran
-* \param    selected : Index du choix dans le menu
-*/
 
 void showLiveScore(SDL_Surface *ecran, int time, int score, int l)
 {
@@ -110,7 +122,7 @@ void showLiveScore(SDL_Surface *ecran, int time, int score, int l)
     /* Chargement de la police */
     police = TTF_OpenFont("fonts/poison.ttf", 20);
 
-    TTF_SetFontStyle(police, TTF_STYLE_BOLD);
+    //TTF_SetFontStyle(police, TTF_STYLE_BOLD);
 
     /* Initialisation du temps et du texte */
     sprintf(temps, "Temps : %d", time);
@@ -131,6 +143,7 @@ void showLiveScore(SDL_Surface *ecran, int time, int score, int l)
     TTF_CloseFont(police);
     SDL_FreeSurface(texte);
 }
+
 
 void Gameover(SDL_Surface *ecran, int compteur, char* mess) {
     SDL_Surface *texte = NULL, *fond = NULL, *gameover;
@@ -169,6 +182,15 @@ void Gameover(SDL_Surface *ecran, int compteur, char* mess) {
     TTF_CloseFont(police);
     SDL_FreeSurface(texte);
 }
+
+
+/**
+* \fn       displayMenu
+* \brief    Fonction chargée de l'affichage du menu 
+            ainsi que de l'affichage d'une fleche au niveau du choix courant
+* \param    *ecran : Pointeur vers l'écran
+* \param    selected : Index du choix dans le menu
+*/
 
 void displayMenu(SDL_Surface* ecran, int selected){
   // Effacement de l'écran
